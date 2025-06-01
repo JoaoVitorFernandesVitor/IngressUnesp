@@ -15,8 +15,11 @@ public class MainController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    protected String nextStage = "PaneX.fxml";
+    private String nextStage = "PaneX.fxml";
 
+    public void setNextStage(String nextStage) {
+        this.nextStage = nextStage;
+    }
 
     @FXML
     public void setStage(ActionEvent actionEvent) throws IOException {

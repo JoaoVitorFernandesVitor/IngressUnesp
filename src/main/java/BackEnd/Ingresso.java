@@ -32,11 +32,8 @@ public abstract class Ingresso implements Pagavel {
     }
 
     //Metodos
-
-
     @Override
     public double calcularValor() {
-        //Implementar logica
         return 0;
     }
 }

@@ -48,9 +48,7 @@ public class PeriodoEvento {
     }
 
     public void incluirDatas(LinkedList<Data> listaDatas){
-        for (Data data : listaDatas){
-            Datas.add(data);
-        }
+        Datas.addAll(listaDatas);
     }
 
 

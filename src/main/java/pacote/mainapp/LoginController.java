@@ -14,8 +14,8 @@ public class LoginController extends MainController {
     @FXML private PasswordField password;
 
     public void loginValider(ActionEvent actionEvent) throws IOException {
-        if(username.getText().equals("abacaxi") || password.getText().equals("1234")){
-            nextStage = "PaneX.fxml";
+        if(username.getText().equals("abacaxi") && password.getText().equals("1234")){
+            setNextStage("PaneX.fxml");
             setStage(actionEvent);
         }
     }
