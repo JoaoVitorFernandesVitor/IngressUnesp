@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="rootPane" prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.MainController">
+<StackPane fx:id="rootPane" prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.CadastroController">
 
     <stylesheets>
         <URL value="@css/menu.css" />
@@ -41,6 +41,11 @@
                 </font>
             </Label>
         </VBox>
+      <Label fx:id="errorLabel" alignment="CENTER" prefHeight="3.0" prefWidth="278.0" textAlignment="CENTER" textFill="#a80000">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
 
         <!-- Formulário de Cadastro -->
         <GridPane alignment="CENTER" hgap="10" style="-fx-background-color: rgba(255,255,255,0.1); -fx-background-radius: 15; -fx-padding: 30;" vgap="15">
@@ -50,27 +55,27 @@
 
             <!-- Linha 1: Nome Completo -->
             <Label style="-fx-text-fill: white;" text="Nome Completo:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="txtFullName" prefWidth="300" promptText="Digite seu nome completo" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <TextField fx:id="txtNomeCliente" prefWidth="300" promptText="Digite seu nome completo" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
             <!-- Linha 2: CPF -->
             <Label style="-fx-text-fill: white;" text="CPF:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="txtCPF" prefWidth="300" promptText="Digite seu CPF (apenas números)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCpfCliente" prefWidth="300" promptText="Digite seu CPF (apenas números)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
             <!-- Linha 3: E-mail -->
             <Label style="-fx-text-fill: white;" text="E-mail:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextField fx:id="txtEmail" prefWidth="300" promptText="Digite seu e-mail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtEmailCliente" prefWidth="300" promptText="Digite seu e-mail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
             <!-- Linha 4: Telefone -->
             <Label style="-fx-text-fill: white;" text="Telefone:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <TextField fx:id="txtPhone" prefWidth="300" promptText="Digite seu telefone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtTelefoneCliente" prefWidth="300" promptText="Digite seu telefone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
             <!-- Linha 5: Senha -->
             <Label style="-fx-text-fill: white;" text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <PasswordField fx:id="pwdPassword" prefWidth="300" promptText="Crie uma senha" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <PasswordField fx:id="txtSenhaCliente" prefWidth="300" promptText="Crie uma senha" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
             <!-- Linha 6: Confirmar Senha -->
             <Label style="-fx-text-fill: white;" text="Confirmar Senha:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-            <PasswordField fx:id="pwdConfirmPassword" prefWidth="300" promptText="Confirme sua senha" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <PasswordField fx:id="txtConfirmSenhaCliente" prefWidth="300" promptText="Confirme sua senha" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />
@@ -100,7 +105,7 @@
                 </graphic>
             </Button>
 
-            <Button fx:id="btnRegister" mnemonicParsing="false" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 16;" text="Cadastrar">
+            <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#cadastrarCliente" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 16;" text="Cadastrar">
                 <font>
                     <Font name="System Bold" size="16.0" />
                 </font>
