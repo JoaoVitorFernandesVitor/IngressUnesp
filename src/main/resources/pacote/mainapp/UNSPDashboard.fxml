@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.collections.FXCollections?>
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1">
+
+  <MenuBar VBox.vgrow="NEVER" style="-fx-background-color: #2c3e50;">
+    <Menu mnemonicParsing="false" text="Eventos" style="-fx-text-fill: white;">
+      <MenuItem mnemonicParsing="false" text="Novo Evento"/>
+      <MenuItem mnemonicParsing="false" text="Gerenciar Eventos"/>
+      <SeparatorMenuItem mnemonicParsing="false"/>
+      <MenuItem mnemonicParsing="false" text="Exportar Relatórios"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Ingressos" style="-fx-text-fill: white;">
+      <MenuItem mnemonicParsing="false" text="Vender Ingressos"/>
+      <MenuItem mnemonicParsing="false" text="Validar Ingressos"/>
+      <MenuItem mnemonicParsing="false" text="Relatório de Vendas"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Clientes" style="-fx-text-fill: white;">
+      <MenuItem mnemonicParsing="false" text="Cadastrar Cliente"/>
+      <MenuItem mnemonicParsing="false" text="Listar Clientes"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Ajuda" style="-fx-text-fill: white;">
+      <MenuItem mnemonicParsing="false" text="Sobre o Sistema"/>
+      <MenuItem mnemonicParsing="false" text="Manual de Uso"/>
+    </Menu>
+  </MenuBar>
+
+  <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS"
+              style="-fx-background-color: #f5f6fa;">
+    <!-- Cabeçalho -->
+    <HBox alignment="CENTER_LEFT" layoutX="0.0" layoutY="0.0" prefHeight="80.0" prefWidth="900.0"
+          style="-fx-background-color: #3498db; -fx-padding: 0 20;">
+      <Label text="EventTick - Dashboard" style="-fx-text-fill: white;">
+        <font>
+          <Font name="System Bold" size="28.0"/>
+        </font>
+      </Label>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label text="Bem-vindo, Admin" style="-fx-text-fill: white; -fx-font-size: 16;"/>
+      <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@Downloads/unespLogo.png"/>
+      </ImageView>
+    </HBox>
+
+    <!-- Cards de Estatísticas -->
+    <HBox alignment="CENTER" layoutX="20.0" layoutY="100.0" spacing="20.0">
+      <!-- Card 1 -->
+      <VBox alignment="CENTER" prefHeight="150.0" prefWidth="200.0"
+            style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+        <padding>
+          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+        </padding>
+        <Label text="Eventos Hoje" style="-fx-text-fill: #7f8c8d; -fx-font-size: 16;"/>
+        <Label text="12" style="-fx-text-fill: #2c3e50; -fx-font-size: 36; -fx-font-weight: bold;"/>
+        <Label text="+2 em relação a ontem" style="-fx-text-fill: #27ae60; -fx-font-size: 12;"/>
+      </VBox>
+
+      <!-- Card 2 -->
+      <VBox alignment="CENTER" prefHeight="150.0" prefWidth="200.0"
+            style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+        <padding>
+          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+        </padding>
+        <Label text="Ingressos Vendidos" style="-fx-text-fill: #7f8c8d; -fx-font-size: 16;"/>
+        <Label text="1,248" style="-fx-text-fill: #2c3e50; -fx-font-size: 36; -fx-font-weight: bold;"/>
+        <Label text="+15% este mês" style="-fx-text-fill: #27ae60; -fx-font-size: 12;"/>
+      </VBox>
+
+      <!-- Card 3 -->
+      <VBox alignment="CENTER" prefHeight="150.0" prefWidth="200.0"
+            style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+        <padding>
+          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+        </padding>
+        <Label text="Receita Total" style="-fx-text-fill: #7f8c8d; -fx-font-size: 16;"/>
+        <Label text="R$ 24,560" style="-fx-text-fill: #2c3e50; -fx-font-size: 36; -fx-font-weight: bold;"/>
+        <Label text="Meta: R$ 30,000" style="-fx-text-fill: #e74c3c; -fx-font-size: 12;"/>
+      </VBox>
+
+      <!-- Card 4 -->
+      <VBox alignment="CENTER" prefHeight="150.0" prefWidth="200.0"
+            style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+        <padding>
+          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+        </padding>
+        <Label text="Novos Clientes" style="-fx-text-fill: #7f8c8d; -fx-font-size: 16;"/>
+        <Label text="84" style="-fx-text-fill: #2c3e50; -fx-font-size: 36; -fx-font-weight: bold;"/>
+        <Label text="+10% este mês" style="-fx-text-fill: #27ae60; -fx-font-size: 12;"/>
+      </VBox>
+    </HBox>
+
+    <!-- Gráfico e Lista de Eventos -->
+    <HBox layoutX="20.0" layoutY="280.0" spacing="20.0" prefHeight="280.0" prefWidth="860.0">
+      <!-- Gráfico de Vendas -->
+      <VBox prefHeight="280.0" prefWidth="500.0"
+            style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+        <padding>
+          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+        </padding>
+        <Label text="Vendas por Evento (Últimos 7 dias)"
+               style="-fx-text-fill: #2c3e50; -fx-font-size: 16; -fx-font-weight: bold;"/>
+        <BarChart prefHeight="240.0" prefWidth="480.0">
+          <xAxis>
+            <CategoryAxis side="BOTTOM"/>
+          </xAxis>
+          <yAxis>
+            <NumberAxis side="LEFT"/>
+          </yAxis>
+        </BarChart>
+      </VBox>
+    </HBox>
+  </AnchorPane>
+</VBox>

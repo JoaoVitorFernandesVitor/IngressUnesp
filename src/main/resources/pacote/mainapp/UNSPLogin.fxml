@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.unespingresso.controllers.LoginController">
+
+    <AnchorPane VBox.vgrow="ALWAYS">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7d1833" height="64.0" layoutY="-5.0"
+                   stroke="BLACK" strokeType="INSIDE" width="646.0"/>
+        <Label layoutX="259.0" layoutY="71.0" text="LOGIN">
+            <font>
+                <Font name="Palatino Linotype" size="37.0"/>
+            </font>
+        </Label>
+        <Label layoutX="160.0" layoutY="166.0" text="E-mail:"/>
+        <Label layoutX="158.0" layoutY="230.0" text="Senha:"/>
+
+        <TextField fx:id="emailField" layoutX="223.0" layoutY="159.0"/>
+        <TextField fx:id="senhaField" layoutX="219.0" layoutY="224.0"/>
+
+        <Label layoutX="73.0" layoutY="20.0" text="UNESPingresso" textFill="WHITE"/>
+        <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="11.0" layoutY="9.0" pickOnBounds="true">
+            <Image url="@Downloads/unespLogo.png"/>
+        </ImageView>
+
+        <Button layoutX="235.0" layoutY="340.0" prefHeight="32.0" prefWidth="162.0"
+                style="-fx-background-color: #7d1833;" text="Cancelar" textFill="#fffafa"/>
+
+        <Button layoutX="235.0" layoutY="289.0" prefHeight="32.0" prefWidth="161.0"
+                style="-fx-background-color: #408d3a;" text="Entrar" textFill="WHITE"
+                onAction="#handleLogin"/>
+    </AnchorPane>
+</VBox>
