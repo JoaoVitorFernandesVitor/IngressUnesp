@@ -1,0 +1,106 @@
+.root {
+    -fx-background-color: #f5f5f5;
+}
+
+/* Barra superior */
+.top-bar {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 0, 0, 0, 5);
+}
+
+.logo-text {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.welcome-text {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 0 15px 0 0;
+}
+
+.logout-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 5px;
+}
+
+.logout-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* Lista de eventos */
+.events-container {
+    -fx-padding: 20px;
+    -fx-background-color: transparent;
+}
+
+.section-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.events-list {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+.events-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 10px 0;
+}
+
+/* Rodapé */
+.footer {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 10px;
+}
+
+.footer-text {
+    -fx-text-fill: #ecf0f1;
+    -fx-font-size: 12px;
+}
+
+/* Card de evento */
+.event-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-max-width: 800px;
+}
+
+.event-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.event-detail {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.event-price {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27ae60;
+}
+
+.buy-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 5px;
+}
+
+.buy-button:hover {
+    -fx-background-color: #2980b9;
+}
