@@ -48,7 +48,7 @@
       <Region HBox.hgrow="ALWAYS"/>
       <Label text="Bem-vindo, Admin" style="-fx-text-fill: white; -fx-font-size: 16;"/>
       <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@Downloads/unespLogo.png"/>
+        <Image url="@img/unespLogo.png"/>
       </ImageView>
     </HBox>
 
