@@ -1,0 +1,90 @@
+/* Estilos gerais */
+.root {
+    -fx-font-family: 'Segoe UI';
+}
+
+/* Overlay de fundo */
+.overlay {
+    -fx-background-color: rgba(0,0,0,0.5);
+}
+
+/* Container principal */
+.main-container {
+    -fx-alignment: center;
+    -fx-spacing: 20px;
+    -fx-padding: 20px;
+}
+
+/* Textos */
+.title-text {
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.error-label {
+    -fx-text-fill: #a80000;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 0;
+}
+
+.footer-text {
+    -fx-text-fill: #bdc3c7;
+    -fx-font-size: 12px;
+}
+
+/* Formulário */
+.form-grid {
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-background-radius: 15;
+    -fx-alignment: CENTER;
+    -fx-hgap: 10px;
+    -fx-vgap: 15px;
+}
+
+.form-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.form-field {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 35px;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5px;
+    -fx-prompt-text-fill: #a0a0a0;
+}
+
+/* Botões */
+.button-container {
+    -fx-padding: 10px 0;
+}
+
+.primary-button {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 150px;
+    -fx-background-radius: 5px;
+}
+
+.primary-button:hover {
+    -fx-background-color: #2ecc71;
+}
+
+.secondary-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 120px;
+    -fx-background-radius: 5px;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #c0392b;
+}

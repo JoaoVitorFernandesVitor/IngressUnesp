@@ -1,0 +1,72 @@
+/* Estilos gerais */
+.root {
+    -fx-font-family: 'Segoe UI';
+}
+
+/* Textos */
+.title-text {
+    -fx-text-fill: white;
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+}
+
+.subtitle-text {
+    -fx-text-fill: #bdc3c7;
+    -fx-font-size: 16px;
+}
+
+.footer-text {
+    -fx-text-fill: #bdc3c7;
+    -fx-font-size: 12px;
+}
+
+/* Formulário */
+.login-form {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 15;
+    -fx-padding: 30;
+    -fx-spacing: 20;
+}
+
+.form-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.form-field {
+    -fx-pref-height: 35;
+    -fx-pref-width: 250;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+}
+
+/* Botões */
+.primary-button {
+    -fx-background-color: #408d3a;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 50;
+    -fx-pref-width: 250;
+    -fx-background-radius: 5;
+}
+
+.primary-button:hover {
+    -fx-background-color: #3a7d34;
+}
+
+.secondary-button {
+    -fx-background-color: #7d1833;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-pref-height: 40;
+    -fx-pref-width: 150;
+    -fx-background-radius: 5;
+    -fx-border-color: white;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #6d142b;
+}

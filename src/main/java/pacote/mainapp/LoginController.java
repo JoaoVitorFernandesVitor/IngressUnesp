@@ -19,7 +19,7 @@ public class LoginController extends MainController {
 
     //Metodo para ir para a tela de login dos usuarios
     public void goToUserLogin(ActionEvent event) throws IOException {
-        setNextStage("UNSPLogin.fxml");     //a variavel NextStage armazena o nome do arquivo da proxima page
+        setNextStage("UserLogin.fxml");     //a variavel NextStage armazena o nome do arquivo da proxima page
         setStage(event);                    //função da classe MainCrontroller que altera para a tela referente a variavel NextStage
     }
 
@@ -36,5 +36,10 @@ public class LoginController extends MainController {
             setNextStage("UNSPDashboard.fxml");
             setStage(event);
         }
+    }
+
+    public void goToMenuInicial(ActionEvent event) throws IOException {
+        setNextStage("MenuInicial.fxml");  //a variavel NextStage armazena o nome do arquivo da proxima page
+        setStage(event);                //função da classe MainCrontroller que altera para a tela referente a variavel NextStage
     }
 }

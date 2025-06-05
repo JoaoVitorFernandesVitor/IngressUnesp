@@ -11,7 +11,7 @@ public class
 MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("UNSPMenuInicial.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MenuInicial.fxml"));
 
         Scene scene = new Scene(root, 900, 600);
 

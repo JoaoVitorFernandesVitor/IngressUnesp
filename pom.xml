@@ -70,13 +70,14 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>pacote.mainapp/pacote.mainapp.HelloApplication</mainClass>
+                            <mainClass>pacote.mainapp.HelloApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
                             <noHeaderFiles>true</noHeaderFiles>
+                            <jvmArgs>--enable-native-access=javafx.graphics</jvmArgs>
                         </configuration>
                     </execution>
                 </executions>

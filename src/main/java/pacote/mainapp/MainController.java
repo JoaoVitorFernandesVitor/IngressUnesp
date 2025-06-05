@@ -17,6 +17,7 @@ public class MainController {
     private Parent root;
     private String nextStage = "PaneX.fxml";
 
+
     public void setNextStage(String nextStage) {
         this.nextStage = nextStage;
     }

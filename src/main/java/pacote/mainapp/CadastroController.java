@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class CadastroController extends MainController {
 
     @FXML private TextField txtNomeCliente;
@@ -30,6 +32,12 @@ public class CadastroController extends MainController {
             //continuar o cadastramento do usuario
         }
 
+    }
+
+    //Metodo para ir para a tela de cadastro de usuario
+    public void goToMenuInicial(ActionEvent event) throws IOException {
+        setNextStage("MenuInicial.fxml");  //a variavel NextStage armazena o nome do arquivo da proxima page
+        setStage(event);                //função da classe MainCrontroller que altera para a tela referente a variavel NextStage
     }
 
 
