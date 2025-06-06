@@ -1,4 +1,4 @@
-package BackEnd;
+package pacote.mainapp.models;
 
 import java.util.LinkedList;
 

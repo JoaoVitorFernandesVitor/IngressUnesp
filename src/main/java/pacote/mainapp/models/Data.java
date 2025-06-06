@@ -1,4 +1,4 @@
-package BackEnd;
+package pacote.mainapp.models;
 
 public class Data {
     private int dia;

@@ -1,4 +1,4 @@
-package BackEnd;
+package pacote.mainapp.models;
 
 public class IngressoUnico extends Ingresso {
 

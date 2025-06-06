@@ -1,6 +1,4 @@
-package BackEnd;
-
-import java.io.Serializable;
+package pacote.mainapp.models;
 
 public class Passaporte extends Ingresso {
 

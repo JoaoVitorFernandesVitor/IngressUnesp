@@ -1,4 +1,4 @@
-package BackEnd;
+package pacote.mainapp.models;
 
 import java.util.LinkedList;
 
@@ -13,6 +13,12 @@ public class Cliente extends Usuario {
         setCpf(cpf);
         setEndereco(endereco);
         setSenha(senha);
+        this.carteira = "Vazia";
+        this.ListaDeIngressos = new LinkedList<Ingresso>();
+    }
+
+    public Cliente() {
+        super();
         this.carteira = "Vazia";
         this.ListaDeIngressos = new LinkedList<Ingresso>();
     }

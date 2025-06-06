@@ -1,4 +1,4 @@
-package BackEnd;
+package pacote.mainapp.models;
 
 public abstract class Ingresso implements Pagavel {
     protected int id;

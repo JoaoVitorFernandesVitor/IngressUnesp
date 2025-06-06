@@ -12,10 +12,10 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.layout.HBox?>
-<StackPane fx:id="rootPane" prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.LoginController">
+<StackPane fx:id="rootPane" prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.LoginController">
 
     <stylesheets>
-        <URL value="@css/login.css" />
+        <URL value="@../css/login.css" />
     </stylesheets>
 
     <!-- Overlay escuro para melhor contraste -->
@@ -26,7 +26,7 @@
         <!-- Logo/Cabeçalho -->
         <VBox alignment="CENTER" spacing="10">
             <ImageView fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true">
-                <Image url="@img/unespLogo.png" />
+                <Image url="@../img/unespLogo.png" />
             </ImageView>
             <Label styleClass="title-text" text="IngressUNESP" />
             <Label styleClass="subtitle-text" text="Faça login para continuar" />

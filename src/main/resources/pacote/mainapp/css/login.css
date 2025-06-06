@@ -56,17 +56,15 @@
 }
 
 .secondary-button {
-    -fx-background-color: #7d1833;
+    -fx-background-color: #e74c3c;
     -fx-text-fill: white;
     -fx-font-size: 16px;
+    -fx-font-weight: bold;
     -fx-pref-height: 40;
     -fx-pref-width: 150;
     -fx-background-radius: 5;
-    -fx-border-color: white;
-    -fx-border-width: 1;
-    -fx-border-radius: 5;
 }
 
 .secondary-button:hover {
-    -fx-background-color: #6d142b;
+    -fx-background-color: #c0392b;
 }
