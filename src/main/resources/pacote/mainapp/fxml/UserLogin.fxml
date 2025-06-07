@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+
 
 <?import java.net.URL?>
 <?import javafx.scene.layout.HBox?>
@@ -18,7 +18,6 @@
         <URL value="@../css/login.css" />
     </stylesheets>
 
-    <!-- Overlay escuro para melhor contraste -->
     <VBox style="-fx-background-color: #7d1833;" />
 
     <!-- Conteúdo principal -->
@@ -37,7 +36,7 @@
             <HBox alignment="CENTER">
                 <VBox alignment="CENTER_LEFT" spacing="5" maxWidth="300">
                     <Label styleClass="form-label" text="E-mail" />
-                    <TextField fx:id="username" styleClass="form-field" />
+                    <TextField fx:id="txtLoginEmail" styleClass="form-field" />
                 </VBox>
             </HBox>
 
@@ -48,10 +47,13 @@
                 </VBox>
             </HBox>
 
-            <Button fx:id="loginButton" onAction="#loginValider" styleClass="primary-button" text="Entrar" />
+            <Button fx:id="loginButton" onAction="#validarLogin" styleClass="primary-button" text="Entrar" />
 
             <Button fx:id="cancelButton" onAction="#goToMenuInicial" styleClass="secondary-button" text="Cancelar" />
         </VBox>
+
+        <Label fx:id="lblLoginMensagem" layoutX="100" layoutY="250"/>
+
 
         <!-- Rodapé -->
         <Label styleClass="footer-text" text="© 2025 IngressUNESP - Todos os direitos reservados" />

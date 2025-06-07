@@ -70,38 +70,38 @@
             <PasswordField fx:id="txtConfirmarSenha" styleClass="form-field" promptText="Confirme sua senha" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
             <!-- Linha 7: Endereço - Logradouro -->
-            <Label text="Logradouro:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-            <TextField fx:id="txtLogradouro" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label styleClass="form-label" text="Logradouro:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <TextField fx:id="txtLogradouro" styleClass="form-field" promptText="Digite seu logradouro" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
             <!-- Linha 8: Número -->
-            <Label text="Número:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-            <TextField fx:id="txtNumero" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label styleClass="form-label" text="Número:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+            <TextField fx:id="txtNumero" styleClass="form-field" promptText="Digite o N° de sua residência" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
             <!-- Linha 9: Complemento -->
-            <Label text="Complemento:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
-            <TextField fx:id="txtComplemento" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label styleClass="form-label" text="Complemento:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+            <TextField fx:id="txtComplemento" styleClass="form-field" promptText="Complemento" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
             <!-- Linha 10: Cidade -->
-            <Label text="Cidade:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
-            <TextField fx:id="txtCidade" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label styleClass="form-label" text="Cidade:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+            <TextField fx:id="txtCidade" styleClass="form-field" promptText="Informe sua Cidade" GridPane.columnIndex="1" GridPane.rowIndex="9" />
 
             <!-- Linha 11: Estado -->
-            <Label text="Estado:" GridPane.columnIndex="0" GridPane.rowIndex="10" />
-            <TextField fx:id="txtEstado" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label styleClass="form-label" text="Estado:" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+            <TextField fx:id="txtEstado" styleClass="form-field" promptText="Informe seu Estado" GridPane.columnIndex="1" GridPane.rowIndex="10" />
 
             <!-- Linha 12: CEP -->
-            <Label text="CEP:" GridPane.columnIndex="0" GridPane.rowIndex="11" />
-            <TextField fx:id="txtCep" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <!-- Adicione isso ao seu GridPane existente -->
+            <Label styleClass="form-label" text="CEP:" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+            <TextField fx:id="txtCep" styleClass="form-field" promptText="Informe seu CEP" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+
             <!-- Linha 12: Tipo de Usuário -->
-            <Label text="Tipo de Usuário:" GridPane.columnIndex="0" GridPane.rowIndex="12" />
+            <Label styleClass="form-label" text="Tipo de Usuário:" GridPane.columnIndex="0" GridPane.rowIndex="12" />
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="12">
-                <RadioButton fx:id="rbCliente" text="Cliente" selected="true" onAction="#toggleTipoUsuario" />
-                <RadioButton fx:id="rbAdministrador" text="Administrador" onAction="#toggleTipoUsuario" />
+                <RadioButton fx:id="rbCliente" styleClass="form-label" text="Cliente" selected="true" onAction="#toggleTipoUsuario" />
+                <RadioButton fx:id="rbAdministrador" styleClass="form-label" text="Administrador" onAction="#toggleTipoUsuario" />
             </HBox>
 
             <!-- Linha 13: Nível de Acesso (visível apenas para admin) -->
-            <Label text="Nível de Acesso:" visible="${rbAdministrador.selected}"
+            <Label styleClass="form-label" text="Nível de Acesso:" visible="${rbAdministrador.selected}"
                    GridPane.columnIndex="0" GridPane.rowIndex="13" />
             <TextField fx:id="txtNivelAcesso" visible="${rbAdministrador.selected}"
                        GridPane.columnIndex="1" GridPane.rowIndex="13" />

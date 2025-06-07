@@ -3,38 +3,61 @@ package pacote.mainapp.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import pacote.mainapp.models.DatabaseManager;
+import pacote.mainapp.models.Usuario;
 
 
 import java.io.IOException;
 
 public class LoginController extends MainController {
 
-    public Button btnRegister;
+
     public StackPane rootPane;
-    public Button btnAdminLogin;
-    public Button btnUserLogin;
-    //widgets FXML UNSPLogin
-    @FXML private TextField username;
+    public Button loginButton;
+    public Button cancelButton;
+
+    @FXML private TextField txtLoginEmail;
     @FXML private PasswordField password;
+    @FXML private Label lblLoginMensagem;
 
 
-    //Metodo para ir para a tela de login dos usuarios
-    public void goToUserLogin(ActionEvent event) throws IOException {
-        setNextStage("UserLogin.fxml");     //a variavel NextStage armazena o nome do arquivo da proxima page
-        setStage(event);                    //função da classe MainCrontroller que altera para a tela referente a variavel NextStage
+    @FXML
+    private void validarLogin(ActionEvent event) {
+        String email = txtLoginEmail.getText();
+        String senha = password.getText();
+
+        if (email.isEmpty() || senha.isEmpty()) {
+            lblLoginMensagem.setText("Email e senha são obrigatórios.");
+            return;
+        }
+
+        try {
+            Usuario usuario = DatabaseManager.buscarUsuarioPorEmail(email);
+
+            if (usuario != null && usuario.getSenha().equals(senha)) {
+                lblLoginMensagem.setText("Login realizado com sucesso!");
+                NavigationController.goToDashboard((Node) event.getSource(), usuario);
+            } else {
+                lblLoginMensagem.setText("Email ou senha inválidos.");
+            }
+        } catch (Exception e) {
+            lblLoginMensagem.setText("Erro ao realizar login: " + e.getMessage());
+        }
     }
 
-
-    //Metodo que realiza a verificação do usuario e senha
-    public void loginValider(ActionEvent event) throws IOException {
-        if(username.getText().equals("abacaxi") && password.getText().equals("1234")){
-            setNextStage("UNSPDashboard.fxml");
-            setStage(event);
+    @FXML
+    private void goToMenuInicial(ActionEvent event) {
+        try {
+            NavigationController.goToMenuInicial((Node) event.getSource());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
