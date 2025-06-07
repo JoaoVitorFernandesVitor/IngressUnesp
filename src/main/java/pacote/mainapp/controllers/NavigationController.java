@@ -54,8 +54,36 @@ public class NavigationController {
         stage.show();
     }
 
+    public static void goToAdminLogin(Node sourceNode) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/AdminLogin.fxml")));
+        Stage stage = (Stage) sourceNode.getScene().getWindow();
+        stage.setScene(new Scene(root));
+
+        double currentWidth = stage.getWidth();
+        double currentHeight = stage.getHeight();
+
+        stage.setWidth(currentWidth);
+        stage.setHeight(currentHeight);
+
+        stage.show();
+    }
+
     public static void goToDashboard(Node sourceNode, Usuario usuario) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/UNSPDashboard.fxml")));
+        Stage stage = (Stage) sourceNode.getScene().getWindow();
+        stage.setScene(new Scene(root));
+
+        double currentWidth = stage.getWidth();
+        double currentHeight = stage.getHeight();
+
+        stage.setWidth(currentWidth);
+        stage.setHeight(currentHeight);
+
+        stage.show();
+    }
+
+    public static void goToEventos (Node sourceNode) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/Eventos.fxml")));
         Stage stage = (Stage) sourceNode.getScene().getWindow();
         stage.setScene(new Scene(root));
 

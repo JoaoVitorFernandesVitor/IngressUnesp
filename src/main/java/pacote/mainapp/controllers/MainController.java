@@ -36,4 +36,13 @@ public class MainController {
         }
     }
 
+    @FXML
+    private void goToAdminLogin(ActionEvent event) {
+        try {
+            NavigationController.goToAdminLogin((Node) event.getSource());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

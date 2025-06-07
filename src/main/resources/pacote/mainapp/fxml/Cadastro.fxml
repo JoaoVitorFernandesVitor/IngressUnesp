@@ -131,6 +131,8 @@
             </Button>
         </HBox>
 
+        <Label fx:id="lblMensagem" styleClass="form-label"/>
+
         <!-- Rodapé -->
         <Label styleClass="footer-text" text="© 2025 IngressUNESP - Todos os direitos reservados" />
     </VBox>

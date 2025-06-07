@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pacote.mainapp.models.DatabaseInicializador;
+
 
 import java.util.Objects;
 
@@ -22,6 +24,7 @@ MainApp extends Application {
     }
 
     public static void main(String[] args){
+        DatabaseInicializador.criarBancoSeNaoExistir();
         launch(args);//Abre a aplicação
     }
 }

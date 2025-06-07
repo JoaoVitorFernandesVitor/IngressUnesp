@@ -47,7 +47,7 @@
                 </VBox>
             </HBox>
 
-            <Button fx:id="loginButton" onAction="#validarLogin" styleClass="primary-button" text="Entrar" />
+            <Button fx:id="loginButton" onAction="#validarAdminLogin" styleClass="primary-button" text="Entrar" />
 
             <Button fx:id="cancelButton" onAction="#goToMenuInicial" styleClass="secondary-button" text="Cancelar" />
         </VBox>

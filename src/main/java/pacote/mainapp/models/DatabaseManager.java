@@ -42,7 +42,7 @@ public class DatabaseManager {
             stmt.execute(sqlUsuarios);
         }
     }
-    public static boolean cadastrarUsuario(Usuario usuario, String tipoUsuario) {
+    public static boolean cadastrarUsuario(Usuario usuario, String tipoUsuario) throws SQLException {
         String sql = "INSERT INTO usuarios(nome, email, cpf, telefone, senha, " +
                 "logradouro, numero, complemento, cidade, estado, cep, tipo) " +
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -105,4 +105,5 @@ public class DatabaseManager {
         }
         return null;
     }
+
 }

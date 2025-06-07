@@ -8,7 +8,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.unespingresso.controllers.EventosController"
+            fx:controller="pacote.mainapp.controllers.CadastroController"
             stylesheets="@../css/evento.css">
 
     <!-- Topo - Barra de navegação -->
@@ -20,7 +20,7 @@
             <Button fx:id="btnLogout" text="Sair" styleClass="logout-button">
                 <graphic>
                     <ImageView fitHeight="20" fitWidth="20">
-                        <Image url="@Downloads/unespLogo.png"/>
+                        <Image url="@../img/unespLogo.png"/>
                     </ImageView>
                 </graphic>
             </Button>

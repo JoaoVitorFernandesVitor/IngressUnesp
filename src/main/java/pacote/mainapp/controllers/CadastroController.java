@@ -91,6 +91,7 @@ public class CadastroController {
             // Persistir no banco
             if (DatabaseManager.cadastrarUsuario(novoUsuario, tipoUsuario)) {
                 lblMensagem.setText("Cadastro realizado com sucesso!");
+                NavigationController.goToMenuInicial((Node) event.getSource());
                 limparCampos();
             } else {
                 lblMensagem.setText("Erro ao cadastrar. Tente novamente.");

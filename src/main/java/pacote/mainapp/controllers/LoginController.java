@@ -29,7 +29,7 @@ public class LoginController extends MainController {
 
 
     @FXML
-    private void validarLogin(ActionEvent event) {
+    private void validarAdminLogin(ActionEvent event) {
         String email = txtLoginEmail.getText();
         String senha = password.getText();
 
@@ -51,6 +51,31 @@ public class LoginController extends MainController {
             lblLoginMensagem.setText("Erro ao realizar login: " + e.getMessage());
         }
     }
+
+    @FXML
+    private void validarLogin(ActionEvent event) {
+        String email = txtLoginEmail.getText();
+        String senha = password.getText();
+
+        if (email.isEmpty() || senha.isEmpty()) {
+            lblLoginMensagem.setText("Email e senha são obrigatórios.");
+            return;
+        }
+
+        try {
+            Usuario usuario = DatabaseManager.buscarUsuarioPorEmail(email);
+
+            if (usuario != null && usuario.getSenha().equals(senha)) {
+                lblLoginMensagem.setText("Login realizado com sucesso!");
+                NavigationController.goToEventos((Node) event.getSource());
+            } else {
+                lblLoginMensagem.setText("Email ou senha inválidos.");
+            }
+        } catch (Exception e) {
+            lblLoginMensagem.setText("Erro ao realizar login: " + e.getMessage());
+        }
+    }
+
 
     @FXML
     private void goToMenuInicial(ActionEvent event) {
