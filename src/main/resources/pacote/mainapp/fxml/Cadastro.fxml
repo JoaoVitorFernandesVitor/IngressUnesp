@@ -17,6 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <StackPane fx:id="rootPane" prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.CadastroController">
 
     <stylesheets>
@@ -93,11 +94,15 @@
             <Label styleClass="form-label" text="CEP:" GridPane.columnIndex="0" GridPane.rowIndex="11" />
             <TextField fx:id="txtCep" styleClass="form-field" promptText="Informe seu CEP" GridPane.columnIndex="1" GridPane.rowIndex="11" />
 
+            <fx:define>
+                <ToggleGroup fx:id="tipoUsuarioGroup"/>
+            </fx:define>
+
             <!-- Linha 12: Tipo de Usuário -->
             <Label styleClass="form-label" text="Tipo de Usuário:" GridPane.columnIndex="0" GridPane.rowIndex="12" />
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="12">
-                <RadioButton fx:id="rbCliente" styleClass="form-label" text="Cliente" selected="true" onAction="#toggleTipoUsuario" />
-                <RadioButton fx:id="rbAdministrador" styleClass="form-label" text="Administrador" onAction="#toggleTipoUsuario" />
+                <RadioButton fx:id="rbCliente" styleClass="form-label" toggleGroup="$tipoUsuarioGroup" text="Cliente" selected="true" onAction="#toggleTipoUsuario" />
+                <RadioButton fx:id="rbAdministrador" styleClass="form-label" toggleGroup="$tipoUsuarioGroup" text="Administrador" onAction="#toggleTipoUsuario" />
             </HBox>
 
             <!-- Linha 13: Nível de Acesso (visível apenas para admin) -->

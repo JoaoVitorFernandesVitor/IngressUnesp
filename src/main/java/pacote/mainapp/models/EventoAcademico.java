@@ -8,10 +8,10 @@ public class EventoAcademico extends Evento {
     //Construtor
     public EventoAcademico() {
         super();
-        setTitulo("Abacaxi");
     }
-    public EventoAcademico(String titulo, String descricao, Endereco local, PeriodoEvento periodoDoEvento, String palestrante, String topico) {
-        super(titulo, descricao, local, periodoDoEvento);
+
+    public EventoAcademico(String titulo, String descricao, Endereco local, String data_inicio, String data_fim, String preco, String palestrante, String topico) {
+        super(titulo, descricao, local, data_inicio, data_fim, preco);
         this.palestrante = palestrante;
         this.topico = topico;
     }
@@ -36,6 +36,6 @@ public class EventoAcademico extends Evento {
 
     //Metodos
     public String toString() {
-        return getTitulo() + ":" + getPalestrante() + "(" + getTopico() + ")" + "\n" + periodoDoEvento.toString() + " - " + local.toString() + "\n" + getDescricao();
+        return getTitulo() + ":" + getPalestrante() + "(" + getTopico() + ")" + "\n" + local.toString() + "\n" + getDescricao();
     }
 }
