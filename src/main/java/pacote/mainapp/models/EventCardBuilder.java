@@ -1,21 +1,17 @@
 package pacote.mainapp.models;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import pacote.mainapp.controllers.EventCardController;
-import pacote.mainapp.controllers.EventoContoller;
+import pacote.mainapp.controllers.EventoDetalhadoController;
 import pacote.mainapp.controllers.NavigationController;
-import pacote.mainapp.controllers.UNSPEventoController;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -89,17 +85,26 @@ public class EventCardBuilder extends VBox {
     }
 
     private void buildEventWindow(Evento evento) throws IOException {
-        FXMLLoader root = new FXMLLoader(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/UNSPEvento.fxml")));
-        Parent rooter = root.load();
-        UNSPEventoController controller = root.getController();
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/pacote/mainapp/fxml/EventoDetalhado.fxml")));
+        Parent root = loader.load();
 
+        EventoDetalhadoController controller = loader.getController();
         controller.setEventoTitulo(evento.getTitulo());
         controller.setEventoDescricao(evento.getDescricao());
         controller.setEventoPreco(evento.getPreco());
 
-        System.out.println();
+        // Define imagem com base no tipo
+        String tipo = evento.getTipo();
+        String imagePath = switch (tipo.toLowerCase(Locale.ROOT)) {
+            case "academico" -> "/pacote/mainapp/img/academico.png";
+            case "musical" -> "/pacote/mainapp/img/musical.jpg";
+            default -> "/pacote/mainapp/img/unespLogo.png";
+        };
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
+        controller.setEventoImagem(image);
 
-        setEventScene(new Scene(rooter));
+        setEventScene(new Scene(root));
     }
+
 
 }
