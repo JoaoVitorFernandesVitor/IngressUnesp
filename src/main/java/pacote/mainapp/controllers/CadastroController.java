@@ -103,6 +103,7 @@ public class CadastroController {
 
     @FXML
     private void toggleTipoUsuario(ActionEvent event) {
+        txtNivelAcesso.visibleProperty().unbind();
         txtNivelAcesso.setVisible(rbAdministrador.isSelected());
     }
 

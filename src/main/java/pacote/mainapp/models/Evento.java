@@ -20,6 +20,13 @@ public class Evento {
         this.preco = preco;
     }
 
+    public Evento(String titulo, String descricao, String dataInicio, String preco) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.data_inicio = dataInicio;
+        this.preco = preco;
+    }
+
     //Geters e Seters
     public String getTitulo() {
         return titulo;

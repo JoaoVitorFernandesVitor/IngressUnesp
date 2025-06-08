@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -13,8 +14,13 @@ import pacote.mainapp.models.Evento;
 import pacote.mainapp.models.EventoAcademico;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class EventoContoller {
+public class EventoContoller implements Initializable {
 
 
     @FXML
@@ -22,28 +28,60 @@ public class EventoContoller {
     private ObservableList<Evento> eventos = FXCollections.observableArrayList();
 
 
-    public Node createEventCard() throws IOException {
 
-        Evento evento1 = new EventoAcademico();
-        Evento evento2 = new EventoAcademico();
+    private void carregarEventos() {
+        List<Evento> eventos = buscarEventos();
 
-        evento2.setTitulo("Evento de Academico");
-        eventos.addAll(evento1, evento2);
-        String[] paths = {"/pacote/mainapp/fxml/UNSPDashboard.fxml", "/pacote/mainapp/fxml/Cadastro.fxml"};
-        int i = 0;
-        //para cada evento na lista cria os labels
+        EventCardBuilder builder = new EventCardBuilder();
+
         for (Evento evento : eventos) {
-            //adiciona o EventCard no container
-            eventsContainer.getChildren().add(new EventCardBuilder().buildCard(evento, paths[i]));
-            i++;
+            try {
+                Node card = builder.buildCard(evento, null);
+                eventsContainer.getChildren().add(card);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        carregarEventos();
+    }
+
+    public List<Evento> buscarEventos() {
+        List<Evento> eventos = new ArrayList<>();
+        String sql = "SELECT titulo, descricao, data_inicio, preco FROM eventos";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String titulo = rs.getString("titulo");
+                String descricao = rs.getString("descricao");
+                String data_inicio = rs.getString("data_inicio");
+                String preco = rs.getString("preco");
+
+                Evento evento = new Evento(titulo, descricao, data_inicio, preco);
+                eventos.add(evento);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Aqui você pode lançar uma exceção ou logar o erro conforme o caso
         }
 
-
-        return null;
+        return eventos;
     }
 
     @FXML
-    private void addEventCard(ActionEvent event) throws IOException {
-        createEventCard();
+    private void goToMenuInicial(ActionEvent event) {
+        try {
+            NavigationController.goToMenuInicial((Node) event.getSource());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

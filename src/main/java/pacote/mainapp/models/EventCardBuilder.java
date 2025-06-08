@@ -44,33 +44,23 @@ public class EventCardBuilder extends VBox {
 
     public Node buildCard(Evento evento, String path) throws IOException {
 
-        //cria as Labels do EventCard
         Label nomeEvento = new Label(evento.getTitulo());
-        Label dataEvento = new Label("14/06/25");
-        Label localEvento = new Label("Chacarra Magri");
-        Label precoEvento = new Label("R$100,00");
+        Label dataEvento = new Label(evento.getData_inicio());
+        Label precoEvento = new Label("R$ " + evento.getPreco());
 
-        //Setando os Styles dos Labels
-        nomeEvento.setStyle(styleEventTitle);
-        dataEvento.setStyle(styleEventDetail);
-        localEvento.setStyle(styleEventDetail);
-        precoEvento.setStyle(styleEventPrice);
 
-        //Carregando o FXML Padrao do EventCad
-        FXMLLoader loader = new FXMLLoader(EventoContoller.class.getResource("/pacote/mainapp/fxml/EventCard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pacote/mainapp/fxml/EventCard.fxml"));
         Node eventCard = loader.load();
 
-        EventCardController controller = loader.getController(); //Captura o Controllador: EventCardController
-
-        controller.getLabelContainer().getChildren().addAll(nomeEvento,dataEvento, localEvento, precoEvento); //Adding Labels no Vbox
-
+        EventCardController controller = loader.getController();
+        controller.getLabelContainer().getChildren().addAll(nomeEvento, dataEvento, precoEvento);
         controller.getBtnBuy().setOnAction(this::BuyBtn);
 
-        //janela do interna do Evento
         buildEventWindow(evento);
 
         return eventCard;
     }
+
 
 
     public void BuyBtn(ActionEvent event) {
@@ -90,7 +80,7 @@ public class EventCardBuilder extends VBox {
 
         controller.setEventoTitulo(evento.getTitulo());
         controller.setEventoDescricao(evento.getDescricao());
-        controller.setEventoPreco("1000,00");
+        controller.setEventoPreco(evento.getPreco());
 
         System.out.println();
 

@@ -19,7 +19,7 @@ MainApp extends Application {
 
         Scene scene = new Scene(root, 900, 600);
 
-        primaryStage.setTitle("IngresUnesp");
+        primaryStage.setTitle("IngressUnesp");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

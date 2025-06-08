@@ -44,10 +44,10 @@
 
             <!-- Datas -->
             <Label text="Data Início:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtDataInicio" promptText="AAAA-MM-DD" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="form-field" />
+            <TextField fx:id="txtDataInicio" promptText="DD-MM-AAAA" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="form-field" />
 
             <Label text="Data Fim:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtDataFim" promptText="AAAA-MM-DD" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="form-field" />
+            <TextField fx:id="txtDataFim" promptText="DD-MM-AAAA" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="form-field" />
 
             <!-- Preço -->
             <Label text="Preço:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="form-label" />

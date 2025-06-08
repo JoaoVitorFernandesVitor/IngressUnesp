@@ -30,4 +30,6 @@ public class EventCardController {
         return path;
     }
 
+
+
 }

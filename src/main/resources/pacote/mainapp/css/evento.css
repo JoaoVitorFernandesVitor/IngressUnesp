@@ -1,50 +1,54 @@
+/* Estilos gerais */
 .root {
-    -fx-background-color: #f5f5f5;
+    -fx-font-family: 'Segoe UI';
+    -fx-background-color: linear-gradient(to bottom, #4a0f21, #7d1833);
 }
 
 /* Barra superior */
 .top-bar {
-    -fx-background-color: #2c3e50;
+    -fx-background-color: transparent;
     -fx-padding: 15px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 0, 0, 0, 5);
 }
 
 .logo-text {
     -fx-text-fill: white;
-    -fx-font-size: 24px;
+    -fx-font-size: 28px;
     -fx-font-weight: bold;
 }
 
 .welcome-text {
-    -fx-text-fill: white;
+    -fx-text-fill: #bdc3c7;
     -fx-font-size: 14px;
-    -fx-padding: 0 15px 0 0;
 }
 
+/* Botão de logout */
 .logout-button {
     -fx-background-color: #e74c3c;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-padding: 8px 15px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 5;
 }
 
 .logout-button:hover {
     -fx-background-color: #c0392b;
 }
 
-/* Lista de eventos */
-.events-container {
-    -fx-padding: 20px;
-    -fx-background-color: transparent;
-}
-
+/* Título da seção */
 .section-title {
-    -fx-font-size: 22px;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
+    -fx-text-fill: black;
+    -fx-padding: 10 0 10 0;
 }
 
+/* Container de eventos */
+.events-container {
+    -fx-padding: 30px;
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Lista de eventos */
 .events-list {
     -fx-background-color: transparent;
     -fx-padding: 10px;
@@ -55,52 +59,54 @@
     -fx-padding: 10px 0;
 }
 
-/* Rodapé */
-.footer {
-    -fx-background-color: #2c3e50;
-    -fx-padding: 10px;
-}
-
-.footer-text {
-    -fx-text-fill: #ecf0f1;
-    -fx-font-size: 12px;
-}
-
 /* Card de evento */
 .event-card {
-    -fx-background-color: white;
-    -fx-background-radius: 10px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
-    -fx-padding: 15px;
-    -fx-spacing: 10px;
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 15px;
+    -fx-padding: 20px;
+    -fx-spacing: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 10, 0, 0, 5);
     -fx-max-width: 800px;
 }
 
 .event-title {
-    -fx-font-size: 18px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
+    -fx-text-fill: white;
 }
 
 .event-detail {
     -fx-font-size: 14px;
-    -fx-text-fill: #7f8c8d;
+    -fx-text-fill: #bdc3c7;
 }
 
 .event-price {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #27ae60;
+    -fx-text-fill: #2ecc71;
 }
 
+/* Botão de comprar */
 .buy-button {
-    -fx-background-color: #3498db;
+    -fx-background-color: #408d3a;
     -fx-text-fill: white;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-padding: 8px 15px;
-    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5;
 }
 
 .buy-button:hover {
-    -fx-background-color: #2980b9;
+    -fx-background-color: #3a7d34;
+}
+
+/* Rodapé */
+.footer {
+    -fx-background-color: transparent;
+    -fx-padding: 15px;
+}
+
+.footer-text {
+    -fx-text-fill: #bdc3c7;
+    -fx-font-size: 12px;
 }

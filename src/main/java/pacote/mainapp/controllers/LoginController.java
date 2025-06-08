@@ -41,7 +41,7 @@ public class LoginController extends MainController {
         try {
             Usuario usuario = DatabaseManager.buscarUsuarioPorEmail(email);
 
-            if (usuario != null && usuario.getSenha().equals(senha)) {
+            if (usuario != null && usuario.getSenha().equals(senha)){
                 lblLoginMensagem.setText("Login realizado com sucesso!");
                 NavigationController.goToTelaAdmin((Node) event.getSource(), email);
             } else {
