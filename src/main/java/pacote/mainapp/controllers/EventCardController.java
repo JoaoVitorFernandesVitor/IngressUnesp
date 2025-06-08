@@ -5,11 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import pacote.mainapp.models.EventCardBuilder;
 
 import java.io.IOException;
 public class EventCardController {
 
-    private static String path;
+    private String path;
     @FXML private VBox LabelContainer;
     @FXML private Button btnBuy;
 
@@ -25,16 +26,8 @@ public class EventCardController {
         path = newpath;
     }
 
-    private static String getPath(){
+    private  String getPath(){
         return path;
     }
 
-    public static void BuyBtn(ActionEvent event) {
-        try {
-            NavigationController.goTo((Node) event.getSource(),  getPath());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

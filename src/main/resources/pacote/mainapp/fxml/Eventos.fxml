@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane stylesheets="@../css/evento.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.EventoContoller">
+<BorderPane stylesheets="@../css/evento.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.EventoContoller"
+            prefHeight="600" prefWidth="900">
 
     <!-- Topo - Barra de navegação -->
     <top>
@@ -34,11 +35,7 @@
         <ScrollPane fitToWidth="true">
             <VBox fx:id="eventsContainer" spacing="20" styleClass="events-container">
                 <Label styleClass="section-title" text="Eventos Disponíveis" />
-
                 <!-- ListView será preenchida dinamicamente -->
-                <ListView fx:id="listViewEvents" styleClass="events-list">
-                    <!-- Remova a tag <cellFactory> com fx:factory -->
-                </ListView>
             </VBox>
         </ScrollPane>
     </center>

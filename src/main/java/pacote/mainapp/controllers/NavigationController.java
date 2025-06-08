@@ -96,10 +96,11 @@ public class NavigationController {
         stage.show();
     }
 
-    public static void goTo (Node sourceNode, String path) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(NavigationController.class.getResource(path)));
+    public static void goTo (Node sourceNode, Scene scene) throws IOException {
+
+
         Stage stage = (Stage) sourceNode.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        stage.setScene(scene);
 
         double currentWidth = stage.getWidth();
         double currentHeight = stage.getHeight();
@@ -107,6 +108,9 @@ public class NavigationController {
         stage.setWidth(currentWidth);
         stage.setHeight(currentHeight);
 
+
         stage.show();
+
+
     }
 }
