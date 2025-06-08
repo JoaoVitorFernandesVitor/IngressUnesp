@@ -22,25 +22,35 @@ public class EventoContoller {
     public void createEventCard() throws IOException {
 
         Evento evento1 = new EventoAcademico();
-        eventos.add(evento1);
-
+        Evento evento2 = new EventoAcademico();
+        eventos.addAll(evento1, evento2);
+        String[] paths = {"/pacote/mainapp/fxml/UNSPDashboard.fxml", "/pacote/mainapp/fxml/Cadastros.fxml"};
         //Variaveis de Stylo Css
         String styleEventPrice = "-fx-font-size: 14px; -fx-text-fill: #7f8c8d;";
         String styleEventDetail = "-fx-font-size: 14px; -fx-text-fill: #7f8c8d;";
         String styleEventTitle = "-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;";
 
-        //Carregando o FXML Padrao do EventCad
-        FXMLLoader loader = new FXMLLoader(EventoContoller.class.getResource("/pacote/mainapp/fxml/EventCard.fxml"));
-        Node widget = loader.load();
-        EventCardController controller = loader.getController();
 
+
+        //para cada evento na lista cria os labels
         for (Evento evento : eventos) {
+            int i = 0;
             Label nomeEvento = new Label(evento.getTitulo());
             Label dataEvento = new Label("Data");
             Label localEvento = new Label("Local");
             Label ticketsEvento = new Label("Tickets");
             Label precoEvento = new Label("Preco");
 
+
+            //Carregando o FXML Padrao do EventCad
+            FXMLLoader loader = new FXMLLoader(EventoContoller.class.getResource("/pacote/mainapp/fxml/EventCard.fxml"));
+            Node widget = loader.load();
+
+            EventCardController controller = loader.getController();
+
+            //seta o caminho para o botao de buy
+            controller.setPath(paths[i]);
+            i++;
             //setando Styles das Labels
 
             dataEvento.setStyle(styleEventDetail);
@@ -49,12 +59,17 @@ public class EventoContoller {
             precoEvento.setStyle(styleEventPrice);
 
             //Adding Labels no Vbox
-            controller.getLabelContainer().getChildren().addAll(dataEvento, localEvento, ticketsEvento, precoEvento);
+            controller.getLabelContainer().getChildren().addAll(nomeEvento,dataEvento, localEvento, ticketsEvento, precoEvento);
+            controller.getBtnBuy().setOnAction(EventCardController::BuyBtn);
 
+            //adiciona o EventCard no container
+            eventsContainer.getChildren().add(widget);
         }
 
-        eventsContainer.getChildren().add(widget);  //adiciona o EventCard no container
+
     }
+
+
 
     @FXML
     private void addEventCard(ActionEvent event) throws IOException {

@@ -1,49 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.unespingresso.controllers.EventoController"
-            stylesheets="@../css/evento.css"
-            prefHeight="600.0" prefWidth="800.0">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/evento.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unespingresso.controllers.EventoController">
 
-    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
-        <VBox styleClass="card" alignment="CENTER" spacing="15">
-
-            <!-- Imagem do Evento -->
-            <ImageView fx:id="eventoImage" fitHeight="250.0" fitWidth="600.0" preserveRatio="true" styleClass="image-view">
-                <image>
-                    <Image url="@Downloads/Chihiro.jpg"/>
-                </image>
-            </ImageView>
+    <VBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <VBox alignment="CENTER" spacing="15" styleClass="card">
 
             <!-- Título e Descrição -->
-            <VBox spacing="10" alignment="CENTER_LEFT" prefWidth="600.0">
-                <Label fx:id="eventoTitulo" text="A viagem de Chihiro" styleClass="label-title"/>
-                <Text fx:id="eventoDescricao" wrappingWidth="600.0" text="Quando seus pais são misteriosamente transformados em porcos, a jovem Chihiro é lançada em um mundo mágico habitado por deuses, espíritos e criaturas fantásticas. Para salvá-los e encontrar o caminho de volta para casa, ela precisa trabalhar em uma casa de banhos sobrenatural e aprender a amadurecer diante de desafios inesperados.
-
-Com uma animação deslumbrante e uma narrativa repleta de simbolismo e emoção, A Viagem de Chihiro é uma jornada encantadora sobre crescimento, coragem e identidade. Vencedor do Oscar de Melhor Animação, o filme é considerado uma obra-prima da animação mundial." styleClass="text"/>
+            <VBox alignment="CENTER_LEFT" prefWidth="600.0" spacing="10">
+                <Label fx:id="eventoTitulo" styleClass="label-title" text="A viagem de Chihiro" />
+                <Text fx:id="eventoDescricao" styleClass="text" text="Quando seus pais são misteriosamente transformados em porcos, a jovem Chihiro é lançada em um mundo mágico habitado por deuses, espíritos e criaturas fantásticas. Para salvá-los e encontrar o caminho de volta para casa, ela precisa trabalhar em uma casa de banhos sobrenatural e aprender a amadurecer diante de desafios inesperados.  Com uma animação deslumbrante e uma narrativa repleta de simbolismo e emoção, A Viagem de Chihiro é uma jornada encantadora sobre crescimento, coragem e identidade. Vencedor do Oscar de Melhor Animação, o filme é considerado uma obra-prima da animação mundial." wrappingWidth="600.0" />
             </VBox>
 
             <!-- Preço e Quantidade -->
-            <HBox spacing="50" alignment="CENTER">
+            <HBox alignment="CENTER" spacing="50">
                 <VBox spacing="5">
-                    <Label text="Preço:" styleClass="label"/>
-                    <Label fx:id="eventoPreco" text="R$ 50,00" styleClass="label-preco"/>
+                    <Label styleClass="label" text="Preço:" />
+                    <Label fx:id="eventoPreco" styleClass="label-preco" text="R$ 50,00" />
                 </VBox>
 
                 <VBox spacing="5">
-                    <Label text="Quantidade:" styleClass="label"/>
-                    <Spinner fx:id="quantidadeSpinner" styleClass="spinner"/>
+                    <Label styleClass="label" text="Quantidade:" />
+                    <Spinner fx:id="quantidadeSpinner" styleClass="spinner" />
                 </VBox>
             </HBox>
 
             <!-- Botão Comprar -->
-            <Button fx:id="comprarButton" text="Comprar Ingresso" styleClass="button"/>
+            <Button fx:id="comprarButton" styleClass="button" text="Comprar Ingresso" />
         </VBox>
     </VBox>
 </AnchorPane>
