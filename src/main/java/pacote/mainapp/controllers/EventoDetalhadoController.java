@@ -3,15 +3,23 @@ package pacote.mainapp.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import pacote.mainapp.models.Evento;
+import pacote.mainapp.controllers.NavigationController;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.Objects;
 
 public class EventoDetalhadoController {
 
@@ -33,55 +41,45 @@ public class EventoDetalhadoController {
     @FXML
     private ImageView eventoImagem;
 
+    private Evento evento;
     private double precoUnitario;
 
     @FXML
     public void initialize() {
-        // Configura o Spinner para aceitar valores mínimos e máximos (exemplo 1 a 10 ingressos)
+        // Configura spinner (1 a 10 ingressos)
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
         quantidadeSpinner.setValueFactory(valueFactory);
 
-        // Listener para atualizar o preço toda vez que a quantidade mudar
+        // Atualiza preço quando quantidade muda
         quantidadeSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
             atualizarPreco(newValue);
         });
     }
 
-    // Setters para atualizar a interface com os dados do evento
-    public void setEventoTitulo(String titulo) {
-        eventoTitulo.setText(titulo);
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+        atualizarCampos();
     }
 
-    public void setEventoDescricao(String descricao) {
-        eventoDescricao.setText(descricao);
-    }
+    private void atualizarCampos() {
+        if (evento == null) return;
 
-    public void setEventoPreco(Object preco) {
-        this.precoUnitario = parsePreco(preco);
-        eventoPreco.setText(String.format("R$ %.2f", precoUnitario));
-    }
+        eventoTitulo.setText(evento.getTitulo());
+        eventoDescricao.setText(evento.getDescricao());
 
+        precoUnitario = parsePreco(evento.getPreco());
+        atualizarPreco(quantidadeSpinner.getValue());
 
-    public void setEventoImagem(Image imagem) {
-        eventoImagem.setImage(imagem);
-    }
+        // Define imagem conforme tipo
+        String tipo = evento.getTipo() != null ? evento.getTipo().toLowerCase(Locale.ROOT) : "";
+        String imagePath = switch (tipo) {
+            case "academico" -> "/pacote/mainapp/img/academico.png";
+            case "musical" -> "/pacote/mainapp/img/musical.jpg";
+            default -> "/pacote/mainapp/img/unespLogo.png";
+        };
 
-    // Getter para quantidade selecionada (caso precise)
-    public int getQuantidadeSelecionada() {
-        return quantidadeSpinner.getValue();
-    }
-
-    public Button getComprarButton() {
-        return comprarButton;
-    }
-
-    @FXML
-    private void goToEventos(ActionEvent event) {
-        try {
-            NavigationController.goToEventos((Node) event.getSource());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
+        eventoImagem.setImage(image);
     }
 
     private void atualizarPreco(int quantidade) {
@@ -104,9 +102,37 @@ public class EventoDetalhadoController {
                 return 0.0;
             }
         }
-
-        // Caso o preço esteja em outro formato, retorna 0
         return 0.0;
     }
 
+    @FXML
+    private void abrirTelaPagamento() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pacote/mainapp/fxml/pagamento.fxml"));
+            Parent root = loader.load();
+
+            PagamentoController pagamentoController = loader.getController();
+
+            int quantidade = quantidadeSpinner.getValue();
+            double precoTotal = precoUnitario * quantidade;
+
+            pagamentoController.setDetalhesPagamento(evento.getTitulo(), quantidade, precoTotal);
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) comprarButton.getScene().getWindow();
+            stage.setScene(scene);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToEventos(ActionEvent event) {
+        try {
+            NavigationController.goToEventos((Node) event.getSource());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

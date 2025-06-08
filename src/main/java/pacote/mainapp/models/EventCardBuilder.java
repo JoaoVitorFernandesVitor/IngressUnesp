@@ -82,22 +82,12 @@ public class EventCardBuilder extends VBox {
         Parent root = loader.load();
 
         EventoDetalhadoController controller = loader.getController();
-        controller.setEventoTitulo(evento.getTitulo());
-        controller.setEventoDescricao(evento.getDescricao());
-        controller.setEventoPreco(evento.getPreco());
-
-        String tipo = evento.getTipo().toLowerCase(Locale.ROOT);
-        String imagePath = switch (tipo) {
-            case "academico" -> "/pacote/mainapp/img/academico.png";
-            case "musical" -> "/pacote/mainapp/img/musical.jpg";
-            default -> "/pacote/mainapp/img/unespLogo.png";
-        };
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
-        controller.setEventoImagem(image);
+        controller.setEvento(evento); // Passa o evento inteiro aqui
 
         Scene eventScene = new Scene(root);
         NavigationController.goTo(source, eventScene);
     }
+
 
 
 }

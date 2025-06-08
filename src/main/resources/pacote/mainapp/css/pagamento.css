@@ -1,0 +1,53 @@
+/* pagamento.css */
+.root {
+    -fx-background-color: #fff0f2; /* fundo clarinho para destacar */
+    -fx-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.vbox {
+    -fx-padding: 30;
+    -fx-spacing: 20;
+    -fx-alignment: center;
+}
+
+.label {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7d1833;
+}
+
+.text-field {
+    -fx-pref-width: 300px;
+    -fx-font-size: 14px;
+    -fx-padding: 10 12;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #7d1833;
+    -fx-border-width: 2;
+}
+
+.text-field:focused {
+    -fx-border-color: #bf2c50;
+    -fx-effect: dropshadow(gaussian, #bf2c50, 8, 0, 0, 0);
+}
+
+.button {
+    -fx-pref-width: 320px;
+    -fx-background-color: #7d1833;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 12 0;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(125,24,51,0.6), 5, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #bf2c50;
+}
+
+.button:pressed {
+    -fx-background-color: #5b1028;
+}

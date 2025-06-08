@@ -32,7 +32,7 @@
                 </VBox>
             </HBox>
 
-            <Button fx:id="comprarButton" styleClass="button" text="Comprar Ingresso" />
+            <Button fx:id="comprarButton" styleClass="button" onAction="#abrirTelaPagamento" text="Comprar Ingresso" />
             <Button fx:id="btnBack" styleClass="secondary-button" onAction="#goToEventos" text="Voltar">
             </Button>
         </VBox>
