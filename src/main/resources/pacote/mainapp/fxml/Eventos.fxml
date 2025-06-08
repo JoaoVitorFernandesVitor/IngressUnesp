@@ -27,7 +27,7 @@
     <!-- Centro - Lista de eventos -->
     <center>
         <ScrollPane fitToWidth="true">
-            <VBox fx:id="eventsContainer" spacing="20" styleClass="events-container">
+            <VBox fx:id="eventsContainer" spacing="20" alignment="CENTER" styleClass="events-container">
                 <Label styleClass="section-title" text="Eventos Disponíveis" />
                 <!-- ListView será preenchida dinamicamente -->
             </VBox>
