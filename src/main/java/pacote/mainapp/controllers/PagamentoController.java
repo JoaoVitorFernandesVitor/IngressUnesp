@@ -1,7 +1,9 @@
 package pacote.mainapp.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -52,13 +54,6 @@ public class PagamentoController {
         stage.close(); // Ou redirecionar para outra tela
     }
 
-    @FXML
-    private void cancelarPagamento() {
-        // Fecha janela ou volta para tela anterior
-        Stage stage = (Stage) cardNumberField.getScene().getWindow();
-        stage.close();
-    }
-
 
     public void setDetalhesPagamento(String titulo, int quantidade, double precoTotal) {
         this.eventoTitulo = titulo;
@@ -67,6 +62,15 @@ public class PagamentoController {
 
         // Atualiza o label com o preço formatado
         precoTotalLabel.setText(String.format("Total: R$ %.2f", precoTotal));
+    }
+
+    @FXML
+    private void goToEventos(ActionEvent event) {
+        try {
+            NavigationController.goToEventos((Node) event.getSource());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

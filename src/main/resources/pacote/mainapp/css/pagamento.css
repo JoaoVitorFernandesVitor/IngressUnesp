@@ -10,6 +10,12 @@
     -fx-alignment: center;
 }
 
+.title-text {
+    -fx-text-fill: white;
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+}
+
 .label {
     -fx-font-size: 26px;
     -fx-font-weight: bold;
@@ -17,13 +23,11 @@
 }
 
 .text-field {
-    -fx-pref-width: 300px;
+    -fx-max-width: 250px;
+    -fx-max-height: 35px;
     -fx-font-size: 14px;
-    -fx-padding: 10 12;
-    -fx-background-radius: 6;
-    -fx-border-radius: 6;
-    -fx-border-color: #7d1833;
-    -fx-border-width: 2;
+    -fx-background-radius: 5px;
+    -fx-prompt-text-fill: #a0a0a0;
 }
 
 .text-field:focused {
@@ -31,23 +35,31 @@
     -fx-effect: dropshadow(gaussian, #bf2c50, 8, 0, 0, 0);
 }
 
-.button {
-    -fx-pref-width: 320px;
-    -fx-background-color: #7d1833;
+/* Botões */
+.primary-button {
+    -fx-background-color: #408d3a;
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-background-radius: 8;
-    -fx-cursor: hand;
-    -fx-padding: 12 0;
-    -fx-border-color: transparent;
-    -fx-effect: dropshadow(gaussian, rgba(125,24,51,0.6), 5, 0, 0, 2);
+    -fx-pref-height: 50;
+    -fx-pref-width: 250;
+    -fx-background-radius: 5;
 }
 
-.button:hover {
-    -fx-background-color: #bf2c50;
+.primary-button:hover {
+    -fx-background-color: #3a7d34;
 }
 
-.button:pressed {
-    -fx-background-color: #5b1028;
+.secondary-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 40;
+    -fx-pref-width: 150;
+    -fx-background-radius: 5;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #c0392b;
 }
