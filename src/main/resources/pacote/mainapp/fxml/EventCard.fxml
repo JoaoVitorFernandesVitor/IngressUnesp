@@ -5,19 +5,15 @@
 <?import javafx.scene.text.*?>
 
 <VBox fx:id="eventCard" styleClass="event-card" xmlns="http://javafx.com/javafx/17.0.2"
-      xmlns:fx="http://javafx.com/fxml/1">
-    <HBox spacing="20" alignment="CENTER_LEFT">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.EventCardController">
+    <HBox  spacing="20" alignment="CENTER_LEFT">
         <VBox fx:id="eventImageContainer" minWidth="120" minHeight="120"
               style="-fx-background-color: #ecf0f1; -fx-background-radius: 5px;">
             <!-- Imagem será carregada dinamicamente -->
         </VBox>
 
-        <VBox spacing="5">
-            <Label fx:id="lblEventName" styleClass="event-title"/>
-            <Label fx:id="lblEventDate" styleClass="event-detail"/>
-            <Label fx:id="lblEventLocation" styleClass="event-detail"/>
-            <Label fx:id="lblEventTickets" styleClass="event-detail"/>
-            <Label fx:id="lblEventPrice" styleClass="event-price"/>
+        <VBox fx:id = "LabelContainer" spacing="5">
+
         </VBox>
 
         <Region HBox.hgrow="ALWAYS"/>

@@ -7,6 +7,8 @@ public class Evento {
     protected PeriodoEvento periodoDoEvento;
 
     //Construtor
+    public Evento() {}
+
     public Evento(String titulo, String descricao, Endereco local, PeriodoEvento periodoDoEvento) {
         this.titulo = titulo;
         this.descricao = descricao;

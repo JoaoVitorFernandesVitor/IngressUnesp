@@ -6,6 +6,10 @@ public class EventoAcademico extends Evento {
     private String topico;
 
     //Construtor
+    public EventoAcademico() {
+        super();
+        setTitulo("Abacaxi");
+    }
     public EventoAcademico(String titulo, String descricao, Endereco local, PeriodoEvento periodoDoEvento, String palestrante, String topico) {
         super(titulo, descricao, local, periodoDoEvento);
         this.palestrante = palestrante;
