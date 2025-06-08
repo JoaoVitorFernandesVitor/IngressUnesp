@@ -7,24 +7,27 @@ public class Evento {
     protected String data_inicio;
     protected String data_fim;
     protected String preco;
+    protected String tipo;
 
     //Construtor
     public Evento() {}
 
-    public Evento(String titulo, String descricao, Endereco local, String data_inicio, String data_fim, String preco) {
+    public Evento(String titulo, String descricao, Endereco local, String data_inicio, String data_fim, String preco, String tipo) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.local = local;
         this.data_inicio = data_inicio;
         this.data_fim = data_fim;
         this.preco = preco;
+        this.tipo = tipo;
     }
 
-    public Evento(String titulo, String descricao, String dataInicio, String preco) {
+    public Evento(String titulo, String descricao, String dataInicio, String preco, String tipo) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.data_inicio = dataInicio;
         this.preco = preco;
+        this.tipo = tipo;
     }
 
     //Geters e Seters
@@ -74,5 +77,9 @@ public class Evento {
 
     public void setPreco(String preco) {
         this.preco = preco;
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 }

@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import pacote.mainapp.controllers.EventCardController;
 import pacote.mainapp.controllers.EventoContoller;
@@ -16,6 +18,7 @@ import pacote.mainapp.controllers.NavigationController;
 import pacote.mainapp.controllers.UNSPEventoController;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Objects;
 
 public class EventCardBuilder extends VBox {
@@ -51,6 +54,18 @@ public class EventCardBuilder extends VBox {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pacote/mainapp/fxml/EventCard.fxml"));
         Node eventCard = loader.load();
+
+        ImageView imageView = (ImageView) eventCard.lookup("#imageView");
+
+        String tipo = evento.getTipo();
+        String imagePath = switch (tipo) {
+            case "academico" -> "/pacote/mainapp/img/academico.png";
+            case "musical" -> "/pacote/mainapp/img/musical.jpg";
+            default -> "/pacote/mainapp/img/unespLogo.png";
+        };
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
+
+        imageView.setImage(image);
 
         EventCardController controller = loader.getController();
         controller.getLabelContainer().getChildren().addAll(nomeEvento, dataEvento, precoEvento);

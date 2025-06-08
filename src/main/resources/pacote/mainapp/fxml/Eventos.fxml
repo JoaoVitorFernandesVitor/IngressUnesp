@@ -20,13 +20,7 @@
             <Label styleClass="logo-text" text="UNESPingresso" />
             <Region HBox.hgrow="ALWAYS" />
             <Label fx:id="lblWelcome" styleClass="welcome-text" />
-            <Button fx:id="btnLogout" onAction="#goToMenuInicial" styleClass="logout-button" text="Sair">
-                <graphic>
-                    <ImageView fitHeight="20" fitWidth="20">
-                        <Image url="@../img/unespLogo.png" />
-                    </ImageView>
-                </graphic>
-            </Button>
+            <Button fx:id="btnLogout" onAction="#goToMenuInicial" styleClass="logout-button" text="Sair"/>
         </HBox>
     </top>
 

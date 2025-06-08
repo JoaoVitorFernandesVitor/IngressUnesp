@@ -2,21 +2,19 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
 
-<VBox fx:id="eventCard" styleClass="event-card" xmlns="http://javafx.com/javafx/17.0.2"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.EventCardController">
-    <HBox  spacing="20" alignment="CENTER_LEFT">
-        <VBox fx:id="eventImageContainer" minWidth="120" minHeight="120"
-              style="-fx-background-color: #ecf0f1; -fx-background-radius: 5px;">
-            <!-- Imagem será carregada dinamicamente -->
-        </VBox>
+<VBox fx:id="eventCard" styleClass="event-card"
+      xmlns="http://javafx.com/javafx/17.0.2"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pacote.mainapp.controllers.EventCardController">
 
-        <VBox fx:id = "LabelContainer" spacing="5">
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <ImageView fx:id="imageView" fitHeight="120" fitWidth="120"/>
 
-        </VBox>
+        <VBox fx:id="labelContainer" spacing="5" />
 
         <Region HBox.hgrow="ALWAYS"/>
-
         <Button fx:id="btnBuy" text="Comprar Ingresso" styleClass="buy-button"/>
     </HBox>
 </VBox>

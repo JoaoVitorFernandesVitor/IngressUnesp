@@ -52,7 +52,7 @@ public class EventoContoller implements Initializable {
 
     public List<Evento> buscarEventos() {
         List<Evento> eventos = new ArrayList<>();
-        String sql = "SELECT titulo, descricao, data_inicio, preco FROM eventos";
+        String sql = "SELECT titulo, descricao, data_inicio, preco, tipo FROM eventos";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -63,8 +63,9 @@ public class EventoContoller implements Initializable {
                 String descricao = rs.getString("descricao");
                 String data_inicio = rs.getString("data_inicio");
                 String preco = rs.getString("preco");
+                String tipo = rs.getString("tipo");
 
-                Evento evento = new Evento(titulo, descricao, data_inicio, preco);
+                Evento evento = new Evento(titulo, descricao, data_inicio, preco, tipo);
                 eventos.add(evento);
             }
 
