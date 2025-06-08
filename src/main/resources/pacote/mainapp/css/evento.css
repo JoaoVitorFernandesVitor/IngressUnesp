@@ -62,7 +62,7 @@
 
 /* Card de evento */
 .event-card {
-    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-color: rgba(255, 0, 0, 0.2);
     -fx-background-radius: 15px;
     -fx-padding: 20px;
     -fx-spacing: 12px;

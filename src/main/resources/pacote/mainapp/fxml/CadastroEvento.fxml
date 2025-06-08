@@ -39,45 +39,52 @@
             <TextField fx:id="txtTitulo" promptText="Digite o título" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="form-field" />
 
             <!-- Descrição -->
-            <Label text="Descrição:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextArea fx:id="txtDescricao" promptText="Digite a descrição" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="form-field" prefRowCount="3"/>
+            <Label text="Descrição:" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="form-label" />
+            <TextArea fx:id="txtDescricao" promptText="Digite a descrição" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="form-field" prefRowCount="3"/>
 
             <!-- Datas -->
-            <Label text="Data Início:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtDataInicio" promptText="DD-MM-AAAA" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="form-field" />
+            <Label text="Data Início:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtDataInicio" promptText="DD-MM-AAAA" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="form-field" />
 
-            <Label text="Data Fim:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtDataFim" promptText="DD-MM-AAAA" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="form-field" />
+            <Label text="Data Fim:" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="form-label" />
+            <TextField fx:id="txtDataFim" promptText="DD-MM-AAAA" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="form-field" />
 
             <!-- Preço -->
-            <Label text="Preço:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtPreco" promptText="Ex: 49.90" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="form-field" />
+            <Label text="Preço:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtPreco" promptText="Ex: 49.90" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="form-field" />
 
             <!-- Endereço -->
-            <Label text="Nome do Local:" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtNomeLocal" GridPane.rowIndex="5" GridPane.columnIndex="1" styleClass="form-field" />
+            <Label text="Nome do Local:" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="form-label" />
+            <TextField fx:id="txtNomeLocal" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="form-field" />
 
-            <Label text="Logradouro:" GridPane.rowIndex="6" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtLogradouro" GridPane.rowIndex="6" GridPane.columnIndex="1" styleClass="form-field" />
+            <Label text="Logradouro:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtLogradouro" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="form-field" />
 
-            <Label text="Número:" GridPane.rowIndex="7" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtNumero" GridPane.rowIndex="7" GridPane.columnIndex="1" styleClass="form-field" />
+            <Label text="Número:" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="form-label" />
+            <TextField fx:id="txtNumero" GridPane.rowIndex="3" GridPane.columnIndex="3" styleClass="form-field" />
 
-            <Label text="Complemento:" GridPane.rowIndex="8" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtComplemento" GridPane.rowIndex="8" GridPane.columnIndex="1" styleClass="form-field" />
+            <Label text="Complemento:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtComplemento" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="form-field" />
 
-            <Label text="Cidade:" GridPane.rowIndex="9" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtCidade" GridPane.rowIndex="9" GridPane.columnIndex="1" styleClass="form-field" />
+            <Label text="Cidade:" GridPane.rowIndex="4" GridPane.columnIndex="2" styleClass="form-label" />
+            <TextField fx:id="txtCidade" GridPane.rowIndex="4" GridPane.columnIndex="3" styleClass="form-field" />
 
-            <Label text="Estado:" GridPane.rowIndex="10" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtEstado" GridPane.rowIndex="10" GridPane.columnIndex="1" styleClass="form-field" />
+            <Label text="Estado:" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtEstado" GridPane.rowIndex="5" GridPane.columnIndex="1" styleClass="form-field" />
 
-            <Label text="CEP:" GridPane.rowIndex="11" GridPane.columnIndex="0" styleClass="form-label" />
-            <TextField fx:id="txtCep" GridPane.rowIndex="11" GridPane.columnIndex="1" styleClass="form-field" />
+            <Label text="CEP:" GridPane.rowIndex="5" GridPane.columnIndex="2" styleClass="form-label" />
+            <TextField fx:id="txtCep" GridPane.rowIndex="5" GridPane.columnIndex="3" styleClass="form-field" />
 
             <fx:define>
                 <ToggleGroup fx:id="tipoEventoGroup"/>
             </fx:define>
+
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                <ColumnConstraints halignment="LEFT" minWidth="200"/>
+                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                <ColumnConstraints halignment="LEFT" minWidth="200"/>
+            </columnConstraints>
 
             <!-- Tipo de Evento -->
             <Label text="Tipo de Evento:" GridPane.rowIndex="12" GridPane.columnIndex="0" styleClass="form-label" />

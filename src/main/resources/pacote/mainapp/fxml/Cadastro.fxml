@@ -46,53 +46,55 @@
                 <Insets bottom="20" left="30" right="30" top="20" />
             </padding>
 
-            <!-- Linha 1: Nome Completo -->
-            <Label styleClass="form-label" text="Nome Completo:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="txtNome" styleClass="form-field" promptText="Digite seu nome completo" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <!-- Linha 1 -->
+            <Label text="Nome Completo:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="form-label"/>
+            <TextField fx:id="txtNome" promptText="Digite seu nome completo" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="form-field"/>
 
-            <!-- Linha 2: CPF -->
-            <Label styleClass="form-label" text="CPF:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="txtCpf" styleClass="form-field" promptText="Digite seu CPF (apenas números)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="CPF:" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="form-label"/>
+            <TextField fx:id="txtCpf" promptText="Digite seu CPF" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="form-field"/>
 
-            <!-- Linha 3: E-mail -->
-            <Label styleClass="form-label" text="E-mail:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextField fx:id="txtEmail" styleClass="form-field" promptText="Digite seu e-mail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <!-- Linha 2 -->
+            <Label text="E-mail:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="form-label"/>
+            <TextField fx:id="txtEmail" promptText="Digite seu e-mail" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="form-field"/>
 
-            <!-- Linha 4: Telefone -->
-            <Label styleClass="form-label" text="Telefone:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <TextField fx:id="txtTelefone" styleClass="form-field" promptText="Digite seu telefone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Telefone:" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="form-label"/>
+            <TextField fx:id="txtTelefone" promptText="Digite seu telefone" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="form-field"/>
 
-            <!-- Linha 5: Senha -->
-            <Label styleClass="form-label" text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <PasswordField fx:id="txtSenha" styleClass="form-field" promptText="Crie uma senha" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <!-- Linha 3 -->
+            <Label text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="form-label"/>
+            <PasswordField fx:id="txtSenha" promptText="Crie uma senha" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="form-field"/>
 
-            <!-- Linha 6: Confirmar Senha -->
-            <Label styleClass="form-label" text="Confirmar Senha:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-            <PasswordField fx:id="txtConfirmarSenha" styleClass="form-field" promptText="Confirme sua senha" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="Confirmar Senha:" GridPane.columnIndex="2" GridPane.rowIndex="2" styleClass="form-label"/>
+            <PasswordField fx:id="txtConfirmarSenha" promptText="Confirme sua senha" GridPane.columnIndex="3" GridPane.rowIndex="2" styleClass="form-field"/>
 
-            <!-- Linha 7: Endereço - Logradouro -->
-            <Label styleClass="form-label" text="Logradouro:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-            <TextField fx:id="txtLogradouro" styleClass="form-field" promptText="Digite seu logradouro" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <!-- Linha 4 -->
+            <Label text="Logradouro:" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="form-label"/>
+            <TextField fx:id="txtLogradouro" promptText="Digite seu logradouro" GridPane.columnIndex="1" GridPane.rowIndex="3" styleClass="form-field"/>
 
-            <!-- Linha 8: Número -->
-            <Label styleClass="form-label" text="Número:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-            <TextField fx:id="txtNumero" styleClass="form-field" promptText="Digite o N° de sua residência" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label text="Número:" GridPane.columnIndex="2" GridPane.rowIndex="3" styleClass="form-label"/>
+            <TextField fx:id="txtNumero" promptText="Número da residência" GridPane.columnIndex="3" GridPane.rowIndex="3" styleClass="form-field"/>
 
-            <!-- Linha 9: Complemento -->
-            <Label styleClass="form-label" text="Complemento:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
-            <TextField fx:id="txtComplemento" styleClass="form-field" promptText="Complemento" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <!-- Linha 5 -->
+            <Label text="Complemento:" GridPane.columnIndex="0" GridPane.rowIndex="4" styleClass="form-label"/>
+            <TextField fx:id="txtComplemento" promptText="Complemento" GridPane.columnIndex="1" GridPane.rowIndex="4" styleClass="form-field"/>
 
-            <!-- Linha 10: Cidade -->
-            <Label styleClass="form-label" text="Cidade:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
-            <TextField fx:id="txtCidade" styleClass="form-field" promptText="Informe sua Cidade" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label text="Cidade:" GridPane.columnIndex="2" GridPane.rowIndex="4" styleClass="form-label"/>
+            <TextField fx:id="txtCidade" promptText="Cidade" GridPane.columnIndex="3" GridPane.rowIndex="4" styleClass="form-field"/>
 
-            <!-- Linha 11: Estado -->
-            <Label styleClass="form-label" text="Estado:" GridPane.columnIndex="0" GridPane.rowIndex="10" />
-            <TextField fx:id="txtEstado" styleClass="form-field" promptText="Informe seu Estado" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <!-- Linha 6 -->
+            <Label text="Estado:" GridPane.columnIndex="0" GridPane.rowIndex="5" styleClass="form-label"/>
+            <TextField fx:id="txtEstado" promptText="Estado" GridPane.columnIndex="1" GridPane.rowIndex="5" styleClass="form-field"/>
 
-            <!-- Linha 12: CEP -->
-            <Label styleClass="form-label" text="CEP:" GridPane.columnIndex="0" GridPane.rowIndex="11" />
-            <TextField fx:id="txtCep" styleClass="form-field" promptText="Informe seu CEP" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Label text="CEP:" GridPane.columnIndex="2" GridPane.rowIndex="5" styleClass="form-label"/>
+            <TextField fx:id="txtCep" promptText="CEP" GridPane.columnIndex="3" GridPane.rowIndex="5" styleClass="form-field"/>
+
+
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                <ColumnConstraints halignment="LEFT" minWidth="200"/>
+                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                <ColumnConstraints halignment="LEFT" minWidth="200"/>
+            </columnConstraints>
 
             <fx:define>
                 <ToggleGroup fx:id="tipoUsuarioGroup"/>
