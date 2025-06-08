@@ -47,7 +47,6 @@ public class EventCardBuilder extends VBox {
         Label dataEvento = new Label(evento.getData_inicio());
         Label precoEvento = new Label("R$ " + evento.getPreco());
 
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pacote/mainapp/fxml/EventCard.fxml"));
         Node eventCard = loader.load();
 
@@ -60,31 +59,25 @@ public class EventCardBuilder extends VBox {
             default -> "/pacote/mainapp/img/unespLogo.png";
         };
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
-
         imageView.setImage(image);
 
         EventCardController controller = loader.getController();
         controller.getLabelContainer().getChildren().addAll(nomeEvento, dataEvento, precoEvento);
-        controller.getBtnBuy().setOnAction(this::BuyBtn);
 
-        buildEventWindow(evento);
+        // Define o listener do botão para abrir o evento detalhado correto
+        controller.getBtnBuy().setOnAction(e -> {
+            try {
+                buildEventWindow(evento, (Node) e.getSource());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
 
         return eventCard;
     }
 
 
-
-    public void BuyBtn(ActionEvent event) {
-        try {
-
-            NavigationController.goTo((Node) event.getSource(), getEventScene());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void buildEventWindow(Evento evento) throws IOException {
+    private void buildEventWindow(Evento evento, Node source) throws IOException {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/pacote/mainapp/fxml/EventoDetalhado.fxml")));
         Parent root = loader.load();
 
@@ -93,9 +86,8 @@ public class EventCardBuilder extends VBox {
         controller.setEventoDescricao(evento.getDescricao());
         controller.setEventoPreco(evento.getPreco());
 
-        // Define imagem com base no tipo
-        String tipo = evento.getTipo();
-        String imagePath = switch (tipo.toLowerCase(Locale.ROOT)) {
+        String tipo = evento.getTipo().toLowerCase(Locale.ROOT);
+        String imagePath = switch (tipo) {
             case "academico" -> "/pacote/mainapp/img/academico.png";
             case "musical" -> "/pacote/mainapp/img/musical.jpg";
             default -> "/pacote/mainapp/img/unespLogo.png";
@@ -103,7 +95,8 @@ public class EventCardBuilder extends VBox {
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
         controller.setEventoImagem(image);
 
-        setEventScene(new Scene(root));
+        Scene eventScene = new Scene(root);
+        NavigationController.goTo(source, eventScene);
     }
 
 

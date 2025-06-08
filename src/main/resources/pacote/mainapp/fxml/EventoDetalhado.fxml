@@ -7,6 +7,10 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/eventoDetalhado.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.EventoDetalhadoController" styleClass="anchor-pane">
 
+
+
+
+
     <VBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <VBox alignment="CENTER" spacing="15" styleClass="card">
 
@@ -29,6 +33,8 @@
             </HBox>
 
             <Button fx:id="comprarButton" styleClass="button" text="Comprar Ingresso" />
+            <Button fx:id="btnBack" styleClass="secondary-button" onAction="#goToEventos" text="Voltar">
+            </Button>
         </VBox>
     </VBox>
 </AnchorPane>
