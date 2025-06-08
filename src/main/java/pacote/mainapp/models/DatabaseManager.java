@@ -16,6 +16,7 @@ public class DatabaseManager {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection(DB_URL);
             criarTabelas();
+            criarTabelaEvento();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,6 +105,72 @@ public class DatabaseManager {
             System.err.println("Erro ao buscar usuário: " + e.getMessage());
         }
         return null;
+    }
+
+    private static void criarTabelaEvento() throws SQLException {
+        String sqlEventos = "CREATE TABLE IF NOT EXISTS eventos (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "titulo TEXT NOT NULL," +
+                "descricao TEXT UNIQUE NOT NULL," +
+                "data_inicio TEXT NOT NULL," +
+                "data_fim TEXT NOT NULL," +
+                "preco REAL NOT NULL," +
+                "logradouro TEXT," +
+                "numero TEXT," +
+                "complemento TEXT," +
+                "cidade TEXT," +
+                "estado TEXT," +
+                "cep TEXT," +
+                "estilo_musical TEXT," +
+                "banda TEXT," +
+                "palestrante TEXT," +
+                "topico TEXT," +
+                "tipo TEXT NOT NULL)";
+
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute(sqlEventos);
+        }
+    }
+
+    public static boolean cadastrarEvento(Evento evento, String tipoEvento) throws SQLException {
+        String sql = "INSERT INTO eventos(titulo, descricao, data_inicio, data_fim, " +
+                "preco, logradouro, numero, complemento, cidade, estado, cep, tipo, " +
+                "estilo_musical, banda, palestrante, topico) " +
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            // Campos comuns
+            pstmt.setString(1, evento.getTitulo());
+            pstmt.setString(2, evento.getDescricao());
+            pstmt.setString(3, evento.getData_inicio());
+            pstmt.setString(4, evento.getData_fim());
+            pstmt.setString(5, evento.getPreco());
+
+            Endereco endereco = evento.getLocal();
+            pstmt.setString(6, endereco.getLogradouro());
+            pstmt.setString(7, endereco.getNumero());
+            pstmt.setString(8, endereco.getComplemento());
+            pstmt.setString(9, endereco.getCidade());
+            pstmt.setString(10, endereco.getEstado());
+            pstmt.setString(11, endereco.getCep());
+
+            // Campo específico para tipo de evento
+            pstmt.setString(12, tipoEvento);
+
+            if (evento instanceof EventoMusical musical) {
+                pstmt.setString(13, musical.getEstiloMusical());
+                pstmt.setString(14, musical.getBanda());
+            } else if (evento instanceof EventoAcademico academico) {
+                pstmt.setString(15, academico.getPalestrante());
+                pstmt.setString(16, academico.getTopico());
+            }
+
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Erro ao cadastrar evento: " + e.getMessage());
+            return false;
+        }
     }
 
 }

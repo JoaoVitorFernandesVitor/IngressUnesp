@@ -109,4 +109,40 @@ public class NavigationController {
 
         stage.show();
     }
+
+    public static void goToCadastroEvento(Node sourceNode) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/CadastroEvento.fxml")));
+        Stage stage = (Stage) sourceNode.getScene().getWindow();
+        stage.setScene(new Scene(root));
+
+        double currentWidth = stage.getWidth();
+        double currentHeight = stage.getHeight();
+
+        stage.setWidth(currentWidth);
+        stage.setHeight(currentHeight);
+
+        stage.show();
+    }
+
+    public static void goToTelaAdmin(Node sourceNode, String email) throws IOException {
+        FXMLLoader loader = new FXMLLoader(NavigationController.class.getResource("/pacote/mainapp/fxml/TelaAdmin.fxml"));
+        Parent root = loader.load();
+
+        // Pega o controller da tela carregada
+        TelaAdminController controller = loader.getController();
+        controller.setEmailUsuario(email);
+        controller.atualizarSaudacao();
+
+        Stage stage = (Stage) sourceNode.getScene().getWindow();
+
+        // Mantém o tamanho atual da janela
+        double currentWidth = stage.getWidth();
+        double currentHeight = stage.getHeight();
+
+        stage.setScene(new Scene(root));
+        stage.setWidth(currentWidth);
+        stage.setHeight(currentHeight);
+        stage.show();
+    }
+
 }

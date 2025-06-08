@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="rootPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.CadastroEventoController">
+
+    <stylesheets>
+        <URL value="@../css/cadastro.css" />
+    </stylesheets>
+
+    <!-- Fundo -->
+    <Region style="-fx-background-color: #7d1833" />
+
+    <!-- Conteúdo -->
+    <VBox alignment="CENTER" spacing="20" styleClass="main-container">
+        <!-- Logo/Cabeçalho -->
+        <VBox alignment="CENTER" spacing="10">
+            <ImageView fitHeight="80" fitWidth="80" preserveRatio="true">
+                <Image url="@../img/unespLogo.png"/>
+            </ImageView>
+            <Label styleClass="title-text" text="Cadastro de Evento" />
+        </VBox>
+
+        <Label fx:id="lblMensagem" styleClass="error-label" textAlignment="CENTER" />
+
+        <!-- Formulário -->
+        <GridPane styleClass="form-grid">
+            <padding>
+                <Insets bottom="20" left="30" right="30" top="20" />
+            </padding>
+
+            <!-- Título -->
+            <Label text="Título do Evento:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtTitulo" promptText="Digite o título" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="form-field" />
+
+            <!-- Descrição -->
+            <Label text="Descrição:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextArea fx:id="txtDescricao" promptText="Digite a descrição" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="form-field" prefRowCount="3"/>
+
+            <!-- Datas -->
+            <Label text="Data Início:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtDataInicio" promptText="AAAA-MM-DD" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="form-field" />
+
+            <Label text="Data Fim:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtDataFim" promptText="AAAA-MM-DD" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="form-field" />
+
+            <!-- Preço -->
+            <Label text="Preço:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtPreco" promptText="Ex: 49.90" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="form-field" />
+
+            <!-- Endereço -->
+            <Label text="Nome do Local:" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtNomeLocal" GridPane.rowIndex="5" GridPane.columnIndex="1" styleClass="form-field" />
+
+            <Label text="Logradouro:" GridPane.rowIndex="6" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtLogradouro" GridPane.rowIndex="6" GridPane.columnIndex="1" styleClass="form-field" />
+
+            <Label text="Número:" GridPane.rowIndex="7" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtNumero" GridPane.rowIndex="7" GridPane.columnIndex="1" styleClass="form-field" />
+
+            <Label text="Complemento:" GridPane.rowIndex="8" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtComplemento" GridPane.rowIndex="8" GridPane.columnIndex="1" styleClass="form-field" />
+
+            <Label text="Cidade:" GridPane.rowIndex="9" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtCidade" GridPane.rowIndex="9" GridPane.columnIndex="1" styleClass="form-field" />
+
+            <Label text="Estado:" GridPane.rowIndex="10" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtEstado" GridPane.rowIndex="10" GridPane.columnIndex="1" styleClass="form-field" />
+
+            <Label text="CEP:" GridPane.rowIndex="11" GridPane.columnIndex="0" styleClass="form-label" />
+            <TextField fx:id="txtCep" GridPane.rowIndex="11" GridPane.columnIndex="1" styleClass="form-field" />
+
+            <fx:define>
+                <ToggleGroup fx:id="tipoEventoGroup"/>
+            </fx:define>
+
+            <!-- Tipo de Evento -->
+            <Label text="Tipo de Evento:" GridPane.rowIndex="12" GridPane.columnIndex="0" styleClass="form-label" />
+            <HBox GridPane.rowIndex="12" GridPane.columnIndex="1">
+                <RadioButton fx:id="rbMusical" styleClass="form-label" toggleGroup="$tipoEventoGroup" text="Musical" onAction="#toggleTipoEvento" selected="true" />
+                <RadioButton fx:id="rbAcademico" styleClass="form-label" toggleGroup="$tipoEventoGroup" text="Acadêmico" onAction="#toggleTipoEvento" />
+            </HBox>
+
+            <!-- Campos específicos: Musical -->
+            <Label text="Estilo Musical:" fx:id="lblEstiloMusical" GridPane.rowIndex="13" GridPane.columnIndex="0" styleClass="form-label" visible="${rbMusical.selected}" />
+            <TextField fx:id="txtEstiloMusical" promptText="Rock, Jazz, etc" GridPane.rowIndex="13" GridPane.columnIndex="1" styleClass="form-field" visible="${rbMusical.selected}" />
+
+            <Label text="Banda:" fx:id="lblBanda" GridPane.rowIndex="14" GridPane.columnIndex="0" styleClass="form-label" visible="${rbMusical.selected}" />
+            <TextField fx:id="txtBanda" promptText="Nome da banda" GridPane.rowIndex="14" GridPane.columnIndex="1" styleClass="form-field" visible="${rbMusical.selected}" />
+
+            <!-- Campos específicos: Acadêmico -->
+            <Label text="Palestrante:" fx:id="lblPalestrante" GridPane.rowIndex="15" GridPane.columnIndex="0" styleClass="form-label" visible="${rbAcademico.selected}"/>
+            <TextField fx:id="txtPalestrante" promptText="Nome do palestrante" GridPane.rowIndex="15" GridPane.columnIndex="1" styleClass="form-field" visible="${rbAcademico.selected}" />
+
+            <Label text="Tópico:" fx:id="lblTopico" GridPane.rowIndex="16" GridPane.columnIndex="0" styleClass="form-label" visible="${rbAcademico.selected}"/>
+            <TextField fx:id="txtTopico" promptText="Tópico abordado" GridPane.rowIndex="16" GridPane.columnIndex="1" styleClass="form-field" visible="${rbAcademico.selected}"/>
+
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" />
+                <ColumnConstraints halignment="LEFT" />
+            </columnConstraints>
+        </GridPane>
+
+        <!-- Botões -->
+        <HBox alignment="CENTER" spacing="20" styleClass="button-container">
+            <Button text="Voltar" fx:id="btnBack" styleClass="secondary-button" onAction="#goToMenuInicial"/>
+            <Button text="Cadastrar" fx:id="btnRegister" styleClass="primary-button" onAction="#cadastrarEvento"/>
+        </HBox>
+
+        <!-- Rodapé -->
+        <Label styleClass="footer-text" text="© 2025 IngressUNESP - Todos os direitos reservados" />
+    </VBox>
+</StackPane>

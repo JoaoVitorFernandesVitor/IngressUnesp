@@ -43,7 +43,7 @@ public class LoginController extends MainController {
 
             if (usuario != null && usuario.getSenha().equals(senha)) {
                 lblLoginMensagem.setText("Login realizado com sucesso!");
-                NavigationController.goToDashboard((Node) event.getSource(), usuario);
+                NavigationController.goToTelaAdmin((Node) event.getSource(), email);
             } else {
                 lblLoginMensagem.setText("Email ou senha inválidos.");
             }
