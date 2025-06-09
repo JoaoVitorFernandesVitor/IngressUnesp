@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import pacote.mainapp.models.*;
 
 public class CadastroEventoController {
@@ -125,6 +126,15 @@ public class CadastroEventoController {
     private void goToMenuInicial(ActionEvent event) {
         try {
             NavigationController.goToMenuInicial((Node) event.getSource());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToAdminMenu(ActionEvent event) {
+        try {
+            NavigationController.goToTelaAdmin((Node) event.getSource());
         } catch (Exception e) {
             e.printStackTrace();
         }

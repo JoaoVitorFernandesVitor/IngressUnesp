@@ -8,6 +8,7 @@ import javafx.scene.layout.StackPane;
 import pacote.mainapp.models.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 public class CadastroController {
@@ -126,5 +127,15 @@ public class CadastroController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void goToAdminMenu(ActionEvent event) {
+        try {
+            NavigationController.goToTelaAdmin((Node) event.getSource());
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

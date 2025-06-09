@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import pacote.mainapp.models.DatabaseManager;
+import pacote.mainapp.models.StageLogado;
 import pacote.mainapp.models.Usuario;
 
 import java.io.IOException;
@@ -20,18 +21,13 @@ import java.util.ResourceBundle;
 public class TelaAdminController {
 
     public Label labelOlaUsuario;
-    private String emailUsuario;
-    private Stage stage;
-    private Scene scene;
 
-    public void setEmailUsuario(String email) {
-        this.emailUsuario = email;
-    }
+
 
     @FXML
     private void goToCadastro(ActionEvent event) {
         try {
-            NavigationController.goToCadastro((Node) event.getSource());
+            NavigationController.goToCadastroAdmin((Node) event.getSource());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,18 +36,16 @@ public class TelaAdminController {
     @FXML
     private void goToCadastroEvento(ActionEvent event) {
         try {
-            NavigationController.goToCadastroEvento((Node) event.getSource());
+            NavigationController.goToCadastroEventoAdmin((Node) event.getSource());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void atualizarSaudacao() {
-        if (emailUsuario != null) {
-            Usuario usuario = DatabaseManager.buscarUsuarioPorEmail(emailUsuario);
-            if (usuario != null) {
-                labelOlaUsuario.setText("Olá, " + usuario.getNome() + "!");
-            }
-        }
+        StageLogado stage = (StageLogado)labelOlaUsuario.getScene().getWindow();
+        Usuario usuario = stage.getUsuario();
+        labelOlaUsuario.setText("Olá, " + usuario.getNome() + "!");
     }
+
 }

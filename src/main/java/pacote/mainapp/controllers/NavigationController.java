@@ -44,6 +44,20 @@ public class NavigationController {
         stage.show();
     }
 
+    public static void goToCadastroAdmin(Node sourceNode) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/CadastroAdmin.fxml")));
+        StageLogado stage = (StageLogado) sourceNode.getScene().getWindow();
+        stage.setScene(new Scene(root));
+
+        double currentWidth = stage.getWidth();
+        double currentHeight = stage.getHeight();
+
+        stage.setWidth(currentWidth);
+        stage.setHeight(currentHeight);
+
+        stage.show();
+    }
+
     public static void goToUserLogin(Node sourceNode) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/UserLogin.fxml")));
         Stage stage = (Stage) sourceNode.getScene().getWindow();
@@ -62,6 +76,7 @@ public class NavigationController {
         Parent root = FXMLLoader.load(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/AdminLogin.fxml")));
         Stage stage = (Stage) sourceNode.getScene().getWindow();
         stage.setScene(new Scene(root));
+
 
         double currentWidth = stage.getWidth();
         double currentHeight = stage.getHeight();
@@ -138,15 +153,29 @@ public class NavigationController {
 
         stage.show();
     }
+    public static void goToCadastroEventoAdmin(Node sourceNode) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/CadastroEventoAdmin.fxml")));
+        Parent root = loader.load();
 
-    public static void goToTelaAdmin(Node sourceNode, String email) throws IOException, SQLException {
+
+        Stage stage = (Stage) sourceNode.getScene().getWindow();
+        stage.setScene(new Scene(root));
+
+        double currentWidth = stage.getWidth();
+        double currentHeight = stage.getHeight();
+
+        stage.setWidth(currentWidth);
+        stage.setHeight(currentHeight);
+
+        stage.show();
+    }
+
+    public static void goToTelaAdmin(Node sourceNode) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(NavigationController.class.getResource("/pacote/mainapp/fxml/TelaAdmin.fxml"));
         Parent root = loader.load();
 
         // Pega o controller da tela carregada
         TelaAdminController controller = loader.getController();
-        controller.setEmailUsuario(email);
-        controller.atualizarSaudacao();
 
         Stage stage = (Stage) sourceNode.getScene().getWindow();
 

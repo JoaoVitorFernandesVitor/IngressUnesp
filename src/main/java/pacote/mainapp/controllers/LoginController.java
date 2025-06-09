@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import pacote.mainapp.models.Administrador;
 import pacote.mainapp.models.DatabaseManager;
 import pacote.mainapp.models.Usuario;
 
@@ -34,22 +35,23 @@ public class LoginController extends MainController {
         String senha = password.getText();
 
 
-
         if (email.isEmpty() || senha.isEmpty()) {
             lblLoginMensagem.setText("Email e senha são obrigatórios.");
             return;
         }
 
         try {
-            NavigationController.goToTelaAdmin((Node) event.getSource(), email);
-            Usuario usuario = DatabaseManager.buscarUsuarioPorEmail(email);
+            try {//Garato que o usuario seja um admin
+                Administrador usuario = (Administrador) DatabaseManager.buscarUsuarioPorEmail(email);
 
-
-            if (usuario != null && usuario.getSenha().equals(senha)){
-                lblLoginMensagem.setText("Login realizado com sucesso!");
-                NavigationController.goToTelaAdmin((Node) event.getSource(), email);
-            } else {
-                lblLoginMensagem.setText("Email ou senha inválidos.");
+                if (usuario != null && usuario.getSenha().equals(senha)) {
+                    lblLoginMensagem.setText("Login realizado com sucesso!");
+                    NavigationController.goToTelaAdmin((Node) event.getSource());
+                } else {
+                    lblLoginMensagem.setText("Email ou senha inválidos.");
+                }
+            } catch (ClassCastException e) {
+                lblLoginMensagem.setText("Erro: usuario não tem acesso suficiente");
             }
         } catch (Exception e) {
             lblLoginMensagem.setText("Erro ao realizar login: " + e.getMessage());
