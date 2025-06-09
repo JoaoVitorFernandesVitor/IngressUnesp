@@ -89,7 +89,7 @@ public class CadastroEventoController {
             // Salvar no banco
             if (DatabaseManager.cadastrarEvento(novoEvento, tipoEvento)) {
                 lblMensagem.setText("Evento cadastrado com sucesso!");
-                NavigationController.goToMenuInicial((Node) event.getSource());
+                NavigationController.goToTelaAdmin((Node) event.getSource());
                 limparCampos();
             } else {
                 lblMensagem.setText("Erro ao cadastrar evento.");
