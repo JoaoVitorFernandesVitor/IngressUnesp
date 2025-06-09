@@ -6,6 +6,7 @@ package pacote.mainapp.models;
  * Contém informações pessoais e de autenticação.
  *
  * @author Miguel
+ * @author João Vitor
  */
 public abstract class Usuario {
 

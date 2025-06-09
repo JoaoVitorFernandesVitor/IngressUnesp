@@ -2,49 +2,41 @@ package pacote.mainapp.models;
 
 import pacote.mainapp.controllers.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+/**
+ * Classe responsável pela gestão do banco de dados da aplicação.
+ * Realiza a criação das tabelas e manipulação de dados como usuários, eventos e ingressos.
+ * Utiliza conexão SQLite.
+ *
+ * @author Miguel
+ * @author João Vitor
+ */
 public class DatabaseManager {
+
+    /** URL de conexão com o banco de dados SQLite. */
     private static final String DB_URL = "jdbc:sqlite:database/sistema.db";
+
+    /** Conexão única com o banco de dados. */
     private static Connection connection;
 
     static {
         try {
-            // Registrar driver e criar conexão
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection(DB_URL);
             criarTabelas();
             criarTabelaEvento();
             criarTabelaIngresso();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private static void criarTabelaIngresso() throws SQLException {
 
-        String sqlIngressos = "CREATE TABLE IF NOT EXISTS ingressos (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "refEvent INTEGER NOT NULL," +     //ref ao evento
-                "refUsuario TEXT NOT NULL," +  // ref ao usuário
-                "nivel_acesso TEXT," +
-                "FOREIGN KEY (refEvent) REFERENCES eventos(id) ON DELETE CASCADE," +
-                "FOREIGN KEY (refUsuario) REFERENCES usuarios(email) ON DELETE CASCADE" +
-                ")";
-
-        try (Statement stmt = connection.createStatement()) {
-            stmt.execute(sqlIngressos);
-
-        }
-    }
+    /**
+     * Cria a tabela de usuários, se não existir.
+     */
     private static void criarTabelas() throws SQLException {
         String sqlUsuarios = "CREATE TABLE IF NOT EXISTS usuarios (" +
                 "nome TEXT NOT NULL," +
@@ -58,13 +50,17 @@ public class DatabaseManager {
                 "cidade TEXT," +
                 "estado TEXT," +
                 "cep TEXT," +
-                "tipo TEXT NOT NULL," +  // 'cliente' ou 'admin'
-                "nivel_acesso TEXT)";    // apenas para administradores
+                "tipo TEXT NOT NULL," +
+                "nivel_acesso TEXT)";
 
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sqlUsuarios);
         }
     }
+
+    /**
+     * Cria a tabela de eventos, se não existir.
+     */
     private static void criarTabelaEvento() throws SQLException {
         String sqlEventos = "CREATE TABLE IF NOT EXISTS eventos (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -89,13 +85,37 @@ public class DatabaseManager {
             stmt.execute(sqlEventos);
         }
     }
+
+    /**
+     * Cria a tabela de ingressos, se não existir.
+     */
+    private static void criarTabelaIngresso() throws SQLException {
+        String sqlIngressos = "CREATE TABLE IF NOT EXISTS ingressos (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "refEvent INTEGER NOT NULL," +
+                "refUsuario TEXT NOT NULL," +
+                "nivel_acesso TEXT," +
+                "FOREIGN KEY (refEvent) REFERENCES eventos(id) ON DELETE CASCADE," +
+                "FOREIGN KEY (refUsuario) REFERENCES usuarios(email) ON DELETE CASCADE)";
+
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute(sqlIngressos);
+        }
+    }
+
+    /**
+     * Cadastra um novo usuário no banco de dados.
+     *
+     * @param usuario      Objeto do tipo Usuario a ser cadastrado
+     * @param tipoUsuario  Tipo do usuário: "cliente" ou "administrador"
+     * @return true se o cadastro for bem-sucedido, false caso contrário
+     */
     public static boolean cadastrarUsuario(Usuario usuario, String tipoUsuario) throws SQLException {
         String sql = "INSERT INTO usuarios(nome, email, cpf, telefone, senha, " +
                 "logradouro, numero, complemento, cidade, estado, cep, tipo) " +
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            // Campos comuns
             pstmt.setString(1, usuario.getNome());
             pstmt.setString(2, usuario.getEmail());
             pstmt.setString(3, usuario.getCpf());
@@ -109,8 +129,6 @@ public class DatabaseManager {
             pstmt.setString(9, endereco.getCidade());
             pstmt.setString(10, endereco.getEstado());
             pstmt.setString(11, endereco.getCep());
-
-            // Campo específico para tipo de usuário
             pstmt.setString(12, tipoUsuario);
 
             pstmt.executeUpdate();
@@ -121,6 +139,12 @@ public class DatabaseManager {
         }
     }
 
+    /**
+     * Busca um usuário pelo e-mail no banco de dados.
+     *
+     * @param email E-mail do usuário a ser buscado
+     * @return Instância de Cliente ou Administrador se encontrado, null caso contrário
+     */
     public static Usuario buscarUsuarioPorEmail(String email) {
         String sql = "SELECT * FROM usuarios WHERE email = ?";
 
@@ -129,14 +153,13 @@ public class DatabaseManager {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                if(rs.getString("tipo").equals("cliente")){
+                if (rs.getString("tipo").equals("cliente")) {
                     Cliente usuario = new Cliente();
                     usuario.setNome(rs.getString("nome"));
                     usuario.setEmail(rs.getString("email"));
                     usuario.setCpf(rs.getString("cpf"));
                     usuario.setTelefone(rs.getString("telefone"));
                     usuario.setSenha(rs.getString("senha"));
-
                     Endereco endereco = new Endereco(
                             rs.getString("logradouro"),
                             rs.getString("numero"),
@@ -146,9 +169,8 @@ public class DatabaseManager {
                             rs.getString("cep"));
                     usuario.setEndereco(endereco);
                     return usuario;
-                }
-                else if(rs.getString("tipo").equals("administrador")){
-                    Administrador usuario = new Administrador() ;
+                } else if (rs.getString("tipo").equals("administrador")) {
+                    Administrador usuario = new Administrador();
                     usuario.setNome(rs.getString("nome"));
                     usuario.setEmail(rs.getString("email"));
                     usuario.setCpf(rs.getString("cpf"));
@@ -171,24 +193,37 @@ public class DatabaseManager {
         return null;
     }
 
+    /**
+     * Cadastra um ingresso no banco de dados.
+     *
+     * @param refEvent     ID do evento associado
+     * @param refUsuario   E-mail do usuário associado
+     * @param nivelAcesso  Nível de acesso do ingresso
+     * @return true se o ingresso for cadastrado com sucesso
+     */
     public static boolean cadastrarIngresso(int refEvent, String refUsuario, String nivelAcesso) {
         String sql = "INSERT INTO ingressos (refEvent, refUsuario, nivel_acesso) VALUES (?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-
             stmt.setInt(1, refEvent);
             stmt.setString(2, refUsuario);
             stmt.setString(3, nivelAcesso);
-
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
             System.err.println("Erro detalhado ao cadastrar ingresso: " + e.getMessage());
-            e.printStackTrace(); // Isso mostrará mais detalhes do erro
+            e.printStackTrace();
             return false;
         }
     }
 
+    /**
+     * Cadastra um evento no banco de dados.
+     *
+     * @param evento      Objeto do tipo Evento a ser cadastrado
+     * @param tipoEvento  Tipo do evento: "musical" ou "academico"
+     * @return true se o evento for cadastrado com sucesso
+     */
     public static boolean cadastrarEvento(Evento evento, String tipoEvento) throws SQLException {
         String sql = "INSERT INTO eventos(titulo, descricao, data_inicio, data_fim, " +
                 "preco, logradouro, numero, complemento, cidade, estado, cep, tipo, " +
@@ -196,7 +231,6 @@ public class DatabaseManager {
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            // Campos comuns
             pstmt.setString(1, evento.getTitulo());
             pstmt.setString(2, evento.getDescricao());
             pstmt.setString(3, evento.getData_inicio());
@@ -210,8 +244,6 @@ public class DatabaseManager {
             pstmt.setString(9, endereco.getCidade());
             pstmt.setString(10, endereco.getEstado());
             pstmt.setString(11, endereco.getCep());
-
-            // Campo específico para tipo de evento
             pstmt.setString(12, tipoEvento);
 
             if (evento instanceof EventoMusical musical) {
@@ -229,6 +261,13 @@ public class DatabaseManager {
             return false;
         }
     }
+
+    /**
+     * Busca um evento pelo título.
+     *
+     * @param titulo Título do evento a ser buscado
+     * @return Objeto EventoMusical ou EventoAcademico se encontrado, null caso contrário
+     */
     public static Evento buscarEvento(String titulo) {
         String sql = "SELECT * FROM eventos WHERE titulo = ?";
 
@@ -274,6 +313,11 @@ public class DatabaseManager {
         }
         return null;
     }
+
+    /** Busca eventos
+     *
+     * @return
+     */
     public static List<Evento> buscarEventos() {
         List<Evento> eventos = new ArrayList<>();
 
@@ -301,6 +345,11 @@ public class DatabaseManager {
         return eventos;
     }
 
+    /** Extrai Ingressos por usuário do banco de dados
+     *
+     * @param usuarioEmail
+     * @return
+     */
     public static List<Ingresso> getIngressosPorUsuario(String usuarioEmail) {
         List<Ingresso> ingressos = new ArrayList<>();
 
@@ -331,3 +380,5 @@ public class DatabaseManager {
     }
 
 }
+
+

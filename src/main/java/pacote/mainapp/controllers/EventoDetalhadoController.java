@@ -21,6 +21,11 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Objects;
 
+/**
+ * Controller para a tela de detalhes do evento.
+ * Exibe informações do evento, permite seleção da quantidade de ingressos,
+ * mostra o preço total e navega para a tela de pagamento.
+ */
 public class EventoDetalhadoController {
 
     @FXML
@@ -45,31 +50,50 @@ public class EventoDetalhadoController {
     private Usuario usuario;
     private double precoUnitario;
 
+    /**
+     * Obtém o usuário atual.
+     * @return usuário logado
+     */
     public Usuario getUsuario() {
         return usuario;
     }
 
+    /**
+     * Define o usuário atual.
+     * @param usuario usuário logado
+     */
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
+    /**
+     * Inicializa o controlador.
+     * Configura o spinner de quantidade (1 a 10) e atualiza o preço conforme o valor selecionado.
+     */
     @FXML
     public void initialize() {
-        // Configura spinner (1 a 10 ingressos)
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
         quantidadeSpinner.setValueFactory(valueFactory);
 
-        // Atualiza preço quando quantidade muda
         quantidadeSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
             atualizarPreco(newValue);
         });
     }
 
+    /**
+     * Define o evento cujos detalhes serão exibidos.
+     * Atualiza os campos da tela com os dados do evento.
+     * @param evento evento selecionado
+     */
     public void setEvento(Evento evento) {
         this.evento = evento;
         atualizarCampos();
     }
 
+    /**
+     * Atualiza os campos da interface com os dados do evento.
+     * Exibe título, descrição, preço e imagem adequada ao tipo do evento.
+     */
     private void atualizarCampos() {
         if (evento == null) return;
 
@@ -79,7 +103,6 @@ public class EventoDetalhadoController {
         precoUnitario = parsePreco(evento.getPreco());
         atualizarPreco(quantidadeSpinner.getValue());
 
-        // Define imagem conforme tipo
         String tipo = evento.getTipo() != null ? evento.getTipo().toLowerCase(Locale.ROOT) : "";
         String imagePath = switch (tipo) {
             case "academico" -> "/pacote/mainapp/img/academico.png";
@@ -91,11 +114,21 @@ public class EventoDetalhadoController {
         eventoImagem.setImage(image);
     }
 
+    /**
+     * Atualiza o label do preço total conforme a quantidade selecionada.
+     * @param quantidade quantidade de ingressos selecionada
+     */
     private void atualizarPreco(int quantidade) {
         double precoTotal = precoUnitario * quantidade;
         eventoPreco.setText(String.format("R$ %.2f", precoTotal));
     }
 
+    /**
+     * Converte o valor do preço para double, aceitando objetos Number ou Strings.
+     * Retorna 0.0 se não for possível converter.
+     * @param preco objeto que representa o preço
+     * @return valor numérico do preço
+     */
     private double parsePreco(Object preco) {
         if (preco == null) return 0.0;
 
@@ -114,6 +147,9 @@ public class EventoDetalhadoController {
         return 0.0;
     }
 
+    /**
+     * Abre a tela de pagamento, passando detalhes do evento e preço total.
+     */
     @FXML
     private void abrirTelaPagamento() {
         try {
@@ -136,6 +172,10 @@ public class EventoDetalhadoController {
         }
     }
 
+    /**
+     * Navega de volta para a tela de eventos, passando o usuário atual.
+     * @param event evento da ação de clique
+     */
     @FXML
     private void goToEventos(ActionEvent event) {
         try {
@@ -144,6 +184,4 @@ public class EventoDetalhadoController {
             e.printStackTrace();
         }
     }
-
-
 }
