@@ -191,6 +191,18 @@ public class NavigationController {
     }
 
     public static void goToMeusIngressos(Node sourceNode) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/MeusIngressos.fxml")));
+        Parent root = loader.load();
 
+        StageLogado stage = (StageLogado) sourceNode.getScene().getWindow();
+        stage.setScene(new Scene(root));
+
+        double currentWidth = stage.getWidth();
+        double currentHeight = stage.getHeight();
+
+        stage.setWidth(currentWidth);
+        stage.setHeight(currentHeight);
+
+        stage.show();
     }
 }

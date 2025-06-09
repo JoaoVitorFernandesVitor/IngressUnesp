@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="600" prefWidth="900" stylesheets="@../css/evento.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.MeusIngressosContoller">
+
+    <!-- Topo - Barra de navegação -->
+    <top>
+        <HBox alignment="CENTER_RIGHT" styleClass="top-bar">
+            <Label styleClass="logo-text" text="UNESPingresso" />
+            <Region prefHeight="34.0" prefWidth="137.0" HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblWelcome" prefHeight="18.0" prefWidth="211.0" styleClass="welcome-text" />
+         <Region layoutX="226.0" layoutY="25.0" prefHeight="34.0" prefWidth="131.0" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnMeusIngressos" onAction="#gotoMenuIngressos" styleClass="logout-button" text="Eventos">
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin></Button>
+            <Button fx:id="btnLogout" onAction="#goToMenuInicial" styleClass="logout-button" text="Sair" />
+        </HBox>
+    </top>
+
+    <!-- Centro - Lista de eventos -->
+    <center>
+        <ScrollPane fitToWidth="true">
+            <VBox fx:id="eventsContainer" alignment="CENTER" spacing="20" styleClass="events-container">
+                <Label styleClass="section-title" text="Meus Ingressos" />
+                <!-- ListView será preenchida dinamicamente -->
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <!-- Rodapé -->
+    <bottom>
+        <HBox alignment="CENTER" styleClass="footer">
+            <Label styleClass="footer-text" text="© 2025 UNESPingresso - Todos os direitos reservados" />
+        </HBox>
+    </bottom>
+</BorderPane>

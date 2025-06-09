@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pacote.mainapp.controllers.EventCardController;
 import pacote.mainapp.controllers.EventoDetalhadoController;
+import pacote.mainapp.controllers.IngressoCardController;
 import pacote.mainapp.controllers.NavigationController;
 
 import java.io.IOException;
@@ -90,6 +91,34 @@ public class EventCardBuilder extends VBox {
         NavigationController.goTo(source, eventScene);
     }
 
+    public Node buildIngressoCard(Ingresso ingresso) throws IOException {
 
 
+        Label nomeEvento = new Label(ingresso.refEvento.getTitulo());
+        Label dataEvento = new Label(ingresso.refEvento.getData_inicio());
+        Label precoEvento = new Label("R$ " + ingresso.getPreco());
+
+        nomeEvento.setStyle(styleEventTitle);
+        dataEvento.setStyle(styleEventDetail);
+        precoEvento.setStyle(styleEventPrice);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pacote/mainapp/fxml/IngressoCard.fxml"));
+        Node ingressoCard = loader.load();
+
+        ImageView imageView = (ImageView) ingressoCard.lookup("#imageView");
+
+        String tipo = ingresso.refEvento.getTipo();
+        String imagePath = switch (tipo) {
+            case "academico" -> "/pacote/mainapp/img/academico.png";
+            case "musical" -> "/pacote/mainapp/img/musical.jpg";
+            default -> "/pacote/mainapp/img/unespLogo.png";
+        };
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
+        imageView.setImage(image);
+
+        IngressoCardController controller = loader.getController();
+        controller.getLabelContainer().getChildren().addAll(nomeEvento, dataEvento, precoEvento);
+
+        return ingressoCard;
+    }
 }

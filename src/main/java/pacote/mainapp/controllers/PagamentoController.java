@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import pacote.mainapp.models.*;
 import java.io.IOException;
+import java.util.Objects;
 
 public class PagamentoController {
 
@@ -42,9 +43,9 @@ public class PagamentoController {
 
             StageLogado stage = (StageLogado) precoTotalLabel.getScene().getWindow();
             Cliente usuario = (Cliente) stage.getUsuario();
-            System.out.println(usuario.getEmail());
+
             for (int i = 0; i < quantidade; i++) {
-                DatabaseManager.cadastrarIngresso(evento.getId(),usuario.getEmail(),"Pista");
+                DatabaseManager.cadastrarIngresso(Objects.requireNonNull(evento).getId(), usuario.getEmail(), "Pista");
             }
         }
         catch (ClassCastException e){

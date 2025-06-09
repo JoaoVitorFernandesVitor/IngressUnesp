@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="eventCard" styleClass="event-card" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.IngressoCardController">
+
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <ImageView fx:id="imageView" fitHeight="120" fitWidth="120" />
+
+        <VBox fx:id="labelContainer" spacing="5" />
+
+        <Region HBox.hgrow="ALWAYS" />
+    </HBox>
+</VBox>

@@ -8,7 +8,9 @@ import java.sql.SQLException;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DatabaseManager {
     private static final String DB_URL = "jdbc:sqlite:database/sistema.db";
@@ -173,8 +175,6 @@ public class DatabaseManager {
         String sql = "INSERT INTO ingressos (refEvent, refUsuario, nivel_acesso) VALUES (?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            // Garantir que as chaves estrangeiras estão ativadas
-            stmt.execute("PRAGMA foreign_keys = ON");
 
             stmt.setInt(1, refEvent);
             stmt.setString(2, refUsuario);
@@ -301,5 +301,33 @@ public class DatabaseManager {
         return eventos;
     }
 
+    public static List<Ingresso> getIngressosPorUsuario(String usuarioEmail) {
+        List<Ingresso> ingressos = new ArrayList<>();
+
+        String sql = "SELECT i.id, i.nivel_acesso, e.titulo, e.data_inicio, e.data_fim, e.preco, e.tipo " +
+                "FROM ingressos i " +
+                "JOIN eventos e ON i.refEvent = e.id " +
+                "WHERE i.refUsuario = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, usuarioEmail);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                IngressoUnico newIngressoUnico = new IngressoUnico();
+                newIngressoUnico.setId(rs.getInt("id"));
+                newIngressoUnico.setRefEvento(buscarEvento(rs.getString("titulo")));
+                newIngressoUnico.setPreco(rs.getDouble("preco"));
+                newIngressoUnico.setNivel_acesso(rs.getString("nivel_acesso"));
+
+                ingressos.add(newIngressoUnico);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar ingressos: " + e.getMessage());
+        }
+
+        return ingressos;
+    }
 
 }
