@@ -9,6 +9,7 @@ import pacote.mainapp.models.StageLogado;
 import pacote.mainapp.models.Usuario;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class NavigationController {
@@ -141,7 +142,7 @@ public class NavigationController {
         stage.show();
     }
 
-    public static void goToTelaAdmin(Node sourceNode, String email) throws IOException {
+    public static void goToTelaAdmin(Node sourceNode, String email) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(NavigationController.class.getResource("/pacote/mainapp/fxml/TelaAdmin.fxml"));
         Parent root = loader.load();
 

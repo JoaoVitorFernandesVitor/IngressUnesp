@@ -47,7 +47,6 @@ public class PagamentoController {
                 IngressoUnico novoIngresso = new IngressoUnico(evento);
                 novoIngresso.setPreco(evento.getPreco());
 
-                usuario.incluirIngresso(novoIngresso);
             }
         }
         catch (ClassCastException e){

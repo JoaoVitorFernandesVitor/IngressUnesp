@@ -30,6 +30,7 @@ MainApp extends Application {
 
     public static void main(String[] args){
         DatabaseInicializador.criarBancoSeNaoExistir();
+        new DatabaseManager();
         launch(args);//Abre a aplicação
     }
 }

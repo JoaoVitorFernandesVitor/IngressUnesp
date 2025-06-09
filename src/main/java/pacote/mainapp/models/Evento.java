@@ -1,6 +1,7 @@
 package pacote.mainapp.models;
 
 public class Evento {
+    protected int id;
     protected String titulo;
     protected String descricao;
     protected Endereco local;
@@ -31,6 +32,14 @@ public class Evento {
     }
 
     //Geters e Seters
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;

@@ -43,9 +43,8 @@ public class DatabaseManager {
     }
     private static void criarTabelas() throws SQLException {
         String sqlUsuarios = "CREATE TABLE IF NOT EXISTS usuarios (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nome TEXT NOT NULL," +
-                "email TEXT UNIQUE NOT NULL," +
+                "email TEXT PRIMARY KEY ," +
                 "cpf TEXT UNIQUE NOT NULL," +
                 "telefone TEXT NOT NULL," +
                 "senha TEXT NOT NULL," +
@@ -224,6 +223,7 @@ public class DatabaseManager {
                 if (rs.getString("tipo").equals("musical")) {
                     //Criando o evento musical
                     EventoMusical eventoMusical = new EventoMusical();
+                    eventoMusical.setId(rs.getInt("id"));
                     eventoMusical.setTitulo(rs.getString("titulo"));
                     eventoMusical.setDescricao(rs.getString("descricao"));
                     eventoMusical.setData_inicio(rs.getString("data_inicio"));
@@ -238,6 +238,7 @@ public class DatabaseManager {
                 else if (rs.getString("tipo").equals("academico")) {
                     //Criando o evento Academico
                     EventoAcademico eventoAcademico = new EventoAcademico();
+                    eventoAcademico.setId(rs.getInt("id"));
                     eventoAcademico.setTitulo(rs.getString("titulo"));
                     eventoAcademico.setDescricao(rs.getString("descricao"));
                     eventoAcademico.setData_inicio(rs.getString("data_inicio"));
