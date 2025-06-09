@@ -11,15 +11,7 @@ public class EventCardController {
     @FXML private ImageView imageView;
     @FXML private VBox labelContainer;
     @FXML private Button btnBuy;
-    private Usuario usuario;
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public VBox getLabelContainer() {
         return labelContainer;

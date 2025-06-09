@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import pacote.mainapp.models.*;
-
 import java.io.IOException;
 
 public class PagamentoController {
@@ -31,26 +30,42 @@ public class PagamentoController {
     private String eventoTitulo;
     private int quantidade;
     private double precoTotal;
-    private Usuario usuario;
+
 
     @FXML
     private void confirmarPagamento() {
 
         //Criação do Ingresso
-        Evento evento = DatabaseManager.buscarEvento(eventoTitulo);
-        Cliente cliente = (Cliente) usuario;
-        for (int i = 0; i < quantidade; i++) {
+        try{//Garante que o evento tenha o cast adequado
+            EventoMusical evento = (EventoMusical) DatabaseManager.buscarEvento(eventoTitulo);
 
-            System.out.println(usuario.getNome());
+            StageLogado stage = (StageLogado) precoTotalLabel.getScene().getWindow();
+            Cliente usuario = (Cliente) stage.getUsuario();
 
-            IngressoUnico novoIngresso = new IngressoUnico(evento);
-            novoIngresso.setPreco(evento.getPreco());
+            for (int i = 0; i < quantidade; i++) {
 
-            cliente.incluirIngresso((Ingresso) novoIngresso);
+                IngressoUnico novoIngresso = new IngressoUnico(evento);
+                novoIngresso.setPreco(evento.getPreco());
+
+                usuario.incluirIngresso(novoIngresso);
+            }
         }
-        for(Ingresso i : cliente.getListaDeIngressos()){
-            System.out.println(i);
+        catch (ClassCastException e){
+
+            EventoAcademico evento = (EventoAcademico) DatabaseManager.buscarEvento(eventoTitulo);
+
+            StageLogado stage = (StageLogado) precoTotalLabel.getScene().getWindow();
+            Cliente usuario = (Cliente) stage.getUsuario();
+
+            for (int i = 0; i < quantidade; i++) {
+
+                IngressoUnico novoIngresso = new IngressoUnico(evento);
+                novoIngresso.setPreco(evento.getPreco());
+
+                usuario.incluirIngresso(novoIngresso);
+            }
         }
+
     }
 
     public void setDetalhesPagamento(String titulo, int quantidade, double precoTotal) {
@@ -65,17 +80,11 @@ public class PagamentoController {
     @FXML
     private void goToEventos(ActionEvent event) {
         try {
-            NavigationController.goToEventos((Node) event.getSource(), usuario);
+            NavigationController.goToEventos((Node) event.getSource(), null);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+;
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 }

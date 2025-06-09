@@ -1,10 +1,14 @@
 package pacote.mainapp.models;
 
+import pacote.mainapp.controllers.DatabaseConnection;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseManager {
     private static final String DB_URL = "jdbc:sqlite:database/sistema.db";
@@ -17,11 +21,26 @@ public class DatabaseManager {
             connection = DriverManager.getConnection(DB_URL);
             criarTabelas();
             criarTabelaEvento();
+            criarTabelaIngresso();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    private static void criarTabelaIngresso() throws SQLException {
+        String sqlIngressos = "CREATE TABLE IF NOT EXISTS ingressos (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "refEvent INTEGER NOT NULL," +     //ref ao evento
+                "refUsuario INTEGER NOT NULL," +  // ref ao usuário
+                "nivel_acesso TEXT," +
+                "FOREIGN KEY (refEvent) REFERENCES eventos(id) ON DELETE CASCADE," +
+                "FOREIGN KEY (refUsuario) REFERENCES usuarios(id) ON DELETE CASCADE" +
+                ")";
 
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute("PRAGMA foreign_keys = ON");
+            stmt.execute(sqlIngressos);
+        }
+    }
     private static void criarTabelas() throws SQLException {
         String sqlUsuarios = "CREATE TABLE IF NOT EXISTS usuarios (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -40,7 +59,33 @@ public class DatabaseManager {
                 "nivel_acesso TEXT)";    // apenas para administradores
 
         try (Statement stmt = connection.createStatement()) {
+            stmt.execute("PRAGMA foreign_keys = ON");
             stmt.execute(sqlUsuarios);
+        }
+    }
+    private static void criarTabelaEvento() throws SQLException {
+        String sqlEventos = "CREATE TABLE IF NOT EXISTS eventos (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "titulo TEXT NOT NULL," +
+                "descricao TEXT UNIQUE NOT NULL," +
+                "data_inicio TEXT NOT NULL," +
+                "data_fim TEXT NOT NULL," +
+                "preco REAL NOT NULL," +
+                "logradouro TEXT," +
+                "numero TEXT," +
+                "complemento TEXT," +
+                "cidade TEXT," +
+                "estado TEXT," +
+                "cep TEXT," +
+                "estilo_musical TEXT," +
+                "banda TEXT," +
+                "palestrante TEXT," +
+                "topico TEXT," +
+                "tipo TEXT NOT NULL)";
+
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute("PRAGMA foreign_keys = ON");
+            stmt.execute(sqlEventos);
         }
     }
     public static boolean cadastrarUsuario(Usuario usuario, String tipoUsuario) throws SQLException {
@@ -83,23 +128,41 @@ public class DatabaseManager {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                Usuario usuario = new Usuario() {};
-                usuario.setNome(rs.getString("nome"));
-                usuario.setEmail(rs.getString("email"));
-                usuario.setCpf(rs.getString("cpf"));
-                usuario.setTelefone(rs.getString("telefone"));
-                usuario.setSenha(rs.getString("senha"));
+                if(rs.getString("tipo").equals("cliente")){
+                    Cliente usuario = new Cliente();
+                    usuario.setNome(rs.getString("nome"));
+                    usuario.setEmail(rs.getString("email"));
+                    usuario.setCpf(rs.getString("cpf"));
+                    usuario.setTelefone(rs.getString("telefone"));
+                    usuario.setSenha(rs.getString("senha"));
 
-                Endereco endereco = new Endereco(
-                        rs.getString("logradouro"),
-                        rs.getString("numero"),
-                        rs.getString("complemento"),
-                        rs.getString("cidade"),
-                        rs.getString("estado"),
-                        rs.getString("cep"));
-                usuario.setEndereco(endereco);
-
-                return usuario;
+                    Endereco endereco = new Endereco(
+                            rs.getString("logradouro"),
+                            rs.getString("numero"),
+                            rs.getString("complemento"),
+                            rs.getString("cidade"),
+                            rs.getString("estado"),
+                            rs.getString("cep"));
+                    usuario.setEndereco(endereco);
+                    return usuario;
+                }
+                else if(rs.getString("tipo").equals("administrador")){
+                    Administrador usuario = new Administrador() ;
+                    usuario.setNome(rs.getString("nome"));
+                    usuario.setEmail(rs.getString("email"));
+                    usuario.setCpf(rs.getString("cpf"));
+                    usuario.setTelefone(rs.getString("telefone"));
+                    usuario.setSenha(rs.getString("senha"));
+                    Endereco endereco = new Endereco(
+                            rs.getString("logradouro"),
+                            rs.getString("numero"),
+                            rs.getString("complemento"),
+                            rs.getString("cidade"),
+                            rs.getString("estado"),
+                            rs.getString("cep"));
+                    usuario.setEndereco(endereco);
+                    return usuario;
+                }
             }
         } catch (SQLException e) {
             System.err.println("Erro ao buscar usuário: " + e.getMessage());
@@ -107,30 +170,7 @@ public class DatabaseManager {
         return null;
     }
 
-    private static void criarTabelaEvento() throws SQLException {
-        String sqlEventos = "CREATE TABLE IF NOT EXISTS eventos (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "titulo TEXT NOT NULL," +
-                "descricao TEXT UNIQUE NOT NULL," +
-                "data_inicio TEXT NOT NULL," +
-                "data_fim TEXT NOT NULL," +
-                "preco REAL NOT NULL," +
-                "logradouro TEXT," +
-                "numero TEXT," +
-                "complemento TEXT," +
-                "cidade TEXT," +
-                "estado TEXT," +
-                "cep TEXT," +
-                "estilo_musical TEXT," +
-                "banda TEXT," +
-                "palestrante TEXT," +
-                "topico TEXT," +
-                "tipo TEXT NOT NULL)";
 
-        try (Statement stmt = connection.createStatement()) {
-            stmt.execute(sqlEventos);
-        }
-    }
 
     public static boolean cadastrarEvento(Evento evento, String tipoEvento) throws SQLException {
         String sql = "INSERT INTO eventos(titulo, descricao, data_inicio, data_fim, " +
@@ -215,5 +255,44 @@ public class DatabaseManager {
             System.err.println("Erro ao buscar usuário: " + e.getMessage());
         }
         return null;
+    }
+    public static List<Evento> buscarEventos() {
+        List<Evento> eventos = new ArrayList<>();
+
+        String sql = "SELECT titulo, descricao, data_inicio, preco, tipo FROM eventos";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String titulo = rs.getString("titulo");
+                String descricao = rs.getString("descricao");
+                String data_inicio = rs.getString("data_inicio");
+                double preco = rs.getDouble("preco");
+                String tipo = rs.getString("tipo");
+
+                Evento evento = new Evento(titulo, descricao, data_inicio, preco, tipo);
+                eventos.add(evento);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return eventos;
+    }
+
+    public static boolean cadastrarIngresso(int refEvent, int refUsuario, String nivelAcesso) throws SQLException {
+        String sql = "INSERT INTO ingressos (refEvent, refUsuario, nivel_acesso) VALUES (?, ?, ?)";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, refEvent);
+            stmt.setInt(2, refUsuario);
+            stmt.setString(3, nivelAcesso);
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        }
     }
 }

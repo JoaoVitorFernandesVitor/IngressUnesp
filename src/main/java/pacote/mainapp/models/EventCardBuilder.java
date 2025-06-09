@@ -35,7 +35,7 @@ public class EventCardBuilder extends VBox {
         this.usuario = usuario;
     }
 
-    public Node buildCard(Evento evento, Usuario usuario) throws IOException {
+    public Node buildCard(Evento evento) throws IOException {
 
 
         Label nomeEvento = new Label(evento.getTitulo());

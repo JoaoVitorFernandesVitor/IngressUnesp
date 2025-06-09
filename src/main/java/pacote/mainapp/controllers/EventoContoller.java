@@ -1,5 +1,6 @@
 package pacote.mainapp.controllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,12 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import pacote.mainapp.models.EventCardBuilder;
-import pacote.mainapp.models.Evento;
-import pacote.mainapp.models.EventoAcademico;
-import pacote.mainapp.models.Usuario;
+import javafx.stage.Stage;
+import pacote.mainapp.models.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,17 +27,17 @@ public class EventoContoller implements Initializable {
 
     @FXML
     private VBox eventsContainer;
-    private Usuario usuario;
+    @FXML private Label lblWelcome;
 
+    public void carregarEventos() {
 
-    private void carregarEventos() {
-        List<Evento> eventos = buscarEventos();
-
+        ;
+        List<Evento> eventos = DatabaseManager.buscarEventos();
         EventCardBuilder builder = new EventCardBuilder();
 
         for (Evento evento : eventos) {
             try {
-                Node card = builder.buildCard(evento, usuario);
+                Node card = builder.buildCard(evento);
                 eventsContainer.getChildren().add(card);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -46,37 +47,16 @@ public class EventoContoller implements Initializable {
     }
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        carregarEventos();
-    }
 
-    public List<Evento> buscarEventos() {
-        List<Evento> eventos = new ArrayList<>();
-        String sql = "SELECT titulo, descricao, data_inicio, preco, tipo FROM eventos";
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                String titulo = rs.getString("titulo");
-                String descricao = rs.getString("descricao");
-                String data_inicio = rs.getString("data_inicio");
-                double preco = rs.getDouble("preco");
-                String tipo = rs.getString("tipo");
-
-                Evento evento = new Evento(titulo, descricao, data_inicio, preco, tipo);
-                eventos.add(evento);
-            }
-
-        } catch (SQLException e) {
+    @FXML
+    private void gotoMenuIngressos(ActionEvent event) {
+        try {
+            NavigationController.goToMeusIngressos((Node)event.getSource());
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
-
-        return eventos;
     }
-
     @FXML
     private void goToMenuInicial(ActionEvent event) {
         try {
@@ -86,11 +66,13 @@ public class EventoContoller implements Initializable {
         }
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        carregarEventos();
+        Platform.runLater(() -> {
+            StageLogado stage = (StageLogado) eventsContainer.getScene().getWindow();
+            lblWelcome.setText("Bem vindo," + stage.getUsuario().getNome());
+        });
 
-    public Usuario getUsuario() {
-        return usuario;
     }
 }

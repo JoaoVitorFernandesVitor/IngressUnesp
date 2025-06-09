@@ -122,7 +122,6 @@ public class EventoDetalhadoController {
             Parent root = loader.load();
 
             PagamentoController pagamentoController = loader.getController();
-            pagamentoController.setUsuario(usuario);
 
             int quantidade = quantidadeSpinner.getValue();
             double precoTotal = precoUnitario * quantidade;
