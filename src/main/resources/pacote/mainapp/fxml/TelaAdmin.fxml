@@ -36,7 +36,7 @@
                     <Font size="16.0" />
                 </font>
             </Label>
-            <Label fx:id="labelOlaUsuario" styleClass="subtitle-text" text="Olá, Usuário!">
+            <Label fx:id="labelOlaUsuario" styleClass="hello-text" text="Olá, Usuário!">
                 <font>
                     <Font size="18.0" />
                 </font>
@@ -57,6 +57,8 @@
                 </font>
             </Button>
         </VBox>
+
+        <Button fx:id="cancelButton" onAction="#goToMenuInicial" style="-fx-background-color: #e74c3c; -fx-font-size: 16px;-fx-background-radius: 5;-fx-text-fill: white" text="Voltar" />
 
         <!-- Rodapé -->
         <Label styleClass="footer-text" text="© 2025 IngressUNESP - Todos os direitos reservados">

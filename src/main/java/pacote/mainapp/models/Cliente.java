@@ -2,12 +2,30 @@ package pacote.mainapp.models;
 
 import java.util.LinkedList;
 
+/**
+ * Representa um cliente do sistema.
+ * Herda os dados de um usuário e possui uma carteira e uma lista de ingressos.
+ *
+ * @author Miguel
+ * @author João Vitor
+ */
 public class Cliente extends Usuario {
 
+    /** Estado atual da carteira do cliente (ex: saldo ou status). */
     private String carteira;
+
+    /** Lista de ingressos adquiridos pelo cliente. */
     private LinkedList<Ingresso> ListaDeIngressos;
 
-    //Construtor
+    /**
+     * Construtor que inicializa um cliente com os dados informados.
+     *
+     * @param nome Nome do cliente
+     * @param email E-mail do cliente
+     * @param cpf CPF do cliente
+     * @param endereco Endereço do cliente
+     * @param senha Senha do cliente
+     */
     public Cliente(String nome, String email, String cpf, Endereco endereco, String senha) {
         setNome(nome);
         setEmail(email);
@@ -18,13 +36,16 @@ public class Cliente extends Usuario {
         this.ListaDeIngressos = new LinkedList<Ingresso>();
     }
 
+    /**
+     * Contrutor padrão que inicializa um cliente com carteira vazia
+     * e lista de ingressos vazia.
+     */
     public Cliente() {
         super();
         this.carteira = "Vazia";
         this.ListaDeIngressos = new LinkedList<Ingresso>();
     }
 
-    //Get e Sets
     public String getCarteira() {
         return carteira;
     }
@@ -39,17 +60,6 @@ public class Cliente extends Usuario {
 
     public void setListaDeIngressos(LinkedList<Ingresso> listaDeIngressos) {
         ListaDeIngressos = listaDeIngressos;
-    }
-
-    //Metodos
-    public void incluirIngresso(Ingresso ingresso) {
-        this.ListaDeIngressos.add(ingresso);
-    }
-    public void incluirIngressos(LinkedList<Ingresso> ingressos){
-        this.ListaDeIngressos.addAll(ingressos);
-    }
-    public void excluirIngresso(Ingresso ingresso) {
-        this.ListaDeIngressos.remove(ingresso);
     }
 
 }

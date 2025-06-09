@@ -38,3 +38,11 @@
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
 }
+
+
+.hello-text{
+    -fx-text-fill: white;
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}

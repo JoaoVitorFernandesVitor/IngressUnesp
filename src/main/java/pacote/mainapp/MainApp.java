@@ -21,7 +21,7 @@ MainApp extends Application {
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/pacote/mainapp/fxml/MenuInicial.fxml")));
 
-        Scene scene = new Scene(root, 900, 600);
+        Scene scene = new Scene(root, 990, 660);
 
         primaryStage.setTitle("IngressUnesp");
         primaryStage.setScene(scene);
