@@ -86,12 +86,14 @@
 .title-card {
     -fx-background-color: rgb(175, 28, 73);
     -fx-background-radius: 15px;
+    -fx-padding: 20px;
+    -fx-spacing: 12px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 10, 0, 0, 5);
     -fx-max-width: 800px;
 }
 
 .descricao-card {
-    -fx-background-color: rgba(255, 0, 0, 0.69);
+    -fx-background-color: rgba(184, 19, 19, 0.75);
     -fx-background-radius: 15px;
     -fx-padding: 20px;
     -fx-spacing: 12px;
@@ -107,7 +109,7 @@
 }
 
 .secondary-button {
-    -fx-background-color: #e74c3c;
+    -fx-background-color: #b84c12;
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-font-weight: bold;

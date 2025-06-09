@@ -117,15 +117,15 @@ public class EventoDetalhadoController {
     @FXML
     private void abrirTelaPagamento() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pacote/mainapp/fxml/pagamento.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pacote/mainapp/fxml/Pagemento.fxml"));
             Parent root = loader.load();
 
-            PagamentoController pagamentoController = loader.getController();
+            PagamentoController2 pagamentoController = loader.getController();
 
             int quantidade = quantidadeSpinner.getValue();
             double precoTotal = precoUnitario * quantidade;
 
-            pagamentoController.setDetalhesPagamento(evento.getTitulo(), quantidade, precoTotal);
+            pagamentoController.setDetalhesPagamento(evento, quantidade, precoTotal);
 
             Scene scene = new Scene(root);
             Stage stage = (Stage) comprarButton.getScene().getWindow();

@@ -7,58 +7,67 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="anchor-pane" stylesheets="@../css/eventoDetalhado.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.EventoDetalhadoController">
-   <Pane layoutX="88.0" layoutY="7.0" prefHeight="655.0" prefWidth="725.0">
+   <Pane layoutX="88.0" layoutY="7.0" prefHeight="655.0" prefWidth="725.0" styleClass="card">
       <children>
-           <VBox alignment="CENTER" layoutX="1.0" layoutY="1.0" maxWidth="704.0" prefHeight="646.0" prefWidth="704.0" styleClass="card">
-            <VBox prefHeight="63.0" prefWidth="424.0" styleClass="title-card">
-               <children>
-                      <Label fx:id="eventoTitulo" alignment="CENTER" prefHeight="45.0" prefWidth="628.0" styleClass="label-title" text="Título do Evento" />
-               </children>
-            </VBox>
-            <BorderPane>
-               <bottom>
-                  <VBox prefHeight="105.0" prefWidth="640.0" styleClass="descricao-card" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="623.0" styleClass="label-sub-title" text="Descrição do evento" textAlignment="CENTER" />
-                            <Text fx:id="eventoDescricao" styleClass="text" wrappingWidth="600.0" />
-                     </children>
-                  </VBox>
-               </bottom>
-               <top>
-                      <ImageView fx:id="eventoImagem" fitHeight="154.0" fitWidth="154.0" styleClass="image-view" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </BorderPane.margin>
-                  </ImageView>
-               </top>
-            </BorderPane>
-      
-               <HBox alignment="CENTER" prefHeight="35.0" prefWidth="640.0" styleClass="hbox">
+         <GridPane layoutX="45.0" layoutY="410.0" prefHeight="30.0" prefWidth="611.0">
+           <columnConstraints>
+               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
                     <Label styleClass="label-text" text="Preço:">
                   <padding>
                      <Insets right="10.0" />
-                  </padding></Label>
-                    <Label fx:id="eventoPreco" styleClass="label-preco">
+                  </padding>
+               </Label>
+                    <Label fx:id="eventoPreco" styleClass="label-preco" GridPane.columnIndex="1">
                   <padding>
                      <Insets right="10.0" />
-                  </padding></Label>
-                    <Label styleClass="label-text" text="Quantidade:">
+                  </padding>
+               </Label>
+                    <Label styleClass="label-text" text="Quantidade:" GridPane.columnIndex="2">
                   <padding>
                      <Insets right="5.0" />
-                  </padding></Label>
-                    <Spinner fx:id="quantidadeSpinner" styleClass="spinner" />
-               </HBox>
-      
-                              <Button fx:id="comprarButton" onAction="#abrirTelaPagamento" styleClass="button" text="Comprar Ingresso" />
-               <Button fx:id="btnBack" onAction="#goToEventos" styleClass="secondary-button" text="Voltar">
+                  </padding>
+               </Label>
+                    <Spinner fx:id="quantidadeSpinner" styleClass="spinner" GridPane.columnIndex="3" />
+            </children>
+         </GridPane>
+             <Label fx:id="eventoTitulo" alignment="CENTER" layoutX="36.0" layoutY="14.0" prefHeight="45.0" prefWidth="628.0" styleClass="title-card" text="Título do Evento" />
+   
+                                          <Button fx:id="comprarButton" layoutX="396.0" layoutY="535.0" onAction="#abrirTelaPagamento" styleClass="button" text="Comprar Ingresso" />
+            <Button fx:id="btnBack" layoutX="149.0" layoutY="535.0" onAction="#goToEventos" prefWidth="123.0" styleClass="secondary-button" text="Voltar">
             </Button>
-           </VBox>
+         <BorderPane layoutX="30.0" layoutY="80.0" prefHeight="301.0" prefWidth="640.0">
+            <bottom>
+               <VBox prefHeight="73.0" prefWidth="640.0" styleClass="descricao-card" BorderPane.alignment="CENTER">
+                  <children>
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="623.0" styleClass="label-sub-title" text="Descrição do evento" textAlignment="CENTER" />
+                         <Text fx:id="eventoDescricao" styleClass="text" wrappingWidth="600.0" />
+                  </children>
+               </VBox>
+            </bottom>
+            <top>
+                   <ImageView fx:id="eventoImagem" fitHeight="154.0" fitWidth="154.0" styleClass="image-view" BorderPane.alignment="CENTER">
+                  <BorderPane.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </BorderPane.margin>
+               </ImageView>
+            </top>
+         </BorderPane>
       </children>
    </Pane>
 </AnchorPane>

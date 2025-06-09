@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="600.0" prefWidth="901.0" styleClass="anchor-pane" stylesheets="@../css/Pagamento.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.PagamentoController2">
+   <Pane layoutX="130.0" layoutY="-2.0" prefHeight="604.0" prefWidth="640.0" styleClass="card">
+      <children>
+         <BorderPane layoutX="-7.0" prefHeight="604.0" prefWidth="647.0">
+            <center>
+               <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <children>
+                     <GridPane alignment="CENTER" layoutX="185.0" layoutY="44.0" prefHeight="98.0" prefWidth="278.0" styleClass="descricao-card">
+                       <columnConstraints>
+                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="100.0" />
+                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.0" minWidth="10.0" prefWidth="113.0" />
+                       </columnConstraints>
+                       <rowConstraints>
+                         <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                         <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
+                        <children>
+                           <Label prefHeight="19.0" prefWidth="240.0" text="Valor:" GridPane.rowIndex="1" />
+                           <Label fx:id="quantidade_Label" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="268.0" text="12" GridPane.columnIndex="1" />
+                           <Label fx:id="preco_Label" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="19.0" prefWidth="268.0" text="R$ 123,00" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           <Label prefHeight="19.0" prefWidth="240.0" text="Quantidade:" />
+                        </children>
+                     </GridPane>
+                     <GridPane fx:id="credito_Pane" layoutX="81.0" layoutY="258.0" prefHeight="142.0" prefWidth="485.0" styleClass="descricao-card">
+                       <columnConstraints>
+                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="223.0" />
+                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="222.0" />
+                       </columnConstraints>
+                       <rowConstraints>
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
+                        <children>
+                           <TextField fx:id="cardNumberField" prefHeight="23.0" prefWidth="165.0" promptText="Número do Cartão">
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              </GridPane.margin></TextField>
+                           <TextField fx:id="cardNameField" promptText="Nome do Titular" GridPane.rowIndex="1">
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              </GridPane.margin></TextField>
+                           <TextField fx:id="expiryField" prefHeight="25.0" prefWidth="139.0" promptText="Validade (MM/AA)" GridPane.columnIndex="1">
+                              <padding>
+                                 <Insets bottom="5.0" left="5.0" right="5.0" />
+                              </padding>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              </GridPane.margin></TextField>
+                           <TextField fx:id="cvvField" prefHeight="23.0" prefWidth="232.0" promptText="CVV" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              </GridPane.margin></TextField>
+                        </children>
+                     </GridPane>
+                     <Pane fx:id="pix_Panel" disable="true" layoutX="81.0" layoutY="258.0" prefHeight="142.0" prefWidth="485.0" styleClass="descricao-card" visible="false">
+                        <children>
+                           <ImageView fitHeight="108.0" fitWidth="144.0" layoutX="199.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../img/qrcode.png" />
+                              </image>
+                           </ImageView>
+                        </children>
+                     </Pane>
+                     <Button fx:id="btn_Cancelar" layoutX="159.0" layoutY="453.0" mnemonicParsing="false" onAction="#goToEventos" text="Cancelar" />
+                     <Button fx:id="btn_ConfimarCompra" layoutX="333.0" layoutY="453.0" mnemonicParsing="false" onAction="#confirmarPagamento" prefHeight="39.0" prefWidth="153.0" text="Confirmar Compra" />
+                     <Button fx:id="btn_Cartao" layoutX="81.0" layoutY="201.0" mnemonicParsing="false" onAction="#show_Credito" text="Cartão Credito" />
+                     <Button fx:id="btn_Pix" layoutX="272.0" layoutY="201.0" mnemonicParsing="false" onAction="#show_Pix" text="PIX" />
+                     <Label fx:id="alert_Label" layoutX="176.0" layoutY="152.0" prefHeight="32.0" prefWidth="294.0" text="Label" visible="false" />
+                  </children>
+               </AnchorPane>
+            </center>
+            <top>
+               <Label alignment="CENTER" prefHeight="40.0" prefWidth="567.0" styleClass="title-card" text="PAGAMENTO" BorderPane.alignment="CENTER">
+                  <BorderPane.margin>
+                     <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                  </BorderPane.margin>
+               </Label>
+            </top></BorderPane>
+      </children>
+   </Pane>
+</AnchorPane>
