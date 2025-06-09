@@ -10,7 +10,7 @@ public class EventoAcademico extends Evento {
         super();
     }
 
-    public EventoAcademico(String titulo, String descricao, Endereco local, String data_inicio, String data_fim, String preco, String tipo, String palestrante, String topico) {
+    public EventoAcademico(String titulo, String descricao, Endereco local, String data_inicio, String data_fim, double preco, String tipo, String palestrante, String topico) {
         super(titulo, descricao, local, data_inicio, data_fim, preco, tipo);
         this.palestrante = palestrante;
         this.topico = topico;

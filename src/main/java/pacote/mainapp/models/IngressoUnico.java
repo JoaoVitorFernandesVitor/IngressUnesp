@@ -2,16 +2,13 @@ package pacote.mainapp.models;
 
 public class IngressoUnico extends Ingresso {
 
-    private Data data;
 
-    public IngressoUnico(Data data) {
-        this.data = data;
-
+    public IngressoUnico(Evento evento) {
+        setRefEvento(evento);
     }
 
     @Override
     public double calcularValor() {
-        //implementar diferença
-        return 80;
+        return this.getPreco();
     }
 }

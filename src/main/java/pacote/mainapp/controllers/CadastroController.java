@@ -45,9 +45,6 @@ public class CadastroController {
         this.lblMensagem = lblMensagem;
     }
 
-
-
-
     @FXML
     private void cadastrarUsuario(ActionEvent event) {
         // Validação básica

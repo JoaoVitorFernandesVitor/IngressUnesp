@@ -6,7 +6,7 @@ public class EventoMusical extends Evento{
     private String estiloMusical;
 
     //Constutor
-    public EventoMusical(String titulo, String descricao, Endereco local, String data_inicio, String data_fim, String preco, String tipo, String banda, String estiloMusical) {
+    public EventoMusical(String titulo, String descricao, Endereco local, String data_inicio, String data_fim, double preco, String tipo, String banda, String estiloMusical) {
         super(titulo, descricao, local, data_inicio, data_fim, preco, tipo);
         this.banda = banda;
         this.estiloMusical = estiloMusical;

@@ -82,7 +82,7 @@ public class CadastroEventoController {
             novoEvento.setDescricao(txtDescricao.getText());
             novoEvento.setData_inicio(txtDataInicio.getText());
             novoEvento.setData_fim(txtDataFim.getText());
-            novoEvento.setPreco(txtPreco.getText());
+            novoEvento.setPreco(Double.parseDouble(txtPreco.getText()));
             novoEvento.setLocal(local);
 
             // Salvar no banco

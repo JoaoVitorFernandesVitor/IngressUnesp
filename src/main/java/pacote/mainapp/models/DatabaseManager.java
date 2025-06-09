@@ -144,7 +144,7 @@ public class DatabaseManager {
             pstmt.setString(2, evento.getDescricao());
             pstmt.setString(3, evento.getData_inicio());
             pstmt.setString(4, evento.getData_fim());
-            pstmt.setString(5, evento.getPreco());
+            pstmt.setDouble(5, evento.getPreco());
 
             Endereco endereco = evento.getLocal();
             pstmt.setString(6, endereco.getLogradouro());
@@ -172,5 +172,48 @@ public class DatabaseManager {
             return false;
         }
     }
+    public static Evento buscarEvento(String titulo) {
+        System.out.println("Buscando evento: " + titulo);
+        String sql = "SELECT * FROM eventos WHERE titulo = ?";
 
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, titulo);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                if (rs.getString("tipo").equals("musical")) {
+                    //Criando o evento musical
+                    EventoMusical eventoMusical = new EventoMusical();
+                    eventoMusical.setTitulo(rs.getString("titulo"));
+                    eventoMusical.setDescricao(rs.getString("descricao"));
+                    eventoMusical.setData_inicio(rs.getString("data_inicio"));
+                    eventoMusical.setData_fim(rs.getString("data_fim"));
+                    eventoMusical.setPreco(rs.getDouble("preco"));
+                    eventoMusical.setTipo(rs.getString("tipo"));
+                    eventoMusical.setEstiloMusical(rs.getString("estilo_musical"));
+                    eventoMusical.setBanda(rs.getString("banda"));
+
+                    return eventoMusical;
+                }
+                else if (rs.getString("tipo").equals("academico")) {
+                    //Criando o evento Academico
+                    EventoAcademico eventoAcademico = new EventoAcademico();
+                    eventoAcademico.setTitulo(rs.getString("titulo"));
+                    eventoAcademico.setDescricao(rs.getString("descricao"));
+                    eventoAcademico.setData_inicio(rs.getString("data_inicio"));
+                    eventoAcademico.setData_fim(rs.getString("data_fim"));
+                    eventoAcademico.setPreco(rs.getDouble("preco"));
+                    eventoAcademico.setTipo(rs.getString("tipo"));
+                    eventoAcademico.setPalestrante(rs.getString("palestrante"));
+                    eventoAcademico.setTopico(rs.getString("topico"));
+
+                    return eventoAcademico;
+                }
+            }
+        }
+        catch (SQLException e) {
+            System.err.println("Erro ao buscar usuário: " + e.getMessage());
+        }
+        return null;
+    }
 }

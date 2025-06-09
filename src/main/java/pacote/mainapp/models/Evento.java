@@ -6,13 +6,13 @@ public class Evento {
     protected Endereco local;
     protected String data_inicio;
     protected String data_fim;
-    protected String preco;
+    protected double preco;
     protected String tipo;
 
     //Construtor
     public Evento() {}
 
-    public Evento(String titulo, String descricao, Endereco local, String data_inicio, String data_fim, String preco, String tipo) {
+    public Evento(String titulo, String descricao, Endereco local, String data_inicio, String data_fim, double preco, String tipo) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.local = local;
@@ -22,7 +22,7 @@ public class Evento {
         this.tipo = tipo;
     }
 
-    public Evento(String titulo, String descricao, String dataInicio, String preco, String tipo) {
+    public Evento(String titulo, String descricao, String dataInicio, double preco, String tipo) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.data_inicio = dataInicio;
@@ -31,6 +31,11 @@ public class Evento {
     }
 
     //Geters e Seters
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -71,11 +76,11 @@ public class Evento {
         this.local = local;
     }
 
-    public String getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(String preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 

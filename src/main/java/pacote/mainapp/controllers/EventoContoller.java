@@ -36,12 +36,13 @@ public class EventoContoller implements Initializable {
 
         for (Evento evento : eventos) {
             try {
-                Node card = builder.buildCard(evento, null);
+                Node card = builder.buildCard(evento, usuario);
                 eventsContainer.getChildren().add(card);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
     }
 
 
@@ -62,7 +63,7 @@ public class EventoContoller implements Initializable {
                 String titulo = rs.getString("titulo");
                 String descricao = rs.getString("descricao");
                 String data_inicio = rs.getString("data_inicio");
-                String preco = rs.getString("preco");
+                double preco = rs.getDouble("preco");
                 String tipo = rs.getString("tipo");
 
                 Evento evento = new Evento(titulo, descricao, data_inicio, preco, tipo);
@@ -71,7 +72,6 @@ public class EventoContoller implements Initializable {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            // Aqui você pode lançar uma exceção ou logar o erro conforme o caso
         }
 
         return eventos;

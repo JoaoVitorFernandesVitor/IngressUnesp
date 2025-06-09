@@ -10,8 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import pacote.mainapp.models.Evento;
-import pacote.mainapp.models.Usuario;
+import pacote.mainapp.models.*;
 
 import java.io.IOException;
 
@@ -36,25 +35,23 @@ public class PagamentoController {
 
     @FXML
     private void confirmarPagamento() {
-        // Aqui você pode validar os campos e processar o pagamento (simulado)
 
-        if (cardNumberField.getText().isEmpty() || cardNameField.getText().isEmpty() ||
-                expiryField.getText().isEmpty() || cvvField.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Por favor, preencha todos os campos.");
-            alert.showAndWait();
-            return;
+        //Criação do Ingresso
+        Evento evento = DatabaseManager.buscarEvento(eventoTitulo);
+        Cliente cliente = (Cliente) usuario;
+        for (int i = 0; i < quantidade; i++) {
+
+            System.out.println(usuario.getNome());
+
+            IngressoUnico novoIngresso = new IngressoUnico(evento);
+            novoIngresso.setPreco(evento.getPreco());
+
+            cliente.incluirIngresso((Ingresso) novoIngresso);
         }
-
-        // Simula pagamento aprovado
-        Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                "Pagamento aprovado!\nEvento: " + eventoTitulo + "\nQuantidade: " + quantidade + "\nTotal: R$ " + String.format("%.2f", precoTotal));
-        alert.showAndWait();
-
-        // Voltar para tela principal, ou tela de eventos
-        Stage stage = (Stage) cardNumberField.getScene().getWindow();
-        stage.close(); // Ou redirecionar para outra tela
+        for(Ingresso i : cliente.getListaDeIngressos()){
+            System.out.println(i);
+        }
     }
-
 
     public void setDetalhesPagamento(String titulo, int quantidade, double precoTotal) {
         this.eventoTitulo = titulo;

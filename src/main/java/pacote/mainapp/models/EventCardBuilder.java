@@ -35,7 +35,8 @@ public class EventCardBuilder extends VBox {
         this.usuario = usuario;
     }
 
-    public Node buildCard(Evento evento, String path) throws IOException {
+    public Node buildCard(Evento evento, Usuario usuario) throws IOException {
+
 
         Label nomeEvento = new Label(evento.getTitulo());
         Label dataEvento = new Label(evento.getData_inicio());
@@ -79,9 +80,12 @@ public class EventCardBuilder extends VBox {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/pacote/mainapp/fxml/EventoDetalhado.fxml")));
         Parent root = loader.load();
 
+
         EventoDetalhadoController controller = loader.getController();
+
         controller.setEvento(evento); // Passa o evento inteiro aqui
         controller.setUsuario(getUsuario());
+
         Scene eventScene = new Scene(root);
         NavigationController.goTo(source, eventScene);
     }
