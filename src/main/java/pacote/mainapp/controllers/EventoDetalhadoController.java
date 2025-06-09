@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import pacote.mainapp.models.Evento;
 import pacote.mainapp.controllers.NavigationController;
+import pacote.mainapp.models.Usuario;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -42,7 +43,16 @@ public class EventoDetalhadoController {
     private ImageView eventoImagem;
 
     private Evento evento;
+    private Usuario usuario;
     private double precoUnitario;
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     @FXML
     public void initialize() {
@@ -112,6 +122,7 @@ public class EventoDetalhadoController {
             Parent root = loader.load();
 
             PagamentoController pagamentoController = loader.getController();
+            pagamentoController.setUsuario(usuario);
 
             int quantidade = quantidadeSpinner.getValue();
             double precoTotal = precoUnitario * quantidade;
@@ -130,9 +141,11 @@ public class EventoDetalhadoController {
     @FXML
     private void goToEventos(ActionEvent event) {
         try {
-            NavigationController.goToEventos((Node) event.getSource());
+            NavigationController.goToEventos((Node) event.getSource(), getUsuario());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 }

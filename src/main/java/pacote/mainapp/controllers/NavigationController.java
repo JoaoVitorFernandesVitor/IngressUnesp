@@ -82,9 +82,15 @@ public class NavigationController {
         stage.show();
     }
 
-    public static void goToEventos (Node sourceNode) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/Eventos.fxml")));
+    public static void goToEventos (Node sourceNode, Usuario usuario) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/Eventos.fxml")));
+        Parent root = loader.load();
+
+        EventoContoller controller = loader.getController();
+        controller.setUsuario(usuario);
         Stage stage = (Stage) sourceNode.getScene().getWindow();
+
+
         stage.setScene(new Scene(root));
 
         double currentWidth = stage.getWidth();

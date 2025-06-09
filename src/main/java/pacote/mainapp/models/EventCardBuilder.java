@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import pacote.mainapp.controllers.EventCardController;
 import pacote.mainapp.controllers.EventoDetalhadoController;
 import pacote.mainapp.controllers.NavigationController;
@@ -23,22 +24,15 @@ public class EventCardBuilder extends VBox {
     private final String styleEventPrice = "-fx-font-size: 14px; -fx-text-fill: #7f8c8d;";
     private final String styleEventDetail = "-fx-font-size: 14px; -fx-text-fill: #7f8c8d;";
     private final String styleEventTitle = "-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;";
-    private String path;
-    private Scene eventScene;
 
-    public String getPath() {
-        return path;
-    }
-    public void setPath(String path) {
-        this.path = path;
+    private Usuario usuario;
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public Scene getEventScene() {
-        return eventScene;
-    }
-
-    public void setEventScene(Scene eventScene) {
-        this.eventScene = eventScene;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Node buildCard(Evento evento, String path) throws IOException {
@@ -46,6 +40,10 @@ public class EventCardBuilder extends VBox {
         Label nomeEvento = new Label(evento.getTitulo());
         Label dataEvento = new Label(evento.getData_inicio());
         Label precoEvento = new Label("R$ " + evento.getPreco());
+
+        nomeEvento.setStyle(styleEventTitle);
+        dataEvento.setStyle(styleEventDetail);
+        precoEvento.setStyle(styleEventPrice);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pacote/mainapp/fxml/EventCard.fxml"));
         Node eventCard = loader.load();
@@ -83,7 +81,7 @@ public class EventCardBuilder extends VBox {
 
         EventoDetalhadoController controller = loader.getController();
         controller.setEvento(evento); // Passa o evento inteiro aqui
-
+        controller.setUsuario(getUsuario());
         Scene eventScene = new Scene(root);
         NavigationController.goTo(source, eventScene);
     }

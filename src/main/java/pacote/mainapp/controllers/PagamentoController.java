@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import pacote.mainapp.models.Evento;
+import pacote.mainapp.models.Usuario;
 
 import java.io.IOException;
 
@@ -31,7 +32,7 @@ public class PagamentoController {
     private String eventoTitulo;
     private int quantidade;
     private double precoTotal;
-
+    private Usuario usuario;
 
     @FXML
     private void confirmarPagamento() {
@@ -67,10 +68,17 @@ public class PagamentoController {
     @FXML
     private void goToEventos(ActionEvent event) {
         try {
-            NavigationController.goToEventos((Node) event.getSource());
+            NavigationController.goToEventos((Node) event.getSource(), usuario);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

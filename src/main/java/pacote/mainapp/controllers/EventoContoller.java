@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import pacote.mainapp.models.EventCardBuilder;
 import pacote.mainapp.models.Evento;
 import pacote.mainapp.models.EventoAcademico;
+import pacote.mainapp.models.Usuario;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,8 +26,7 @@ public class EventoContoller implements Initializable {
 
     @FXML
     private VBox eventsContainer;
-    private ObservableList<Evento> eventos = FXCollections.observableArrayList();
-
+    private Usuario usuario;
 
 
     private void carregarEventos() {
@@ -84,5 +84,13 @@ public class EventoContoller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 }
