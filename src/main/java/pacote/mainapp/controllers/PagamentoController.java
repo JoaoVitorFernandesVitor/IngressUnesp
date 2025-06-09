@@ -36,16 +36,15 @@ public class PagamentoController {
     private void confirmarPagamento() {
 
         //Criação do Ingresso
-        try{//Garante que o evento tenha o cast adequado
+        try{    //Garante que o evento tenha o cast adequado
+
             EventoMusical evento = (EventoMusical) DatabaseManager.buscarEvento(eventoTitulo);
 
             StageLogado stage = (StageLogado) precoTotalLabel.getScene().getWindow();
             Cliente usuario = (Cliente) stage.getUsuario();
-
+            System.out.println(usuario.getEmail());
             for (int i = 0; i < quantidade; i++) {
-
                 DatabaseManager.cadastrarIngresso(evento.getId(),usuario.getEmail(),"Pista");
-
             }
         }
         catch (ClassCastException e){
@@ -56,11 +55,7 @@ public class PagamentoController {
             Cliente usuario = (Cliente) stage.getUsuario();
 
             for (int i = 0; i < quantidade; i++) {
-
-                IngressoUnico novoIngresso = new IngressoUnico();
-                novoIngresso.setPreco(evento.getPreco());
-
-                usuario.incluirIngresso(novoIngresso);
+                DatabaseManager.cadastrarIngresso(evento.getId(),usuario.getEmail(),"Pista");
             }
         }
 

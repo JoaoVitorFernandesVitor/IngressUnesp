@@ -22,11 +22,13 @@ public class DatabaseManager {
             criarTabelas();
             criarTabelaEvento();
             criarTabelaIngresso();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     private static void criarTabelaIngresso() throws SQLException {
+
         String sqlIngressos = "CREATE TABLE IF NOT EXISTS ingressos (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "refEvent INTEGER NOT NULL," +     //ref ao evento
@@ -37,8 +39,8 @@ public class DatabaseManager {
                 ")";
 
         try (Statement stmt = connection.createStatement()) {
-            stmt.execute("PRAGMA foreign_keys = ON");
             stmt.execute(sqlIngressos);
+
         }
     }
     private static void criarTabelas() throws SQLException {
@@ -58,7 +60,6 @@ public class DatabaseManager {
                 "nivel_acesso TEXT)";    // apenas para administradores
 
         try (Statement stmt = connection.createStatement()) {
-            stmt.execute("PRAGMA foreign_keys = ON");
             stmt.execute(sqlUsuarios);
         }
     }
@@ -83,7 +84,6 @@ public class DatabaseManager {
                 "tipo TEXT NOT NULL)";
 
         try (Statement stmt = connection.createStatement()) {
-            stmt.execute("PRAGMA foreign_keys = ON");
             stmt.execute(sqlEventos);
         }
     }
@@ -169,7 +169,25 @@ public class DatabaseManager {
         return null;
     }
 
+    public static boolean cadastrarIngresso(int refEvent, String refUsuario, String nivelAcesso) {
+        String sql = "INSERT INTO ingressos (refEvent, refUsuario, nivel_acesso) VALUES (?, ?, ?)";
 
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            // Garantir que as chaves estrangeiras estão ativadas
+            stmt.execute("PRAGMA foreign_keys = ON");
+
+            stmt.setInt(1, refEvent);
+            stmt.setString(2, refUsuario);
+            stmt.setString(3, nivelAcesso);
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.err.println("Erro detalhado ao cadastrar ingresso: " + e.getMessage());
+            e.printStackTrace(); // Isso mostrará mais detalhes do erro
+            return false;
+        }
+    }
 
     public static boolean cadastrarEvento(Evento evento, String tipoEvento) throws SQLException {
         String sql = "INSERT INTO eventos(titulo, descricao, data_inicio, data_fim, " +
@@ -212,7 +230,6 @@ public class DatabaseManager {
         }
     }
     public static Evento buscarEvento(String titulo) {
-        System.out.println("Buscando evento: " + titulo);
         String sql = "SELECT * FROM eventos WHERE titulo = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -284,20 +301,5 @@ public class DatabaseManager {
         return eventos;
     }
 
-    public static boolean cadastrarIngresso(int refEvent, String refUsuario, String nivelAcesso)  {
-        String sql = "INSERT INTO ingressos (refEvent, refUsuario, nivel_acesso) VALUES (?, ?, ?)";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, refEvent);
-            stmt.setString(2, refUsuario);
-            stmt.setString(3, nivelAcesso);
-
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
-        }
-        catch (SQLException e) {
-            System.err.println("Erro ao cadastrar ingresso: " + e.getMessage());
-        }
-        return false;
-    }
 }

@@ -90,7 +90,6 @@ public class NavigationController {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/Eventos.fxml")));
         Parent root = loader.load();
 
-        EventoContoller controller = loader.getController();
 
         StageLogado stage = (StageLogado) sourceNode.getScene().getWindow();
         if(usuario != null) {stage.setUsuario(usuario);} //garante que nao seja alocado um usuario vazio
@@ -126,8 +125,6 @@ public class NavigationController {
     public static void goToCadastroEvento(Node sourceNode) throws IOException {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(NavigationController.class.getResource("/pacote/mainapp/fxml/CadastroEvento.fxml")));
         Parent root = loader.load();
-
-        EventoContoller controller = loader.getController();
 
 
         Stage stage = (Stage) sourceNode.getScene().getWindow();

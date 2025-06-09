@@ -33,13 +33,17 @@ public class LoginController extends MainController {
         String email = txtLoginEmail.getText();
         String senha = password.getText();
 
+
+
         if (email.isEmpty() || senha.isEmpty()) {
             lblLoginMensagem.setText("Email e senha são obrigatórios.");
             return;
         }
 
         try {
+            NavigationController.goToTelaAdmin((Node) event.getSource(), email);
             Usuario usuario = DatabaseManager.buscarUsuarioPorEmail(email);
+
 
             if (usuario != null && usuario.getSenha().equals(senha)){
                 lblLoginMensagem.setText("Login realizado com sucesso!");
