@@ -30,10 +30,10 @@ public class DatabaseManager {
         String sqlIngressos = "CREATE TABLE IF NOT EXISTS ingressos (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "refEvent INTEGER NOT NULL," +     //ref ao evento
-                "refUsuario INTEGER NOT NULL," +  // ref ao usuário
+                "refUsuario TEXT NOT NULL," +  // ref ao usuário
                 "nivel_acesso TEXT," +
                 "FOREIGN KEY (refEvent) REFERENCES eventos(id) ON DELETE CASCADE," +
-                "FOREIGN KEY (refUsuario) REFERENCES usuarios(id) ON DELETE CASCADE" +
+                "FOREIGN KEY (refUsuario) REFERENCES usuarios(email) ON DELETE CASCADE" +
                 ")";
 
         try (Statement stmt = connection.createStatement()) {
@@ -284,16 +284,20 @@ public class DatabaseManager {
         return eventos;
     }
 
-    public static boolean cadastrarIngresso(int refEvent, int refUsuario, String nivelAcesso) throws SQLException {
+    public static boolean cadastrarIngresso(int refEvent, String refUsuario, String nivelAcesso)  {
         String sql = "INSERT INTO ingressos (refEvent, refUsuario, nivel_acesso) VALUES (?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, refEvent);
-            stmt.setInt(2, refUsuario);
+            stmt.setString(2, refUsuario);
             stmt.setString(3, nivelAcesso);
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         }
+        catch (SQLException e) {
+            System.err.println("Erro ao cadastrar ingresso: " + e.getMessage());
+        }
+        return false;
     }
 }

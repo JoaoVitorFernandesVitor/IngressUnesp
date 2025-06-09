@@ -3,8 +3,8 @@ package pacote.mainapp.models;
 public class IngressoUnico extends Ingresso {
 
 
-    public IngressoUnico(Evento evento) {
-        setRefEvento(evento);
+    public IngressoUnico() {
+
     }
 
     @Override

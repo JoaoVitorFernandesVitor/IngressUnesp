@@ -44,8 +44,7 @@ public class PagamentoController {
 
             for (int i = 0; i < quantidade; i++) {
 
-                IngressoUnico novoIngresso = new IngressoUnico(evento);
-                novoIngresso.setPreco(evento.getPreco());
+                DatabaseManager.cadastrarIngresso(evento.getId(),usuario.getEmail(),"Pista");
 
             }
         }
@@ -58,7 +57,7 @@ public class PagamentoController {
 
             for (int i = 0; i < quantidade; i++) {
 
-                IngressoUnico novoIngresso = new IngressoUnico(evento);
+                IngressoUnico novoIngresso = new IngressoUnico();
                 novoIngresso.setPreco(evento.getPreco());
 
                 usuario.incluirIngresso(novoIngresso);
