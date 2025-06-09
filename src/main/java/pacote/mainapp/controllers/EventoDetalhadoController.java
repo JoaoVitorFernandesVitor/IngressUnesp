@@ -120,7 +120,7 @@ public class EventoDetalhadoController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/pacote/mainapp/fxml/Pagemento.fxml"));
             Parent root = loader.load();
 
-            PagamentoController2 pagamentoController = loader.getController();
+            PagamentoController pagamentoController = loader.getController();
 
             int quantidade = quantidadeSpinner.getValue();
             double precoTotal = precoUnitario * quantidade;

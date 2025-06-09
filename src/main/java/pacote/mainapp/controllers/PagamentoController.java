@@ -2,20 +2,34 @@ package pacote.mainapp.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import pacote.mainapp.models.*;
+
 import java.io.IOException;
 import java.util.Objects;
 
 public class PagamentoController {
 
+
+    @FXML
+    private Pane pix_Panel;
+    @FXML
+    private GridPane credito_Pane;
+    @FXML
+    private Button btn_Cartao;
+    @FXML
+    private Button btn_Pix;
+    @FXML
+    private Button btn_ConfimarCompra;
+    @FXML
+    private Button btn_Cancelar;
+    @FXML
+    private Label alert_Label;
     @FXML
     private TextField cardNumberField;
     @FXML
@@ -24,52 +38,69 @@ public class PagamentoController {
     private TextField expiryField;
     @FXML
     private TextField cvvField;
-
     @FXML
-    private Label precoTotalLabel;
+    private Label preco_Label;
+    @FXML
+    private Label   quantidade_Label;
 
-    private String eventoTitulo;
+    private Evento evento;
     private int quantidade;
     private double precoTotal;
 
+    @FXML
+    private void confirmarPagamento(ActionEvent event) {
+        if(cardNumberField.getText().equals("") || cardNameField.getText().equals("") || cvvField.getText().equals("")||expiryField.getText().equals("")) {
+            alert_Label.setText("Dados incompletos");
+            alert_Label.setVisible(true);
+        }
+        else{
+            //Criação do Ingresso
+            try{    //Garante que o evento tenha o cast adequado
+                EventoMusical evento = (EventoMusical) DatabaseManager.buscarEvento(this.evento.getTitulo());
+
+                StageLogado stage = (StageLogado) preco_Label.getScene().getWindow();
+                Cliente usuario = (Cliente) stage.getUsuario();
+
+                for (int i = 0; i < quantidade; i++) {
+                    DatabaseManager.cadastrarIngresso(Objects.requireNonNull(evento).getId(), usuario.getEmail(), "Pista");
+                }
+            }
+            catch (ClassCastException e){
+
+                EventoAcademico evento = (EventoAcademico) DatabaseManager.buscarEvento(this.evento.getTitulo());
+
+                StageLogado stage = (StageLogado) preco_Label.getScene().getWindow();
+                Cliente usuario = (Cliente) stage.getUsuario();
+
+                for (int i = 0; i < quantidade; i++) {
+                    DatabaseManager.cadastrarIngresso(evento.getId(),usuario.getEmail(),"Pista");
+                }
+            }
+
+            alert_Label.setText("Pagamento efetuado com sucesso");
+            alert_Label.setVisible(true);
+        }
+
+    }
 
     @FXML
-    private void confirmarPagamento() {
+    private void show_Pix(ActionEvent event) {
+        credito_Pane.setVisible(false);
+        credito_Pane.setDisable(true);
 
-        //Criação do Ingresso
-        try{    //Garante que o evento tenha o cast adequado
-
-            EventoMusical evento = (EventoMusical) DatabaseManager.buscarEvento(eventoTitulo);
-
-            StageLogado stage = (StageLogado) precoTotalLabel.getScene().getWindow();
-            Cliente usuario = (Cliente) stage.getUsuario();
-
-            for (int i = 0; i < quantidade; i++) {
-                DatabaseManager.cadastrarIngresso(Objects.requireNonNull(evento).getId(), usuario.getEmail(), "Pista");
-            }
-        }
-        catch (ClassCastException e){
-
-            EventoAcademico evento = (EventoAcademico) DatabaseManager.buscarEvento(eventoTitulo);
-
-            StageLogado stage = (StageLogado) precoTotalLabel.getScene().getWindow();
-            Cliente usuario = (Cliente) stage.getUsuario();
-
-            for (int i = 0; i < quantidade; i++) {
-                DatabaseManager.cadastrarIngresso(evento.getId(),usuario.getEmail(),"Pista");
-            }
-        }
-
+        pix_Panel.setDisable(false);
+        pix_Panel.setVisible(true);
     }
 
-    public void setDetalhesPagamento(String titulo, int quantidade, double precoTotal) {
-        this.eventoTitulo = titulo;
-        this.quantidade = quantidade;
-        this.precoTotal = precoTotal;
+    @FXML
+    private void show_Credito(ActionEvent event) {
+        pix_Panel.setVisible(false);
+        pix_Panel.setDisable(true);
 
-        // Atualiza o label com o preço formatado
-        precoTotalLabel.setText(String.format("Total: R$ %.2f", precoTotal));
+        credito_Pane.setDisable(false);
+        credito_Pane.setVisible(true);
     }
+
 
     @FXML
     private void goToEventos(ActionEvent event) {
@@ -79,6 +110,15 @@ public class PagamentoController {
             e.printStackTrace();
         }
     }
-;
+
+    public void setDetalhesPagamento(Evento evento, int quantidade, double precoTotal) {
+        this.evento = evento;
+        this.quantidade = quantidade;
+        this.precoTotal = precoTotal;
+
+        // Atualiza o label com o preço formatado
+        quantidade_Label.setText(quantidade+"");
+        preco_Label.setText(String.format("%.2f", precoTotal));
+    }
 
 }
