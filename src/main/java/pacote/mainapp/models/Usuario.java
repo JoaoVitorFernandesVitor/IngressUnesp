@@ -1,12 +1,30 @@
 package pacote.mainapp.models;
 
+/**
+ * Classe abstrata que representa um usuário do sistema.
+ * Pode ser estendida por classes como Cliente ou Administrador.
+ * Contém informações pessoais e de autenticação.
+ *
+ * @author Miguel
+ */
 public abstract class Usuario {
 
+    /** Nome completo do usuário. */
     private String nome;
+
+    /** Endereço de e-mail do usuário. */
     private String email;
+
+    /** CPF do usuário. */
     private String cpf;
+
+    /** Endereço associado ao usuário. */
     private Endereco endereco;
+
+    /** Número de telefone para contato. */
     private String telefone;
+
+    /** Senha usada para autenticação. */
     private String senha;
 
     public String getNome() {

@@ -1,6 +1,6 @@
 package pacote.mainapp.models;
 
-public abstract class Ingresso implements Pagavel {
+public abstract class Ingresso{
     protected int id;
     protected Evento refEvento;
     protected double preco;
@@ -31,9 +31,4 @@ public abstract class Ingresso implements Pagavel {
         this.preco = preco;
     }
 
-    //Metodos
-    @Override
-    public double calcularValor() {
-        return 0;
-    }
 }

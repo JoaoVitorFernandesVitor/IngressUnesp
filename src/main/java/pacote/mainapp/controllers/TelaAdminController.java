@@ -48,4 +48,13 @@ public class TelaAdminController {
         labelOlaUsuario.setText("Olá, " + usuario.getNome() + "!");
     }
 
+
+    @FXML
+    private void goToMenuInicial(ActionEvent event) {
+        try {
+            NavigationController.goToMenuInicial((Node) event.getSource());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

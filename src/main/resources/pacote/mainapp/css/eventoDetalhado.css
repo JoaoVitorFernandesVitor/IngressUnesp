@@ -33,9 +33,10 @@
 
 .label-title {
     -fx-font-size: 40px;
-    -fx-font-weight: 700;
-    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
 }
+
 .label-sub-title {
     -fx-font-size: 30px;
     -fx-font-weight: 700;
