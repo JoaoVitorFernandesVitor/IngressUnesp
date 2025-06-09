@@ -48,6 +48,16 @@ public class MeusIngressosContoller implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void goToEventos(ActionEvent event) {
+        try {
+            NavigationController.goToEventos((Node)event.getSource(), null);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     private void goToMenuInicial(ActionEvent event) {
         try {

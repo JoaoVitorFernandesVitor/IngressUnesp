@@ -1,7 +1,23 @@
 .anchor-pane {
     -fx-background-color: #7d1833;
-    -fx-padding: 40px 20px;
     -fx-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Barra superior */
+.top-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 15px;
+}
+
+.logo-text {
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.welcome-text {
+    -fx-text-fill: #bdc3c7;
+    -fx-font-size: 14px;
 }
 
 .card {
@@ -16,7 +32,12 @@
 }
 
 .label-title {
-    -fx-font-size: 28px;
+    -fx-font-size: 40px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #2c3e50;
+}
+.label-sub-title {
+    -fx-font-size: 30px;
     -fx-font-weight: 700;
     -fx-text-fill: #2c3e50;
 }
@@ -30,17 +51,16 @@
 
 .hbox {
     -fx-alignment: center;
-    -fx-spacing: 70px;
 }
 
 .label-text {
-    -fx-font-weight: 600;
-    -fx-font-size: 14px;
-    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 18px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #2c3e50;
 }
 
 .label-preco {
-    -fx-font-size: 22px;
+    -fx-font-size: 18px;
     -fx-font-weight: 700;
     -fx-text-fill: #27ae60;
 }
@@ -53,10 +73,10 @@
 .button {
     -fx-background-color: #2980b9;
     -fx-text-fill: white;
-    -fx-font-size: 18px;
+    -fx-font-size: 14px;
     -fx-font-weight: 700;
-    -fx-padding: 14px 40px;
-    -fx-background-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 6px;
     -fx-cursor: hand;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.18), 6, 0, 0, 3);
     -fx-transition: all 0.3s ease;
@@ -65,10 +85,26 @@
 .button:hover {
     -fx-background-color: #3498db;
 }
+.title-card {
+    -fx-background-color: rgb(175, 28, 73);
+    -fx-background-radius: 15px;
+    -fx-padding: 20px;
+    -fx-spacing: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 10, 0, 0, 5);
+    -fx-max-width: 800px;
+}
+
+.descricao-card {
+    -fx-background-color: rgba(255, 0, 0, 0.2);
+    -fx-background-radius: 15px;
+    -fx-padding: 20px;
+    -fx-spacing: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 10, 0, 0, 5);
+    -fx-max-width: 800px;
+}
 
 .image-view {
-    -fx-fit-width: 350px;
-    -fx-fit-height: 230px;
+
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 3);
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;

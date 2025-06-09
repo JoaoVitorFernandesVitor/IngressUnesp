@@ -1,6 +1,5 @@
 package pacote.mainapp.models;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -9,22 +8,20 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import pacote.mainapp.controllers.EventCardController;
 import pacote.mainapp.controllers.EventoDetalhadoController;
 import pacote.mainapp.controllers.IngressoCardController;
 import pacote.mainapp.controllers.NavigationController;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.Objects;
 
 public class EventCardBuilder extends VBox {
 
     //Variaveis de Stylo Css
-    private final String styleEventPrice = "-fx-font-size: 14px; -fx-text-fill: #7f8c8d;";
-    private final String styleEventDetail = "-fx-font-size: 14px; -fx-text-fill: #7f8c8d;";
-    private final String styleEventTitle = "-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;";
+    private final String styleEventPrice = "-fx-font-size: 15px; -fx-text-fill: #485255;";
+    private final String styleEventDetail = "-fx-font-size: 15px; -fx-text-fill: #485255;";
+    private final String styleEventTitle = "-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;";
 
     private Usuario usuario;
 
@@ -40,8 +37,9 @@ public class EventCardBuilder extends VBox {
 
 
         Label nomeEvento = new Label(evento.getTitulo());
-        Label dataEvento = new Label(evento.getData_inicio());
-        Label precoEvento = new Label("R$ " + evento.getPreco());
+        Label dataEvento = new Label("Data: "+ evento.getData_inicio());
+        Label precoEvento = new Label("Preço: R$ "+ evento.getPreco());
+
 
         nomeEvento.setStyle(styleEventTitle);
         dataEvento.setStyle(styleEventDetail);
@@ -55,7 +53,7 @@ public class EventCardBuilder extends VBox {
         String tipo = evento.getTipo();
         String imagePath = switch (tipo) {
             case "academico" -> "/pacote/mainapp/img/academico.png";
-            case "musical" -> "/pacote/mainapp/img/musical.jpg";
+            case "musical" -> "/pacote/mainapp/img/musical.png";
             default -> "/pacote/mainapp/img/unespLogo.png";
         };
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
@@ -95,8 +93,8 @@ public class EventCardBuilder extends VBox {
 
 
         Label nomeEvento = new Label(ingresso.refEvento.getTitulo());
-        Label dataEvento = new Label(ingresso.refEvento.getData_inicio());
-        Label precoEvento = new Label("R$ " + ingresso.getPreco());
+        Label dataEvento = new Label("Data: "+ingresso.refEvento.getData_inicio());
+        Label precoEvento = new Label("Preço: R$ " + ingresso.getPreco());
 
         nomeEvento.setStyle(styleEventTitle);
         dataEvento.setStyle(styleEventDetail);
@@ -110,7 +108,7 @@ public class EventCardBuilder extends VBox {
         String tipo = ingresso.refEvento.getTipo();
         String imagePath = switch (tipo) {
             case "academico" -> "/pacote/mainapp/img/academico.png";
-            case "musical" -> "/pacote/mainapp/img/musical.jpg";
+            case "musical" -> "/pacote/mainapp/img/musical.png";
             default -> "/pacote/mainapp/img/unespLogo.png";
         };
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));

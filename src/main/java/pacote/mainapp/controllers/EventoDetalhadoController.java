@@ -15,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import pacote.mainapp.models.Evento;
-import pacote.mainapp.controllers.NavigationController;
 import pacote.mainapp.models.Usuario;
 
 import java.io.IOException;
@@ -84,7 +83,7 @@ public class EventoDetalhadoController {
         String tipo = evento.getTipo() != null ? evento.getTipo().toLowerCase(Locale.ROOT) : "";
         String imagePath = switch (tipo) {
             case "academico" -> "/pacote/mainapp/img/academico.png";
-            case "musical" -> "/pacote/mainapp/img/musical.jpg";
+            case "musical" -> "/pacote/mainapp/img/musical.png";
             default -> "/pacote/mainapp/img/unespLogo.png";
         };
 

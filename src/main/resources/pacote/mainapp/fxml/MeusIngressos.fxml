@@ -18,7 +18,7 @@
             <Region prefHeight="34.0" prefWidth="137.0" HBox.hgrow="ALWAYS" />
             <Label fx:id="lblWelcome" prefHeight="18.0" prefWidth="211.0" styleClass="welcome-text" />
          <Region layoutX="226.0" layoutY="25.0" prefHeight="34.0" prefWidth="131.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="btnMeusIngressos" onAction="#gotoMenuIngressos" styleClass="logout-button" text="Eventos">
+            <Button fx:id="btnMeusIngressos" onAction="#goToEventos" styleClass="logout-button" text="Eventos">
             <HBox.margin>
                <Insets right="10.0" />
             </HBox.margin></Button>
