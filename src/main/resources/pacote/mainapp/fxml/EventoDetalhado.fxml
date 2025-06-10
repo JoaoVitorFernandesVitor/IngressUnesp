@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,7 +13,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="anchor-pane" stylesheets="@../css/eventoDetalhado.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.EventoDetalhadoController">
+<?import javafx.scene.layout.StackPane?>
+<StackPane prefHeight="600.0" prefWidth="900.0" styleClass="anchor-pane" stylesheets="@../css/eventoDetalhado.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacote.mainapp.controllers.EventoDetalhadoController">
    <Pane layoutX="88.0" layoutY="7.0" prefHeight="655.0" prefWidth="725.0" styleClass="card">
       <children>
          <GridPane layoutX="45.0" layoutY="410.0" prefHeight="30.0" prefWidth="611.0">
@@ -28,7 +28,7 @@
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-                    <Label styleClass="label-text" text="Preço:">
+                    <Label styleClass="label-text2" text="Preço:">
                   <padding>
                      <Insets right="10.0" />
                   </padding>
@@ -38,7 +38,7 @@
                      <Insets right="10.0" />
                   </padding>
                </Label>
-                    <Label styleClass="label-text" text="Quantidade:" GridPane.columnIndex="2">
+                    <Label styleClass="label-text2" text="Quantidade:" GridPane.columnIndex="2">
                   <padding>
                      <Insets right="5.0" />
                   </padding>
@@ -47,7 +47,7 @@
             </children>
          </GridPane>
              <Label fx:id="eventoTitulo" alignment="CENTER" layoutX="36.0" layoutY="14.0" prefHeight="45.0" prefWidth="628.0" styleClass="title-card" text="Título do Evento" />
-   
+
                                           <Button fx:id="comprarButton" layoutX="396.0" layoutY="535.0" onAction="#abrirTelaPagamento" styleClass="button" text="Comprar Ingresso" />
             <Button fx:id="btnBack" layoutX="149.0" layoutY="535.0" onAction="#goToEventos" prefWidth="123.0" styleClass="secondary-button" text="Voltar">
             </Button>
@@ -70,4 +70,4 @@
          </BorderPane>
       </children>
    </Pane>
-</AnchorPane>
+</StackPane>
