@@ -101,7 +101,6 @@ public class CadastroEventoController {
 
             if (DatabaseManager.cadastrarEvento(novoEvento, tipoEvento)) {
                 lblMensagem.setText("Evento cadastrado com sucesso!");
-                NavigationController.goToTelaAdmin((Node) event.getSource());
                 limparCampos();
             } else {
                 lblMensagem.setText("Erro ao cadastrar evento.");
