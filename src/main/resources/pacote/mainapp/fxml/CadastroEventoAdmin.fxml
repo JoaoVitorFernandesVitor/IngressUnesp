@@ -79,39 +79,36 @@
                 <ToggleGroup fx:id="tipoEventoGroup"/>
             </fx:define>
 
-            <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
-                <ColumnConstraints halignment="LEFT" minWidth="200"/>
-                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
-                <ColumnConstraints halignment="LEFT" minWidth="200"/>
-            </columnConstraints>
 
             <!-- Tipo de Evento -->
-            <Label text="Tipo de Evento:" GridPane.rowIndex="12" GridPane.columnIndex="0" styleClass="form-label" />
-            <HBox GridPane.rowIndex="12" GridPane.columnIndex="1">
+            <Label text="Tipo de Evento:" GridPane.rowIndex="6" GridPane.columnIndex="0" styleClass="form-label" />
+            <HBox GridPane.rowIndex="6" GridPane.columnIndex="1">
                 <RadioButton fx:id="rbMusical" styleClass="form-label" toggleGroup="$tipoEventoGroup" text="Musical" onAction="#toggleTipoEvento" selected="true" />
                 <RadioButton fx:id="rbAcademico" styleClass="form-label" toggleGroup="$tipoEventoGroup" text="Acadêmico" onAction="#toggleTipoEvento" />
             </HBox>
 
             <!-- Campos específicos: Musical -->
-            <Label text="Estilo Musical:" fx:id="lblEstiloMusical" GridPane.rowIndex="13" GridPane.columnIndex="0" styleClass="form-label" visible="${rbMusical.selected}" />
-            <TextField fx:id="txtEstiloMusical" promptText="Rock, Jazz, etc" GridPane.rowIndex="13" GridPane.columnIndex="1" styleClass="form-field" visible="${rbMusical.selected}" />
+            <Label text="Estilo Musical:" fx:id="lblEstiloMusical" GridPane.rowIndex="7" GridPane.columnIndex="0" styleClass="form-label" visible="${rbMusical.selected}"/>
+            <TextField fx:id="txtEstiloMusical" promptText="Rock, Jazz, etc" GridPane.rowIndex="7" GridPane.columnIndex="1" styleClass="form-field" />
 
-            <Label text="Banda:" fx:id="lblBanda" GridPane.rowIndex="14" GridPane.columnIndex="0" styleClass="form-label" visible="${rbMusical.selected}" />
-            <TextField fx:id="txtBanda" promptText="Nome da banda" GridPane.rowIndex="14" GridPane.columnIndex="1" styleClass="form-field" visible="${rbMusical.selected}" />
+            <Label text="Banda:" fx:id="lblBanda" GridPane.rowIndex="8" GridPane.columnIndex="0" styleClass="form-label" visible="${rbMusical.selected}" />
+            <TextField fx:id="txtBanda" promptText="Nome da banda" GridPane.rowIndex="8" GridPane.columnIndex="1" styleClass="form-field"  />
 
             <!-- Campos específicos: Acadêmico -->
-            <Label text="Palestrante:" fx:id="lblPalestrante" GridPane.rowIndex="15" GridPane.columnIndex="0" styleClass="form-label" visible="${rbAcademico.selected}"/>
-            <TextField fx:id="txtPalestrante" promptText="Nome do palestrante" GridPane.rowIndex="15" GridPane.columnIndex="1" styleClass="form-field" visible="${rbAcademico.selected}" />
+            <Label text="Palestrante:" fx:id="lblPalestrante" GridPane.rowIndex="7" GridPane.columnIndex="0" styleClass="form-label" visible="${rbAcademico.selected}"/>
+            <TextField fx:id="txtPalestrante" promptText="Nome do palestrante" GridPane.rowIndex="7" GridPane.columnIndex="1" styleClass="form-field"  />
 
-            <Label text="Tópico:" fx:id="lblTopico" GridPane.rowIndex="16" GridPane.columnIndex="0" styleClass="form-label" visible="${rbAcademico.selected}"/>
-            <TextField fx:id="txtTopico" promptText="Tópico abordado" GridPane.rowIndex="16" GridPane.columnIndex="1" styleClass="form-field" visible="${rbAcademico.selected}"/>
+            <Label text="Tópico:" fx:id="lblTopico" GridPane.rowIndex="8" GridPane.columnIndex="0" styleClass="form-label" visible="${rbAcademico.selected}"/>
+            <TextField fx:id="txtTopico" promptText="Tópico abordado" GridPane.rowIndex="8" GridPane.columnIndex="1" styleClass="form-field" />
 
             <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" />
-                <ColumnConstraints halignment="LEFT" />
+                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                <ColumnConstraints halignment="LEFT" minWidth="200"/>
+                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                <ColumnConstraints halignment="LEFT" minWidth="200"/>
             </columnConstraints>
         </GridPane>
+
 
         <!-- Botões -->
         <HBox alignment="CENTER" spacing="20" styleClass="button-container">

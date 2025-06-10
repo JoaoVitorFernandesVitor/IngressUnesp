@@ -64,6 +64,11 @@ public class CadastroEventoController {
      */
     @FXML
     private void cadastrarEvento(ActionEvent event) {
+        if (txtTitulo.getText().isEmpty() || txtDescricao.getText().isEmpty() || txtDataInicio.getText().isEmpty() || txtDataFim.getText().isEmpty() || txtPreco.getText().isEmpty()) {
+            lblMensagem.setText("Alguns campos devem ser preenchidos!");
+            return;
+        }
+
         try {
             // Criar endereço
             Endereco local = new Endereco(
@@ -101,7 +106,6 @@ public class CadastroEventoController {
 
             if (DatabaseManager.cadastrarEvento(novoEvento, tipoEvento)) {
                 lblMensagem.setText("Evento cadastrado com sucesso!");
-                NavigationController.goToTelaAdmin((Node) event.getSource());
                 limparCampos();
             } else {
                 lblMensagem.setText("Erro ao cadastrar evento.");

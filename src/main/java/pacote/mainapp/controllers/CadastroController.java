@@ -2,8 +2,13 @@ package pacote.mainapp.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
+import pacote.mainapp.models.*;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 
 /**
@@ -61,7 +66,59 @@ public class CadastroController {
      */
     @FXML
     private void cadastrarUsuario(ActionEvent event) {
-        // validação e cadastro...
+        // Validação básica
+        if (!txtSenha.getText().equals(txtConfirmarSenha.getText())) {
+            lblMensagem.setText("As senhas não coincidem!");
+            return;
+        }
+
+        if(txtNome.getText().equals("") || txtEmail.getText().equals("") || txtCpf.getText().equals("") || txtSenha.getText().equals("")) {
+            lblMensagem.setText("Alguns campos devem ser preenchidos!");
+            return;
+        }
+
+        try {
+            // Criar endereço
+            Endereco endereco = new Endereco(
+                    txtLogradouro.getText(),
+                    txtNumero.getText(),
+                    txtComplemento.getText(),
+                    txtCidade.getText(),
+                    txtEstado.getText(),
+                    txtCep.getText()
+            );
+
+            Usuario novoUsuario;
+            String tipoUsuario;
+
+            if (rbCliente.isSelected()) {
+                novoUsuario = new Cliente();
+                tipoUsuario = "cliente";
+            } else {
+                Administrador admin = new Administrador();
+                admin.setNivelAcesso(txtNivelAcesso.getText());
+                novoUsuario = admin;
+                tipoUsuario = "admin";
+            }
+
+            // Criar usuário (usando classe anônima já que Usuario é abstrata)
+            novoUsuario.setNome(txtNome.getText());
+            novoUsuario.setEmail(txtEmail.getText());
+            novoUsuario.setCpf(txtCpf.getText());
+            novoUsuario.setTelefone(txtTelefone.getText());
+            novoUsuario.setSenha(txtSenha.getText());
+            novoUsuario.setEndereco(endereco);
+
+            // Persistir no banco
+            if (DatabaseManager.cadastrarUsuario(novoUsuario, tipoUsuario)) {
+                lblMensagem.setText("Cadastro realizado com sucesso!");
+                limparCampos();
+            } else {
+                lblMensagem.setText("Erro ao cadastrar. Tente novamente.");
+            }
+        } catch (Exception e) {
+            lblMensagem.setText("Erro no formulário: " + e.getMessage());
+        }
     }
 
     /**
@@ -71,14 +128,26 @@ public class CadastroController {
      */
     @FXML
     private void toggleTipoUsuario(ActionEvent event) {
-        // alterna visibilidade txtNivelAcesso
+        txtNivelAcesso.visibleProperty().unbind();
+        txtNivelAcesso.setVisible(rbAdministrador.isSelected());
     }
 
     /**
      * Limpa todos os campos do formulário.
      */
     private void limparCampos() {
-        // limpa os campos
+        txtNome.clear();
+        txtEmail.clear();
+        txtCpf.clear();
+        txtTelefone.clear();
+        txtSenha.clear();
+        txtConfirmarSenha.clear();
+        txtLogradouro.clear();
+        txtNumero.clear();
+        txtComplemento.clear();
+        txtCidade.clear();
+        txtEstado.clear();
+        txtCep.clear();
     }
 
     /**
@@ -88,16 +157,21 @@ public class CadastroController {
      */
     @FXML
     private void goToMenuInicial(ActionEvent event) {
-        // navega para menu inicial
+        try {
+            NavigationController.goToMenuInicial((Node) event.getSource());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    /**
-     * Navega para a tela administrativa.
-     *
-     * @param event Evento de ação para ir à tela administrativa.
-     */
     @FXML
     private void goToAdminMenu(ActionEvent event) {
-        // navega para tela admin
+        try {
+            NavigationController.goToTelaAdmin((Node) event.getSource());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -23,8 +23,8 @@
 }
 
 .error-label {
-    -fx-text-fill: #a80000;
-    -fx-font-size: 12px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-padding: 5px 0;
 }
